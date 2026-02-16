@@ -1,0 +1,95 @@
+/* General Styles */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
+  margin: 2rem auto;
+  max-width: 860px;
+  line-height: 1.6;
+  padding: 0 1rem;
+  background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+  min-height: 100vh;
+  color: #333;
+}
+
+/* Typography */
+h1 {
+  margin-bottom: 0.5rem;
+  color: #2c3e50;
+  font-size: 2.5rem;
+  font-weight: 700;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+p {
+  margin-bottom: 1rem;
+  color: #555;
+  font-size: 1.1rem;
+}
+
+/* List Styles */
+ul {
+  padding-left: 1.2rem;
+  margin-top: 1.5rem;
+}
+
+li {
+  margin: 0.75rem 0;
+  padding: 0.8rem;
+  background: rgba(255, 255, 255, 0.8);
+  border-radius: 8px;
+  transition: all 0.3s ease;
+  list-style: none;
+  border-left: 4px solid #3498db;
+}
+
+li:hover {
+  background: rgba(255, 255, 255, 0.95);
+  transform: translateX(5px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Link Styles */
+a {
+  text-decoration: none;
+  color: #2980b9;
+  font-weight: 500;
+  transition: color 0.3s ease;
+}
+
+a:hover {
+  color: #3498db;
+  text-decoration: underline;
+}
+
+/* Note Styles */
+.note {
+  margin-top: 2rem;
+  color: #666;
+  font-size: 0.95rem;
+  font-style: italic;
+  padding: 1rem;
+  background: rgba(255, 255, 255, 0.6);
+  border-radius: 6px;
+  border-left: 3px solid #95a5a6;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  body {
+    margin: 1rem auto;
+    padding: 0 0.5rem;
+  }
+  
+  h1 {
+    font-size: 2rem;
+  }
+  
+  li {
+    padding: 0.6rem;
+  }
+}
