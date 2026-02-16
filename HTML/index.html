@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>HTML5 Tags Übersicht</title>
+  <meta name="description" content="Die wichtigsten HTML5 Tags mit Beispielen.">
+  <link rel="stylesheet" href="../assets/css/style.css">
+</head>
+<body class="html-examples">
+  <div class="container">
+    <header>
+      <h1>HTML5 Tags Übersicht</h1>
+      <p>Die wichtigsten HTML5 Tags mit praktischen Beispielen</p>
+    </header>
+
+    <nav>
+      <h2>Inhaltsverzeichnis</h2>
+      <ul>
+        <li><a href="#struktur">Struktur-Tags</a></li>
+        <li><a href="#text">Text-Formatierung</a></li>
+        <li><a href="#semantik">Semantische Tags</a></li>
+        <li><a href="#medien">Medien</a></li>
+        <li><a href="#formulare">Formulare</a></li>
+        <li><a href="#tabellen">Tabellen</a></li>
+      </ul>
+    </nav>
+
+    <main>
+      <section id="struktur">
+        <h2>Struktur-Tags</h2>
+        
+        <article class="tag-example">
+          <h3><code>&lt;header&gt;</code> - Kopfbereich</h3>
+          <p>Definiert einen Kopfbereich für ein Dokument oder eine Sektion.</p>
+          <pre><code>&lt;header&gt;
+  &lt;h1&gt;Willkommen&lt;/h1&gt;
+  &lt;nav&gt;Navigationsmenü&lt;/nav&gt;
+&lt;/header&gt;</code></pre>
+        </article>
+
+        <article class="tag-example">
+          <h3><code>&lt;nav&gt;</code> - Navigation</h3>
+          <p>Kennzeichnet einen Navigationsbereich mit Links.</p>
+          <pre><code>&lt;nav&gt;
+  &lt;ul&gt;
+    &lt;li&gt;&lt;a href="#home"&gt;Home&lt;/a&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;a href="#about"&gt;Über uns&lt;/a&gt;&lt;/li&gt;
+  &lt;/ul&gt;
+&lt;/nav&gt;</code></pre>
+        </article>
+
+        <article class="tag-example">
+          <h3><code>&lt;main&gt;</code> - Hauptinhalt</h3>
+          <p>Enthält den Hauptinhalt der Seite. Sollte nur einmal pro Seite verwendet werden.</p>
+          <pre><code>&lt;main&gt;
+  &lt;article&gt;...&lt;/article&gt;
+&lt;/main&gt;</code></pre>
+        </article>
+
+        <article class="tag-example">
+          <h3><code>&lt;footer&gt;</code> - Fußbereich</h3>
+          <p>Definiert einen Fußbereich für ein Dokument oder eine Sektion.</p>
+          <pre><code>&lt;footer&gt;
+  &lt;p&gt;&amp;copy; 2026 Meine Website&lt;/p&gt;
+&lt;/footer&gt;</code></pre>
+        </article>
+      </section>
+
+      <section id="text">
+        <h2>Text-Formatierung</h2>
+        
+        <article class="tag-example">
+          <h3>Überschriften: <code>&lt;h1&gt;</code> bis <code>&lt;h6&gt;</code></h3>
+          <h1>Überschrift H1</h1>
+          <h2>Überschrift H2</h2>
+          <h3>Überschrift H3</h3>
+          <h4>Überschrift H4</h4>
+          <h5>Überschrift H5</h5>
+          <h6>Überschrift H6</h6>
+        </article>
+
+        <article class="tag-example">
+          <h3>Textformatierung</h3>
+          <p><strong>&lt;strong&gt;</strong> - <strong>Wichtiger Text (fett)</strong></p>
+          <p><em>&lt;em&gt;</em> - <em>Betonter Text (kursiv)</em></p>
+          <p><mark>&lt;mark&gt;</mark> - <mark>Hervorgehobener Text</mark></p>
+          <p><small>&lt;small&gt;</small> - <small>Kleinerer Text</small></p>
+          <p><del>&lt;del&gt;</del> - <del>Gelöschter Text</del></p>
+          <p><ins>&lt;ins&gt;</ins> - <ins>Eingefügter Text</ins></p>
+          <p><sub>&lt;sub&gt;</sub> - H<sub>2</sub>O (tiefgestellt)</p>
+          <p><sup>&lt;sup&gt;</sup> - x<sup>2</sup> (hochgestellt)</p>
+        </article>
+
+        <article class="tag-example">
+          <h3><code>&lt;p&gt;</code> - Absatz</h3>
+          <p>Dies ist ein Absatz. Absätze werden verwendet, um Text in logische Einheiten zu unterteilen.</p>
+          <p>Dies ist ein weiterer Absatz.</p>
+        </article>
+
+        <article class="tag-example">
+          <h3><code>&lt;br&gt;</code> - Zeilenumbruch</h3>
+          <p>Erste Zeile<br>Zweite Zeile<br>Dritte Zeile</p>
+        </article>
+      </section>
+
+      <section id="semantik">
+        <h2>Semantische Tags</h2>
+        
+        <article class="tag-example">
+          <h3><code>&lt;article&gt;</code> - Artikel</h3>
+          <p>Eigenständiger, wiederverwendbarer Inhalt.</p>
+          <article style="border: 1px solid #ddd; padding: 10px; margin: 10px 0;">
+            <h4>Beispiel Artikel</h4>
+            <p>Dies ist ein Artikel mit eigenständigem Inhalt.</p>
+          </article>
+        </article>
+
+        <article class="tag-example">
+          <h3><code>&lt;section&gt;</code> - Sektion</h3>
+          <p>Gruppiert thematisch zusammengehörigen Inhalt.</p>
+          <pre><code>&lt;section&gt;
+  &lt;h2&gt;Thema&lt;/h2&gt;
+  &lt;p&gt;Inhalt zum Thema...&lt;/p&gt;
+&lt;/section&gt;</code></pre>
+        </article>
+
+        <article class="tag-example">
+          <h3><code>&lt;aside&gt;</code> - Seitenleiste</h3>
+          <p>Inhalt, der indirekt mit dem Hauptinhalt zusammenhängt.</p>
+          <aside style="background: #e8f4f8; padding: 10px; border-left: 3px solid #3498db; margin: 10px 0;">
+            <h4>Info</h4>
+            <p>Dies ist eine Sidebar mit zusätzlichen Informationen.</p>
+          </aside>
+        </article>
+      </section>
+
+      <section id="medien">
+        <h2>Medien</h2>
+        
+        <article class="tag-example">
+          <h3><code>&lt;img&gt;</code> - Bild</h3>
+          <p>Fügt ein Bild ein.</p>
+          <pre><code>&lt;img src="bild.jpg" alt="Beschreibung" width="300" height="200"&gt;</code></pre>
+          <div class="note">
+            <strong>Wichtig:</strong> Das <code>alt</code>-Attribut ist wichtig für Barrierefreiheit!
+          </div>
+        </article>
+
+        <article class="tag-example">
+          <h3><code>&lt;video&gt;</code> - Video</h3>
+          <pre><code>&lt;video width="320" height="240" controls&gt;
+  &lt;source src="video.mp4" type="video/mp4"&gt;
+  &lt;source src="video.webm" type="video/webm"&gt;
+  Ihr Browser unterstützt das Video-Tag nicht.
+&lt;/video&gt;</code></pre>
+        </article>
+
+        <article class="tag-example">
+          <h3><code>&lt;audio&gt;</code> - Audio</h3>
+          <pre><code>&lt;audio controls&gt;
+  &lt;source src="audio.mp3" type="audio/mpeg"&gt;
+  &lt;source src="audio.ogg" type="audio/ogg"&gt;
+  Ihr Browser unterstützt das Audio-Tag nicht.
+&lt;/audio&gt;</code></pre>
+        </article>
+      </section>
+
+      <section id="formulare">
+        <h2>Formulare</h2>
+        
+        <article class="tag-example">
+          <h3><code>&lt;form&gt;</code> - Formular</h3>
+          <form action="#" method="post" style="background: white; padding: 15px;">
+            <label for="name">Name:</label><br>
+            <input type="text" id="name" name="name" placeholder="Ihr Name"><br><br>
+            
+            <label for="email">E-Mail:</label><br>
+            <input type="email" id="email" name="email" placeholder="ihre@email.de"><br><br>
+            
+            <label for="alter">Alter:</label><br>
+            <input type="number" id="alter" name="alter" min="1" max="120"><br><br>
+            
+            <label for="datum">Datum:</label><br>
+            <input type="date" id="datum" name="datum"><br><br>
+            
+            <label for="farbe">Lieblingsfarbe:</label><br>
+            <select id="farbe" name="farbe">
+              <option value="">Bitte wählen...</option>
+              <option value="rot">Rot</option>
+              <option value="blau">Blau</option>
+              <option value="gruen">Grün</option>
+            </select><br><br>
+            
+            <label>
+              <input type="checkbox" name="newsletter" value="ja">
+              Newsletter abonnieren
+            </label><br><br>
+            
+            <fieldset>
+              <legend>Geschlecht:</legend>
+              <label><input type="radio" name="geschlecht" value="m"> Männlich</label><br>
+              <label><input type="radio" name="geschlecht" value="w"> Weiblich</label><br>
+              <label><input type="radio" name="geschlecht" value="d"> Divers</label>
+            </fieldset><br>
+            
+            <label for="nachricht">Nachricht:</label><br>
+            <textarea id="nachricht" name="nachricht" rows="4" cols="50" placeholder="Ihre Nachricht..."></textarea><br><br>
+            
+            <button type="submit">Absenden</button>
+            <button type="reset">Zurücksetzen</button>
+          </form>
+        </article>
+      </section>
+
+      <section id="tabellen">
+        <h2>Tabellen</h2>
+        
+        <article class="tag-example">
+          <h3><code>&lt;table&gt;</code> - Tabelle</h3>
+          <table>
+            <thead>
+              <tr>
+                <th>Name</th>
+                <th>Alter</th>
+                <th>Stadt</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Max Mustermann</td>
+                <td>30</td>
+                <td>Berlin</td>
+              </tr>
+              <tr>
+                <td>Erika Musterfrau</td>
+                <td>28</td>
+                <td>München</td>
+              </tr>
+              <tr>
+                <td>John Doe</td>
+                <td>35</td>
+                <td>Hamburg</td>
+              </tr>
+            </tbody>
+          </table>
+        </article>
+      </section>
+
+      <section>
+        <h2>Listen</h2>
+        
+        <article class="tag-example">
+          <h3><code>&lt;ul&gt;</code> - Ungeordnete Liste</h3>
+          <ul>
+            <li>Erster Punkt</li>
+            <li>Zweiter Punkt</li>
+            <li>Dritter Punkt</li>
+          </ul>
+        </article>
+
+        <article class="tag-example">
+          <h3><code>&lt;ol&gt;</code> - Geordnete Liste</h3>
+          <ol>
+            <li>Erster Schritt</li>
+            <li>Zweiter Schritt</li>
+            <li>Dritter Schritt</li>
+          </ol>
+        </article>
+
+        <article class="tag-example">
+          <h3><code>&lt;dl&gt;</code> - Definitionsliste</h3>
+          <dl>
+            <dt>HTML</dt>
+            <dd>HyperText Markup Language</dd>
+            <dt>CSS</dt>
+            <dd>Cascading Style Sheets</dd>
+            <dt>JS</dt>
+            <dd>JavaScript</dd>
+          </dl>
+        </article>
+      </section>
+
+      <section>
+        <h2>Weitere wichtige Tags</h2>
+        
+        <article class="tag-example">
+          <h3><code>&lt;a&gt;</code> - Link</h3>
+          <p><a href="https://www.example.com" target="_blank">Externer Link</a></p>
+          <p><a href="#top">Interner Link (Anker)</a></p>
+          <p><a href="mailto:info@example.com">E-Mail Link</a></p>
+          <p><a href="tel:+41791234567">Telefon Link</a></p>
+        </article>
+
+        <article class="tag-example">
+          <h3><code>&lt;div&gt;</code> und <code>&lt;span&gt;</code></h3>
+          <p><code>&lt;div&gt;</code> - Block-Element für Gruppierung</p>
+          <p><code>&lt;span&gt;</code> - Inline-Element für <span style="color: red;">Textauszeichnung</span></p>
+        </article>
+
+        <article class="tag-example">
+          <h3><code>&lt;blockquote&gt;</code> - Zitat</h3>
+          <blockquote style="border-left: 4px solid #3498db; padding-left: 15px; margin: 15px 0; font-style: italic;">
+            "Die größte Gefahr im Leben ist, dass man zu vorsichtig wird."
+            <footer>— Alfred Adler</footer>
+          </blockquote>
+        </article>
+
+        <article class="tag-example">
+          <h3><code>&lt;hr&gt;</code> - Horizontale Linie</h3>
+          <p>Text vor der Linie</p>
+          <hr>
+          <p>Text nach der Linie</p>
+        </article>
+      </section>
+    </main>
+
+    <footer style="margin-top: 40px; padding-top: 20px; border-top: 2px solid #3498db;">
+      <p>&copy; 2026 Web Entwicklung Grundlagen | <a href="../index.html">Zurück zur Startseite</a></p>
+    </footer>
+  </div>
+</body>
+</html>

@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" width="80" height="80">
+  <defs>
+    <linearGradient id="houseGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#d65d0e;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#ff8c00;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+  <!-- Roof -->
+  <path d="M50 20 L80 45 L70 45 L70 75 L30 75 L30 45 L20 45 Z" fill="url(#houseGradient)" stroke="#ffffff" stroke-width="2"/>
+  <!-- House body -->
+  <rect x="30" y="45" width="40" height="30" fill="#2d2d2d" stroke="#ffffff" stroke-width="2"/>
+  <!-- Door -->
+  <rect x="42" y="55" width="16" height="20" rx="1" fill="#ff8c00" stroke="#ffffff" stroke-width="1.5"/>
+  <circle cx="53" cy="65" r="2" fill="#ffeb3b"/>
+  <!-- Windows -->
+  <rect x="35" y="50" width="8" height="8" rx="1" fill="rgba(255,235,59,0.7)" stroke="#ffffff" stroke-width="1"/>
+  <rect x="57" y="50" width="8" height="8" rx="1" fill="rgba(255,235,59,0.7)" stroke="#ffffff" stroke-width="1"/>
+  <!-- Window dividers -->
+  <line x1="39" y1="50" x2="39" y2="58" stroke="#2d2d2d" stroke-width="1"/>
+  <line x1="35" y1="54" x2="43" y2="54" stroke="#2d2d2d" stroke-width="1"/>
+  <line x1="61" y1="50" x2="61" y2="58" stroke="#2d2d2d" stroke-width="1"/>
+  <line x1="57" y1="54" x2="65" y2="54" stroke="#2d2d2d" stroke-width="1"/>
+</svg>
