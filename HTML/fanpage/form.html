@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>GTA 5 Fanpage - Das ultimative Open-World-Erlebnis</title>
+  <meta name="description" content="Entdecke Grand Theft Auto 5 - die epische Open-World Erfahrung von Rockstar Games.">
+  <!-- <link rel="stylesheet" href="../../assets/css/style.css"> -->
+  <link rel="stylesheet" href="../../assets/css/fanpage.css">
+
+</head>
+<body class="gta-page">
+  <div class="gta-container">
+    <nav class="main-nav">
+      <a href="index.html" class="nav-link">Startseite</a>
+      <a href="features.html" class="nav-link">Features</a>
+      <a href="table.html" class="nav-link">Spielinfo</a>
+      <a href="form.html" class="nav-link active">Formular</a>
+      <a href="order.html" class="nav-link">Bestellung</a>
+    </nav>
+    
+    <header class="gta-header">
+      <h1>GRAND THEFT AUTO V</h1>
+      <p class="subtitle">Das ultimative Open-World-Abenteuer in Los Santos</p>
+    </header>
+
+   <form class="contact-form" id="contactForm">
+      <h2>Kontaktformular</h2>
+      
+      <label for="name">Name:</label>
+      <input type="text" id="name" name="name" required>
+
+      <label for="email">E-Mail:</label>
+      <input type="email" id="email" name="email" required>
+      
+      <label for="password">Passwort:</label>
+      <input type="password" id="password" name="password" required minlength="6">
+      
+      <label for="platform">Plattform:</label>
+      <select id="platform" name="platform" required>
+        <option value="">Bitte wählen...</option>
+        <option value="pc">PC</option>
+        <option value="ps5">PlayStation 5</option>
+        <option value="ps4">PlayStation 4</option>
+        <option value="xbox-series">Xbox Series X/S</option>
+        <option value="xbox-one">Xbox One</option>
+      </select>
+      
+      <fieldset class="radio-group">
+        <legend>Lieblings-Charakter:</legend>
+        <div>
+          <input type="radio" id="michael" name="character" value="michael" required>
+          <label for="michael" class="radio-label">Michael</label>
+        </div>
+        <div>
+          <input type="radio" id="franklin" name="character" value="franklin">
+          <label for="franklin" class="radio-label">Franklin</label>
+        </div>
+        <div>
+          <input type="radio" id="trevor" name="character" value="trevor">
+          <label for="trevor" class="radio-label">Trevor</label>
+        </div>
+      </fieldset>
+      
+      <fieldset class="checkbox-group">
+        <legend>Interessen:</legend>
+        <div>
+          <input type="checkbox" id="story" name="interests" value="story">
+          <label for="story" class="checkbox-label">Story-Modus</label>
+        </div>
+        <div>
+          <input type="checkbox" id="online" name="interests" value="online">
+          <label for="online" class="checkbox-label">GTA Online</label>
+        </div>
+        <div>
+          <input type="checkbox" id="mods" name="interests" value="mods">
+          <label for="mods" class="checkbox-label">Mods & Customization</label>
+        </div>
+        <div>
+          <input type="checkbox" id="racing" name="interests" value="racing">
+          <label for="racing" class="checkbox-label">Rennen & Stunts</label>
+        </div>
+      </fieldset>
+      
+      <label for="age">Alter:</label>
+      <input type="number" id="age" name="age" min="13" max="99" placeholder="z.B. 25">
+      
+      <label for="phone">Telefon:</label>
+      <input type="tel" id="phone" name="phone" placeholder="+49 123 456789">
+      
+      <label for="website">Webseite/Social Media:</label>
+      <input type="url" id="website" name="website" placeholder="https://example.com">
+      
+      <label for="birthdate">Geburtsdatum:</label>
+      <input type="date" id="birthdate" name="birthdate">
+      
+      <label for="gametime">Bevorzugte Spielzeit:</label>
+      <input type="time" id="gametime" name="gametime">
+      
+      <label for="event">Nächstes Event/Turnier:</label>
+      <input type="datetime-local" id="event" name="event">
+      
+      <label for="started">Spielstart (Monat):</label>
+      <input type="month" id="started" name="started">
+      
+      <label for="week">Spielstart (Woche):</label>
+      <input type="week" id="week" name="week">
+      
+      <label for="color">Lieblings-Fahrzeugfarbe:</label>
+      <input type="color" id="color" name="color" value="#ff8c00">
+      
+      <label for="skill">Skill-Level (1-10):</label>
+      <input type="range" id="skill" name="skill" min="1" max="10" value="5">
+      <output for="skill" id="skillValue">5</output>
+      
+      <label for="screenshot">Screenshot hochladen:</label>
+      <input type="file" id="screenshot" name="screenshot" accept="image/*">
+
+      <label for="message">Nachricht:</label>
+      <textarea id="message" name="message" rows="5" required></textarea>
+
+      <button type="submit">Absenden</button>
+      
+    </form>
+
+    <footer>
+      <p>&copy; 2026 GTA 5 Fanpage | Grand Theft Auto ist ein Warenzeichen von Rockstar Games</p>
+      <p>Diese Seite ist eine inoffizielle Fanseite und steht in keiner Verbindung zu Rockstar Games</p>
+    </footer>
+  </div>
+  
+</body>
+</html>

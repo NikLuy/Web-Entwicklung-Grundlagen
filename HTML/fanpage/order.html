@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Formular-Übung - JavaScript Validierung</title>
+  <meta name="description" content="Formular-Übung mit JavaScript Validierung">
+  <link rel="stylesheet" href="../../assets/css/fanpage.css">
+</head>
+<body class="gta-page">
+  <div class="gta-container">
+    <nav class="main-nav">
+      <a href="index.html" class="nav-link">Startseite</a>
+      <a href="features.html" class="nav-link">Features</a>
+      <a href="table.html" class="nav-link">Spielinfo</a>
+      <a href="form.html" class="nav-link">Formular</a>
+      <a href="order.html" class="nav-link active">Bestellung</a>
+    </nav>
+    
+    <header class="gta-header">
+      <h1>Formular-Übung</h1>
+      <p class="subtitle">JavaScript Validierung mit Fehlermeldungen</p>
+    </header>
+
+    <div class="content-section">
+
+    <form class="contact-form" id="exerciseForm">
+      <h2>Bestellformular</h2>
+      
+      <label for="name">Name: *</label>
+      <input type="text" id="name" name="name" placeholder="Ihr vollständiger Name">
+
+      <label for="password">Passwort: *</label>
+      <input type="password" id="password" name="password" placeholder="Mindestens 6 Zeichen">
+      
+      <label for="comments">Kommentare (optional):</label>
+      <textarea id="comments" name="comments" rows="5" placeholder="Ihre Anmerkungen zur Bestellung..."></textarea>
+
+      <fieldset class="radio-group">
+        <legend>Lieferoption: *</legend>
+        <div>
+          <input type="radio" id="standard" name="delivery" value="standard">
+          <label for="standard" class="radio-label">Standard-Versand (3-5 Werktage)</label>
+        </div>
+        <div>
+          <input type="radio" id="express" name="delivery" value="express">
+          <label for="express" class="radio-label">Express-Versand (1-2 Werktage)</label>
+        </div>
+        <div>
+          <input type="radio" id="pickup" name="delivery" value="pickup">
+          <label for="pickup" class="radio-label">Selbstabholung</label>
+        </div>
+      </fieldset>
+      
+      <fieldset class="checkbox-group">
+        <legend>Zustimmungen: *</legend>
+        <div>
+          <input type="checkbox" id="agb" name="agb" value="accepted">
+          <label for="agb" class="checkbox-label">Ich akzeptiere die AGB</label>
+        </div>
+        <div>
+          <input type="checkbox" id="datenschutz" name="datenschutz" value="accepted">
+          <label for="datenschutz" class="checkbox-label">Ich habe die Datenschutzrichtlinien gelesen</label>
+        </div>
+      </fieldset>
+      
+      <label for="fileUpload">Datei-Upload (optional):</label>
+      <input type="file" id="fileUpload" name="fileUpload" accept="image/*,.pdf,.doc,.docx">
+
+      <button type="submit">Absenden</button>
+    </form>
+
+    <!-- Data Display Section (Bonus) -->
+    <div id="dataDisplay" style="display: none;" class="content-section">
+      <h2>Eingegebene Daten</h2>
+      <div id="displayContent" style="background: rgba(0, 255, 0, 0.05); padding: 20px; border-radius: 8px; border: 1px solid rgba(0, 255, 0, 0.3);"></div>
+    </div>
+
+    <footer>
+      <p>&copy; 2026 Formular-Übung | JavaScript Validierung</p>
+    </footer>
+  </div>
+  
+  <!-- External JavaScript for form validation -->
+  <script src="../../assets/js/order.js"></script>
+</body>
+</html>

@@ -1,24 +1,58 @@
- body.gta-page {
+/* ========================================
+   GTA FANPAGE STYLESHEET
+   A modern, dark-themed CSS design with 
+   orange accent colors and glass morphism effects
+   ======================================== */
+
+/* ========================================
+   MAIN BODY STYLES
+   ======================================== */
+    
+    /* Dark themed body with gradient background for GTA fanpage */
+    body.gta-page {
       background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%);
       color: #ffffff;
       font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      /* Visual indicator: body boundary */
+      border: 3px dashed rgba(255, 0, 0, 0.3);
+      min-height: 100vh;
+      position: relative;
     }
     
+    /* ========================================
+       LAYOUT CONTAINER
+       ======================================== */
+    
+    /* Main container with centered layout */
     .gta-container {
       max-width: 1000px;
       margin: 0 auto;
-      padding: 40px 20px;
+      padding: 20px 20px;
+      padding-top: 70px; /* Account for fixed nav height */
+      /* Visual indicator: container boundary */
+      border: 3px dashed rgba(0, 255, 0, 0.4);
+      background: rgba(45, 45, 45, 0.5);
+      position: relative;
     }
     
+    /* ========================================
+       HEADER SECTION
+       ======================================== */
+    
+    /* Main header with orange gradient and shadow effect */
     .gta-header {
       text-align: center;
-      margin-bottom: 40px;
-      padding: 30px;
+      margin-bottom: 20px;
+      padding: 20px;
       background: linear-gradient(135deg, #d65d0e 0%, #ff8c00 100%);
       border-radius: 16px;
       box-shadow: 0 8px 32px rgba(255, 140, 0, 0.4);
+      /* Visual indicator: header boundary */
+      border: 3px solid rgba(255, 255, 0, 0.6);
+      position: relative;
     }
     
+    /* Main title styling with text shadow */
     .gta-header h1 {
       font-size: 3rem;
       margin: 0;
@@ -26,17 +60,80 @@
       color: #ffffff;
     }
     
+    /* Header subtitle text */
     .gta-header .subtitle {
       font-size: 1.3rem;
       margin-top: 10px;
       opacity: 0.95;
     }
     
-    .game-cover {
-      text-align: center;
-      margin: 40px 0;
+    /* ========================================
+       NAVIGATION BAR
+       ======================================== */
+    
+    /* Flex navigation with glass morphism effect - Fixed at top */
+    .main-nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      display: flex;
+      justify-content: center;
+      gap: 10px;
+      margin: 0;
+      padding: 3px ;
+      background: rgba(26, 26, 26, 0.95);
+      border-bottom: 3px solid rgba(255, 140, 0, 0.8);
+      backdrop-filter: blur(10px);
+      z-index: 1000;
+      /* Visual indicator: navigation bar */
+      box-shadow: 0 2px 10px rgba(255, 140, 0, 0.5);
     }
     
+    /* Individual navigation link styling */
+    .nav-link {
+      text-decoration: none;
+      color: #ffffff;
+      padding: 12px 30px;
+      font-size: 1.1rem;
+      font-weight: 600;
+      border-radius: 8px;
+      background: rgba(255, 255, 255, 0.05);
+      border: 2px solid transparent;
+      transition: all 0.3s ease;
+    }
+    
+    /* Hover effect for navigation links */
+    .nav-link:hover {
+      background: rgba(255, 140, 0, 0.2);
+      border-color: #ff8c00;
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(255, 140, 0, 0.3);
+    }
+    
+    /* Active state for current page link */
+    .nav-link.active {
+      background: linear-gradient(135deg, #d65d0e 0%, #ff8c00 100%);
+      border-color: #ff8c00;
+      box-shadow: 0 4px 16px rgba(255, 140, 0, 0.4);
+    }
+    
+    /* ========================================
+       GAME COVER IMAGE
+       ======================================== */
+    
+    /* Container for game cover/hero image */
+    .game-cover {
+      text-align: center;
+      margin: 20px 0;
+      /* Visual indicator: game cover section */
+      border: 2px dashed rgba(0, 200, 255, 0.5);
+      padding: 15px;
+      background: rgba(0, 200, 255, 0.05);
+      position: relative;
+    }
+    
+    /* Responsive image styling with rounded corners */
     .game-cover img {
       max-width: 100%;
       height: auto;
@@ -45,19 +142,29 @@
       transition: transform 0.3s ease;
     }
     
+    /* Zoom effect on hover */
     .game-cover img:hover {
       transform: scale(1.02);
     }
     
+    /* ========================================
+       CONTENT SECTIONS
+       ======================================== */
+    
+    /* Reusable content section with glass effect */
     .content-section {
       background: rgba(255, 255, 255, 0.05);
-      padding: 30px;
+      padding: 20px;
       border-radius: 16px;
-      margin: 30px 0;
-      border: 1px solid rgba(255, 255, 255, 0.1);
+      margin: 20px 0;
+      border: 3px solid rgba(138, 43, 226, 0.6);
       backdrop-filter: blur(10px);
+      /* Visual indicator: content section */
+      box-shadow: 0 0 15px rgba(138, 43, 226, 0.3);
+      position: relative;
     }
     
+    /* Section heading with left border accent */
     .content-section h2 {
       color: #ff8c00;
       font-size: 2rem;
@@ -66,6 +173,7 @@
       padding-left: 15px;
     }
     
+    /* Subsection headings */
     .content-section h3 {
       color: #ffa726;
       font-size: 1.5rem;
@@ -73,28 +181,37 @@
       margin-bottom: 15px;
     }
     
+    /* Paragraph text styling */
     .content-section p {
       line-height: 1.8;
       color: rgba(255, 255, 255, 0.85);
       margin-bottom: 15px;
     }
     
+    /* ========================================
+       LISTS
+       ======================================== */
+    
+    /* Bullet point list for features */
     .features-list {
       list-style: disc;
       padding-left: 40px;
       color: rgba(255, 255, 255, 0.85);
     }
     
+    /* Individual list items */
     .features-list li {
       margin: 8px 0;
       padding: 4px 0;
       line-height: 1.6;
     }
     
+    /* Hover effect on list items */
     .features-list li:hover {
       color: #ffa726;
     }
     
+    /* Numbered list for step-by-step instructions */
     .steps-list {
       list-style: decimal;
       padding-left: 40px;
@@ -111,6 +228,11 @@
       color: #ffa726;
     }
     
+    /* ========================================
+       LINKS SECTION
+       ======================================== */
+    
+    /* Grid layout for link cards with responsive columns */
     .links-section {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
@@ -118,6 +240,7 @@
       margin-top: 30px;
     }
     
+    /* Individual clickable link card with gradient background */
     .link-card {
       background: linear-gradient(135deg, rgba(255, 140, 0, 0.2) 0%, rgba(214, 93, 14, 0.2) 100%);
       padding: 25px;
@@ -131,6 +254,7 @@
       color: inherit;
     }
     
+    /* Remove default link styling for all states */
     .link-card:link,
     .link-card:visited,
     .link-card:active {
@@ -138,12 +262,14 @@
       text-decoration: none;
     }
     
+    /* Hover effect with lift animation */
     .link-card:hover {
       transform: translateY(-5px);
       box-shadow: 0 8px 24px rgba(255, 140, 0, 0.4);
       border-color: #ff8c00;
     }
     
+    /* Title styling for link cards */
     .link-card .link-title {
       color: #ff8c00 !important;
       font-size: 1.2rem;
@@ -152,24 +278,33 @@
       transition: color 0.2s ease;
     }
     
+    /* Change title color on hover */
     .link-card:hover .link-title {
       color: #ffa726 !important;
     }
     
+    /* Description text in link cards */
     .link-card p {
       margin: 0;
       color: rgba(255, 255, 255, 0.7) !important;
       font-size: 0.9rem;
     }
     
+    /* External link icon */
     .external-link .link-title::before {
       content: "🔗 ";
     }
     
+    /* Internal link icon */
     .internal-link .link-title::before {
       content: "📄 ";
     }
     
+    /* ========================================
+       FEATURE CARDS
+       ======================================== */
+    
+    /* Responsive grid for feature cards */
     .feature-grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
@@ -177,6 +312,7 @@
       margin: 25px 0;
     }
     
+    /* Individual feature card with hover effects */
     .feature-card {
       background: rgba(255, 140, 0, 0.1);
       padding: 25px;
@@ -185,17 +321,20 @@
       transition: all 0.3s ease;
     }
     
+    /* Hover effect with elevation and glow */
     .feature-card:hover {
       background: rgba(255, 140, 0, 0.2);
       transform: translateY(-5px);
       box-shadow: 0 8px 24px rgba(255, 140, 0, 0.4);
     }
     
+    /* Feature card heading */
     .feature-card h3 {
       margin-top: 0;
       color: #ff8c00;
     }
     
+    /* Icon container with flexbox centering */
     .feature-icon {
       font-size: 3rem;
       text-align: center;
@@ -205,6 +344,7 @@
       align-items: center;
     }
     
+    /* Icon image with drop shadow */
     .feature-icon img {
       width: 80px;
       height: 80px;
@@ -212,10 +352,16 @@
       transition: transform 0.3s ease;
     }
     
+    /* Animated icon on card hover */
     .feature-card:hover .feature-icon img {
       transform: scale(1.1) rotate(5deg);
     }
     
+    /* ========================================
+       STATISTICS TABLE
+       ======================================== */
+    
+    /* Styled table for displaying game statistics */
     .stats-table {
       width: 100%;
       border-collapse: collapse;
@@ -224,6 +370,7 @@
       overflow: hidden;
     }
     
+    /* Table cells with padding and borders */
     .stats-table th,
     .stats-table td {
       padding: 15px;
@@ -231,25 +378,33 @@
       border-bottom: 1px solid rgba(255, 255, 255, 0.1);
     }
     
+    /* Table header with gradient background */
     .stats-table th {
       background: linear-gradient(135deg, #d65d0e 0%, #ff8c00 100%);
       color: white;
       font-weight: bold;
     }
     
+    /* Table row styling */
     .stats-table tr {
       background: rgba(255, 255, 255, 0.03);
       transition: background 0.2s ease;
     }
     
+    /* Highlight row on hover */
     .stats-table tr:hover {
       background: rgba(255, 140, 0, 0.15);
     }
     
+    /* ========================================
+       BACK LINK BUTTON
+       ======================================== */
+    
+    /* Styled back navigation button */
     .back-link {
       display: inline-block;
-      margin-top: 30px;
-      padding: 15px 30px;
+      margin-top: 20px;
+      padding: 12px 24px;
       background: linear-gradient(135deg, #d65d0e 0%, #ff8c00 100%);
       color: white;
       text-decoration: none;
@@ -259,37 +414,729 @@
       box-shadow: 0 4px 16px rgba(255, 140, 0, 0.4);
     }
     
+    /* Hover effect with elevation */
     .back-link:hover {
       transform: translateY(-3px);
       box-shadow: 0 8px 24px rgba(255, 140, 0, 0.6);
     }
     
+    /* Add left arrow before text */
     .back-link::before {
       content: "← ";
     }
     
+    /* ========================================
+       FORM STYLES
+       ======================================== */
+    
+    /* Contact form container */
+    .contact-form {
+      background: rgba(255, 255, 255, 0.05);
+      padding: 30px;
+      border-radius: 16px;
+      margin: 30px 0;
+      border: 2px solid rgba(255, 140, 0, 0.3);
+      backdrop-filter: blur(10px);
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+    }
+    
+    /* Form heading */
+    .contact-form h2 {
+      color: #ff8c00;
+      font-size: 2rem;
+      margin-bottom: 25px;
+      border-left: 5px solid #ff8c00;
+      padding-left: 15px;
+    }
+    
+    /* Form labels (excluding radio/checkbox labels) */
+    .contact-form label:not(.radio-label):not(.checkbox-label) {
+      display: block;
+      color: #ffa726;
+      font-weight: 600;
+      margin-bottom: 8px;
+      margin-top: 15px;
+      font-size: 1.1rem;
+    }
+    
+    /* Input fields and textarea styling */
+    .contact-form input[type="text"],
+    .contact-form input[type="email"],
+    .contact-form input[type="password"],
+    .contact-form input[type="tel"],
+    .contact-form input[type="url"],
+    .contact-form input[type="number"],
+    .contact-form input[type="date"],
+    .contact-form input[type="time"],
+    .contact-form input[type="datetime-local"],
+    .contact-form input[type="month"],
+    .contact-form input[type="week"],
+    .contact-form input[type="search"],
+    .contact-form select,
+    .contact-form textarea {
+      width: 100%;
+      padding: 12px 15px;
+      background: rgba(255, 255, 255, 0.1);
+      border: 2px solid rgba(255, 140, 0, 0.3);
+      border-radius: 8px;
+      color: #ffffff;
+      font-size: 1rem;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      transition: all 0.3s ease;
+      box-sizing: border-box;
+    }
+    
+    /* Input focus state */
+    .contact-form input[type="text"]:focus,
+    .contact-form input[type="email"]:focus,
+    .contact-form input[type="password"]:focus,
+    .contact-form input[type="tel"]:focus,
+    .contact-form input[type="url"]:focus,
+    .contact-form input[type="number"]:focus,
+    .contact-form input[type="date"]:focus,
+    .contact-form input[type="time"]:focus,
+    .contact-form input[type="datetime-local"]:focus,
+    .contact-form input[type="month"]:focus,
+    .contact-form input[type="week"]:focus,
+    .contact-form input[type="search"]:focus,
+    .contact-form select:focus,
+    .contact-form textarea:focus {
+      outline: none;
+      border-color: #ff8c00;
+      background: rgba(255, 140, 0, 0.15);
+      box-shadow: 0 0 12px rgba(255, 140, 0, 0.4);
+    }
+    
+    /* Placeholder text styling */
+    .contact-form input::placeholder,
+    .contact-form textarea::placeholder {
+      color: rgba(255, 255, 255, 0.5);
+    }
+    
+    /* Select dropdown specific styling */
+    .contact-form select {
+      cursor: pointer;
+      appearance: none;
+      background-image: url('data:image/svg+xml;utf8,<svg fill="%23ff8c00" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg"><path d="M7 10l5 5 5-5z"/></svg>');
+      background-repeat: no-repeat;
+      background-position: right 10px center;
+      padding-right: 40px;
+    }
+    
+    .contact-form select option {
+      background: #2d2d2d;
+      color: #ffffff;
+      padding: 10px;
+    }
+    
+    /* Textarea specific styling */
+    .contact-form textarea {
+      resize: vertical;
+      min-height: 120px;
+    }
+    
+    /* Date and time inputs specific styling */
+    .contact-form input[type="date"],
+    .contact-form input[type="time"],
+    .contact-form input[type="datetime-local"],
+    .contact-form input[type="month"] {
+      cursor: pointer;
+      color-scheme: dark;
+    }
+    
+    /* Calendar icon styling for date/time inputs */
+    .contact-form input[type="date"]::-webkit-calendar-picker-indicator,
+    .contact-form input[type="time"]::-webkit-calendar-picker-indicator,
+    .contact-form input[type="datetime-local"]::-webkit-calendar-picker-indicator,
+    .contact-form input[type="month"]::-webkit-calendar-picker-indicator {
+      cursor: pointer;
+      filter: invert(0.6) sepia(1) saturate(5) hue-rotate(0deg);
+      font-size: 1.2rem;
+      transition: all 0.3s ease;
+    }
+    
+    .contact-form input[type="date"]::-webkit-calendar-picker-indicator:hover,
+    .contact-form input[type="time"]::-webkit-calendar-picker-indicator:hover,
+    .contact-form input[type="datetime-local"]::-webkit-calendar-picker-indicator:hover,
+    .contact-form input[type="month"]::-webkit-calendar-picker-indicator:hover {
+      filter: invert(0.5) sepia(1) saturate(10) hue-rotate(0deg);
+      transform: scale(1.1);
+    }
+    
+    /* Number input arrows styling */
+    .contact-form input[type="number"]::-webkit-inner-spin-button,
+    .contact-form input[type="number"]::-webkit-outer-spin-button {
+      opacity: 1;
+      cursor: pointer;
+    }
+    
+    /* Submit button styling */
+    .contact-form button[type="submit"] {
+      width: 100%;
+      padding: 15px 30px;
+      margin-top: 25px;
+      background: linear-gradient(135deg, #d65d0e 0%, #ff8c00 100%);
+      color: white;
+      border: none;
+      border-radius: 10px;
+      font-size: 1.2rem;
+      font-weight: bold;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      box-shadow: 0 4px 16px rgba(255, 140, 0, 0.4);
+    }
+    
+    /* Submit button hover effect */
+    .contact-form button[type="submit"]:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 8px 24px rgba(255, 140, 0, 0.6);
+      background: linear-gradient(135deg, #ff8c00 0%, #ffa726 100%);
+    }
+    
+    /* Submit button active/pressed state */
+    .contact-form button[type="submit"]:active {
+      transform: translateY(-1px);
+      box-shadow: 0 4px 12px rgba(255, 140, 0, 0.5);
+    }
+    
+    /* Required field indicator */
+    .contact-form input[type="text"]:required,
+    .contact-form input[type="email"]:required,
+    .contact-form input[type="password"]:required,
+    .contact-form input[type="tel"]:required,
+    .contact-form input[type="url"]:required,
+    .contact-form input[type="number"]:required,
+    .contact-form input[type="date"]:required,
+    .contact-form input[type="time"]:required,
+    .contact-form input[type="datetime-local"]:required,
+    .contact-form input[type="month"]:required,
+    .contact-form input[type="week"]:required,
+    .contact-form input[type="search"]:required,
+    .contact-form select:required,
+    .contact-form textarea:required {
+      border-left: 4px solid rgba(255, 140, 0, 0.5);
+    }
+    
+    /* Invalid input styling */
+    .contact-form input[type="text"]:invalid:not(:focus),
+    .contact-form input[type="email"]:invalid:not(:focus),
+    .contact-form input[type="password"]:invalid:not(:focus),
+    .contact-form input[type="tel"]:invalid:not(:focus),
+    .contact-form input[type="url"]:invalid:not(:focus),
+    .contact-form input[type="number"]:invalid:not(:focus),
+    .contact-form input[type="date"]:invalid:not(:focus),
+    .contact-form input[type="time"]:invalid:not(:focus),
+    .contact-form input[type="datetime-local"]:invalid:not(:focus),
+    .contact-form input[type="month"]:invalid:not(:focus),
+    .contact-form input[type="week"]:invalid:not(:focus),
+    .contact-form input[type="search"]:invalid:not(:focus),
+    .contact-form select:invalid:not(:focus),
+    .contact-form textarea:invalid:not(:focus) {
+      border-color: rgba(255, 0, 0, 0.4);
+    }
+    
+    /* Valid input styling */
+    .contact-form input[type="text"]:valid:not(:placeholder-shown),
+    .contact-form input[type="email"]:valid:not(:placeholder-shown),
+    .contact-form input[type="password"]:valid:not(:placeholder-shown),
+    .contact-form input[type="tel"]:valid:not(:placeholder-shown),
+    .contact-form input[type="url"]:valid:not(:placeholder-shown),
+    .contact-form input[type="number"]:valid:not(:placeholder-shown),
+    .contact-form input[type="date"]:valid:not(:placeholder-shown),
+    .contact-form input[type="time"]:valid:not(:placeholder-shown),
+    .contact-form input[type="datetime-local"]:valid:not(:placeholder-shown),
+    .contact-form input[type="month"]:valid:not(:placeholder-shown),
+    .contact-form input[type="week"]:valid:not(:placeholder-shown),
+    .contact-form input[type="search"]:valid:not(:placeholder-shown),
+    .contact-form select:valid:not([value=""]),
+    .contact-form textarea:valid:not(:placeholder-shown) {
+      border-color: rgba(0, 255, 0, 0.4);
+    }
+    
+    /* ========================================
+       FIELDSETS AND GROUPS
+       ======================================== */
+    
+    /* Fieldset styling for radio and checkbox groups */
+    .contact-form fieldset {
+      border: 2px solid rgba(255, 140, 0, 0.3);
+      border-radius: 8px;
+      padding: 20px;
+      margin: 20px 0;
+      background: rgba(255, 255, 255, 0.03);
+    }
+    
+    /* Legend styling */
+    .contact-form legend {
+      color: #ffa726;
+      font-weight: 600;
+      font-size: 1.1rem;
+      padding: 0 10px;
+    }
+    
+    /* Radio and checkbox container */
+    .radio-group,
+    .checkbox-group {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+    
+    /* Container div for each radio/checkbox item */
+    .radio-group > div,
+    .checkbox-group > div {
+      display: flex;
+      align-items: center;
+      padding: 10px;
+      border-radius: 6px;
+      transition: background 0.3s ease;
+      gap: 10px;
+    }
+    
+    .radio-group > div:hover,
+    .checkbox-group > div:hover {
+      background: rgba(255, 140, 0, 0.1);
+    }
+    
+    /* Radio button label styling */
+    .radio-label,
+    .checkbox-label {
+      cursor: pointer;
+      margin: 0;
+      color: rgba(255, 255, 255, 0.9);
+      font-size: 1rem;
+      font-weight: normal;
+    }
+    
+    /* Radio button styling */
+    .contact-form input[type="radio"] {
+      appearance: none;
+      width: 20px;
+      height: 20px;
+      border: 2px solid rgba(255, 140, 0, 0.5);
+      border-radius: 50%;
+      margin-right: 10px;
+      cursor: pointer;
+      position: relative;
+      transition: all 0.3s ease;
+      flex-shrink: 0;
+    }
+    
+    .contact-form input[type="radio"]:checked {
+      border-color: #ff8c00;
+      background: rgba(255, 140, 0, 0.2);
+    }
+    
+    .contact-form input[type="radio"]:checked::before {
+      content: "";
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: #ff8c00;
+    }
+    
+    .contact-form input[type="radio"]:focus {
+      outline: none;
+      box-shadow: 0 0 8px rgba(255, 140, 0, 0.5);
+    }
+    /* Checkbox styling */
+    .contact-form input[type="checkbox"] {
+      appearance: none;
+      width: 20px;
+      height: 20px;
+      border: 2px solid rgba(255, 140, 0, 0.5);
+      border-radius: 4px;
+      margin-right: 10px;
+      cursor: pointer;
+      position: relative;
+      transition: all 0.3s ease;
+      flex-shrink: 0;
+    }
+    
+    .contact-form input[type="checkbox"]:checked {
+      border-color: #ff8c00;
+      background: #ff8c00;
+    }
+    
+    .contact-form input[type="checkbox"]:checked::before {
+      content: "✓";
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      color: white;
+      font-weight: bold;
+      font-size: 14px;
+    }
+    
+    .contact-form input[type="checkbox"]:focus {
+      outline: none;
+      box-shadow: 0 0 8px rgba(255, 140, 0, 0.5);
+    }
+    
+    /* ========================================
+       COLOR INPUT
+       ======================================== */
+    
+    /* Color picker styling */
+    .contact-form input[type="color"] {
+      width: 100%;
+      height: 50px;
+      padding: 5px;
+      background: rgba(255, 255, 255, 0.1);
+      border: 2px solid rgba(255, 140, 0, 0.3);
+      border-radius: 8px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+    
+    .contact-form input[type="color"]:hover {
+      border-color: #ff8c00;
+      box-shadow: 0 0 12px rgba(255, 140, 0, 0.3);
+    }
+    
+    .contact-form input[type="color"]:focus {
+      outline: none;
+      border-color: #ff8c00;
+      box-shadow: 0 0 12px rgba(255, 140, 0, 0.5);
+    }
+    
+    /* ========================================
+       RANGE SLIDER
+       ======================================== */
+    
+    /* Range slider styling */
+    .contact-form input[type="range"] {
+      width: 100%;
+      height: 8px;
+      background: rgba(255, 255, 255, 0.1);
+      border: 2px solid rgba(255, 140, 0, 0.3);
+      border-radius: 8px;
+      outline: none;
+      padding: 0;
+      margin: 10px 0;
+      cursor: pointer;
+      -webkit-appearance: none;
+      appearance: none;
+    }
+    
+    /* Range slider track */
+    .contact-form input[type="range"]::-webkit-slider-track {
+      background: rgba(255, 140, 0, 0.2);
+      border-radius: 8px;
+      height: 8px;
+    }
+    
+    .contact-form input[type="range"]::-moz-range-track {
+      background: rgba(255, 140, 0, 0.2);
+      border-radius: 8px;
+      height: 8px;
+    }
+    
+    /* Range slider thumb */
+    .contact-form input[type="range"]::-webkit-slider-thumb {
+      -webkit-appearance: none;
+      appearance: none;
+      width: 20px;
+      height: 20px;
+      background: linear-gradient(135deg, #d65d0e 0%, #ff8c00 100%);
+      border-radius: 50%;
+      cursor: pointer;
+      box-shadow: 0 2px 8px rgba(255, 140, 0, 0.5);
+      transition: all 0.3s ease;
+    }
+    
+    .contact-form input[type="range"]::-moz-range-thumb {
+      width: 20px;
+      height: 20px;
+      background: linear-gradient(135deg, #d65d0e 0%, #ff8c00 100%);
+      border: none;
+      border-radius: 50%;
+      cursor: pointer;
+      box-shadow: 0 2px 8px rgba(255, 140, 0, 0.5);
+      transition: all 0.3s ease;
+    }
+    
+    /* Range slider thumb hover */
+    .contact-form input[type="range"]::-webkit-slider-thumb:hover {
+      transform: scale(1.2);
+      box-shadow: 0 4px 12px rgba(255, 140, 0, 0.7);
+    }
+    
+    .contact-form input[type="range"]::-moz-range-thumb:hover {
+      transform: scale(1.2);
+      box-shadow: 0 4px 12px rgba(255, 140, 0, 0.7);
+    }
+    
+    /* Output display for range value */
+    .contact-form output {
+      display: inline-block;
+      padding: 8px 16px;
+      background: linear-gradient(135deg, #d65d0e 0%, #ff8c00 100%);
+      color: white;
+      border-radius: 8px;
+      font-weight: bold;
+      margin-left: 15px;
+      min-width: 40px;
+      text-align: center;
+      box-shadow: 0 2px 8px rgba(255, 140, 0, 0.4);
+    }
+    
+    /* ========================================
+       FILE UPLOAD
+       ======================================== */
+    
+    /* File upload styling */
+    .contact-form input[type="file"] {
+      width: 100%;
+      padding: 12px 15px;
+      background: rgba(255, 255, 255, 0.1);
+      border: 2px dashed rgba(255, 140, 0, 0.3);
+      border-radius: 8px;
+      color: #ffffff;
+      font-size: 1rem;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      box-sizing: border-box;
+    }
+    
+    .contact-form input[type="file"]:hover {
+      border-color: #ff8c00;
+      background: rgba(255, 140, 0, 0.1);
+    }
+    
+    .contact-form input[type="file"]:focus {
+      outline: none;
+      border-color: #ff8c00;
+      background: rgba(255, 140, 0, 0.15);
+      box-shadow: 0 0 12px rgba(255, 140, 0, 0.4);
+    }
+    
+    /* File upload button styling */
+    .contact-form input[type="file"]::file-selector-button {
+      padding: 8px 16px;
+      background: linear-gradient(135deg, #d65d0e 0%, #ff8c00 100%);
+      color: white;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      font-weight: 600;
+      margin-right: 15px;
+      transition: all 0.3s ease;
+    }
+    
+    .contact-form input[type="file"]::file-selector-button:hover {
+      background: linear-gradient(135deg, #ff8c00 0%, #ffa726 100%);
+      transform: scale(1.05);
+    }
+    
+    /* ========================================
+       FOOTER
+       ======================================== */
+    
+    /* Page footer with top border */
     footer {
       text-align: center;
-      margin-top: 60px;
-      padding: 30px;
+      margin-top: 30px;
+      padding: 20px;
       border-top: 2px solid rgba(255, 140, 0, 0.3);
       color: rgba(255, 255, 255, 0.6);
     }
+
+    /* ========================================
+       GENERAL TABLE STYLES
+       ======================================== */
     
+    /* Basic table styling with orange theme */
+    table {
+      border-collapse: collapse;
+      width: 50%;
+      margin: 20px auto;
+    }
+    /* Table and cell borders */
+    table, th ,td {
+      border: 1px solid #ff8c00;
+      padding: 10px;
+    }
+    /* Cell padding and alignment */
+    th,td {
+      padding: 10px;
+      text-align: left;
+    }
+    /* Table header styling */
+    th {
+      background-color: #ff8c00;
+      color: white;
+    }
+
+    /* ========================================
+       RESPONSIVE DESIGN - MOBILE
+       ======================================== */
+    
+    /* Tablet and mobile adjustments */
     @media (max-width: 768px) {
       .gta-header h1 {
         font-size: 2rem;
       }
       
+      /* Adjust subtitle size */
       .gta-header .subtitle {
         font-size: 1.1rem;
       }
       
+      /* Single column layout for features */
       .feature-grid {
         grid-template-columns: 1fr;
       }
       
+      /* Single column layout for links */
       .links-section {
         grid-template-columns: 1fr;
       }
+    }
+
+    /* ========================================
+       LEARNING LEGEND
+       ======================================== */
+    
+    /* Visual legend to explain color-coded borders */
+    .learning-legend {
+      position: fixed;
+      bottom: 10px;
+      left: 10px;
+      background: rgba(0, 0, 0, 0.9);
+      color: white;
+      padding: 15px;
+      border-radius: 8px;
+      font-size: 11px;
+      z-index: 10000;
+      max-width: 250px;
+      border: 2px solid rgba(255, 255, 255, 0.3);
+    }
+    
+    .learning-legend h4 {
+      margin: 0 0 10px 0;
+      font-size: 13px;
+      color: #ff8c00;
+      text-align: center;
+    }
+    
+    .learning-legend ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+    
+    .learning-legend li {
+      padding: 4px 0;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    
+    .learning-legend .color-box {
+      width: 15px;
+      height: 15px;
+      border: 2px solid;
+      display: inline-block;
+    }
+    
+    .learning-legend .red { border-color: rgba(255, 0, 0, 0.8); }
+    .learning-legend .green { border-color: rgba(0, 255, 0, 0.8); }
+    .learning-legend .yellow { border-color: rgba(255, 255, 0, 0.8); }
+    .learning-legend .orange { border-color: rgba(255, 140, 0, 0.8); }
+    .learning-legend .cyan { border-color: rgba(0, 200, 255, 0.8); }
+    .learning-legend .purple { border-color: rgba(138, 43, 226, 0.8); }
+
+    /* ========================================
+       FORM VALIDATION MESSAGES
+       ======================================== */
+    
+    /* Error message container */
+    .form-error-message {
+      background: rgba(255, 0, 0, 0.1);
+      border: 2px solid rgba(255, 0, 0, 0.6);
+      border-radius: 8px;
+      padding: 20px;
+      margin-bottom: 20px;
+      color: #ff6b6b;
+    }
+    
+    .form-error-message h3 {
+      color: #ff6b6b;
+      margin: 0 0 15px 0;
+      font-size: 1.2rem;
+    }
+    
+    .form-error-message ul {
+      margin: 0;
+      padding-left: 20px;
+      list-style: disc;
+    }
+    
+    .form-error-message li {
+      margin: 5px 0;
+      line-height: 1.5;
+    }
+    
+    /* Success message container */
+    .form-success-message {
+      background: rgba(0, 255, 0, 0.1);
+      border: 2px solid rgba(0, 255, 0, 0.6);
+      border-radius: 8px;
+      padding: 20px;
+      margin-bottom: 20px;
+      color: #4caf50;
+    }
+    
+    .form-success-message h3 {
+      color: #4caf50;
+      margin: 0;
+      font-size: 1.2rem;
+    }
+    
+    /* Field error highlighting */
+    .field-error {
+      border-color: #ff0000 !important;
+    }
+    
+    /* ========================================
+       DATA DISPLAY TABLE
+       ======================================== */
+    
+    /* Data display table styling */
+    .data-display-table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+    
+    .data-display-table tr {
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    }
+    
+    .data-display-table td {
+      padding: 10px;
+    }
+    
+    .data-display-table .label-cell {
+      font-weight: bold;
+      color: #ffa726;
+    }
+    
+    .data-display-table .value-cell {
+      white-space: pre-wrap;
+    }
+    
+    .data-display-table .value-cell.muted {
+      color: rgba(255, 255, 255, 0.5);
+    }
+    
+    .data-display-summary-title {
+      color: #ff8c00;
+      margin-top: 0;
     }
