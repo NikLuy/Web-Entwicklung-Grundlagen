@@ -1,0 +1,68 @@
+/* Body defaults */
+body {
+    font-family: Arial, sans-serif;
+    line-height: 1.6;
+    padding: 20px;
+    margin: 20px;
+    background-color: #f0f8ff;
+}
+
+.heading {
+    text-align: center;
+    margin-bottom: 30px;
+    color: #4682b4;
+    font-size: 36px;
+}
+.subheading {
+    color: #6a5acd;
+    font-size: 28px;
+    border-bottom: dotted;
+}
+
+.intro {
+    font-size: 18px;
+    line-height: 1.6;
+}
+
+
+/* Typ-Selektoren */
+h1 {
+    color: blue;
+    margin-bottom: 20px;
+}
+
+p {
+    /* color: rgb(122, 32, 134); */
+    margin-bottom: 15px;
+}
+
+.bold {
+    color: #8b0000;
+}
+
+input {
+    display: block;
+    padding: 8px;
+    margin: 10px 0;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+
+img {
+    display: block;
+    margin: 15px 0;
+    border: 2px solid #333;
+    border-radius: 15px;
+}
+
+a {
+    /* display: block; */
+    text-decoration: none;
+    padding: 5px 0;
+    margin: 5px;
+}
+a:hover {
+    color: #ff4500;
+    text-decoration: underline;
+}

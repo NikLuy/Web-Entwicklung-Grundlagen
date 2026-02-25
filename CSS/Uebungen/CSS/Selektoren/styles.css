@@ -1,0 +1,73 @@
+/* Body defaults */
+body {
+    font-family: Arial, sans-serif;
+    line-height: 1.6;
+    padding: 20px;
+    margin: 20px;
+    background-color: #f0f8ff;
+}
+.heading {
+    text-align: center;
+    margin-bottom: 30px;
+    color: #4682b4;
+    font-size: 36px;
+}
+.subheading {
+    color: #6a5acd;
+    font-size: 28px;
+    border-bottom: dotted;
+}
+
+
+/* Typ-Selektoren */
+h1 {
+    color: blue;
+    margin-bottom: 20px;
+}
+
+p {
+    color: green;
+    margin-bottom: 15px;
+}
+
+/* Klassen-Selektor */
+.highlight {
+    background-color: yellow;
+    padding: 10px;
+    margin: 0 -10px;
+}
+
+.bold {
+    color: #8b0000;
+}
+
+/* ID-Selektor */
+#wichtig {
+    font-size: 20px;
+    color: red;
+    display: inline-block;
+    margin-top: 10px;
+}
+
+/* Additional styling */
+input {
+    display: block;
+    padding: 8px;
+    margin: 10px 0;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+img {
+    display: block;
+    margin: 15px 0;
+    border: 2px solid #333;
+    border-radius: 15px;
+}
+
+a {
+    display: block;
+    text-decoration: underline;
+    padding: 5px 0;
+    margin: 5px;
+}
