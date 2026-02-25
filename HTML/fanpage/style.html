@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>GTA 5 - Style Guide</title>
+  <meta name="description" content="CSS-Varianten: Inline, Internal und External mit praktischen Beispielen.">
+  <link rel="stylesheet" href="../../assets/css/fanpage.css">
+  <link rel="stylesheet" href="../../assets/css/fanpagestyle.css">
+  
+  <!-- Internes CSS für Beispiel-Sektion 2 -->
+  <style>
+    /* Internal CSS Beispiel - Section 2 */
+    .internal-body {
+      background-color: #f0f8ff;
+      font-family: Arial, sans-serif;
+      padding: 2rem;
+      border-radius: 12px;
+      margin: 2rem 0;
+    }
+    
+    .internal-heading {
+      text-align: center;
+      color: #4682b4;
+      font-size: 36px;
+      margin-bottom: 1rem;
+    }
+    
+    .internal-subheading {
+      color: #6a5acd;
+      font-size: 28px;
+      border-bottom: 2px dotted #6a5acd;
+      padding-bottom: 0.5rem;
+      margin: 1.5rem 0 1rem 0;
+    }
+    
+    .internal-bold {
+      color: #8b0000;
+      font-weight: bold;
+    }
+    
+    .internal-paragraph {
+      line-height: 1.6;
+      margin: 1rem 0;
+      color: #333;
+    }
+    
+    .internal-kicker {
+      line-height: 1.6;
+      margin: 0.5rem 0;
+      color: #6a5acd;
+      font-size: 0.9rem;
+    }
+    
+    .internal-link {
+      color: #4682b4;
+      text-decoration: none;
+      font-weight: bold;
+      border-bottom: 2px solid #4682b4;
+      display: inline-block;
+      padding: 0.5rem 1rem;
+      background: white;
+      border-radius: 4px;
+    }
+    
+    .internal-link:hover {
+      color: #6a5acd;
+    }
+    
+    .internal-image {
+      border-radius: 15px;
+      max-width: 300px;
+      display: block;
+      margin-bottom: 1.5rem;
+    }
+  </style>
+</head>
+<body class="gta-page">
+  <div class="gta-container">
+    <nav class="main-nav">
+      <a href="index.html" class="nav-link">Startseite</a>
+      <a href="features.html" class="nav-link">Features</a>
+      <a href="table.html" class="nav-link">Spielinfo</a>
+      <a href="form.html" class="nav-link">Formular</a>
+      <a href="order.html" class="nav-link">Bestellung</a>
+      <a href="style.html" class="nav-link active">Style Guide</a>
+    </nav>
+    
+    <header class="gta-header">
+      <h1>Style Guide</h1>
+      <p class="subtitle">CSS-Varianten: Inline, Internal & External</p>
+    </header>
+
+    <!-- SECTION 1: INLINE CSS -->
+    <section style="background-color: #f0f8ff; font-family: Arial, sans-serif; padding: 2rem; border-radius: 12px; margin: 2rem 0; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);">
+      <img src="../../assets/img/GTA-5-Trio.jpg" 
+           alt="GTA 5 Characters"
+           width="300"
+           height="200"
+           style="border-radius: 15px; max-width: 300px; display: block; margin-bottom: 1.5rem;">
+      
+      <p style="line-height: 1.6; margin: 0.5rem 0; color: #6a5acd; font-size: 0.9rem;">
+        Hello, nice to meet you
+      </p>
+      
+      <h1 style="text-align: center; color: #4682b4; font-size: 36px; margin-bottom: 1rem;">
+        Inline CSS
+      </h1>
+      
+      <h2 style="color: #6a5acd; font-size: 28px; border-bottom: 2px dotted #6a5acd; padding-bottom: 0.5rem; margin: 1.5rem 0 1rem 0;">
+        Software Architect | Trainer | Web Enthusiast
+      </h2>
+      
+      <p style="line-height: 1.6; margin: 1rem 0; color: #333;">
+        I design practical learning paths and build clean web solutions with a strong
+        focus on clarity, usability, and real project value.
+      </p>
+      
+      <div style="margin-top: 1.5rem;">
+        <a href="mailto:example@example.com" 
+           style="color: #4682b4; text-decoration: none; font-weight: bold; border-bottom: 2px solid #4682b4; display: inline-block; padding: 0.5rem 1rem; background: white; border-radius: 4px;">
+          Say Hello
+        </a>
+      </div>
+    </section>
+
+    <!-- SECTION 2: INTERNAL CSS -->
+    <section class="internal-body">
+      <img src="../../assets/img/GTA-5-Trio.jpg" 
+           alt="GTA 5 Characters"
+           width="300"
+           height="200"
+           class="internal-image">
+      
+      <p class="internal-kicker">
+        Hello, nice to meet you
+      </p>
+      
+      <h1 class="internal-heading">Internal CSS</h1>
+      
+      <h2 class="internal-subheading">
+        Software Architect | Trainer | Web Enthusiast
+      </h2>
+      
+      <p class="internal-paragraph">
+        I design practical learning paths and build clean web solutions with a strong
+        focus on clarity, usability, and real project value.
+      </p>
+      
+      <div style="margin-top: 1.5rem;">
+        <a href="mailto:example@example.com" class="internal-link">
+          Say Hello
+        </a>
+      </div>
+    </section>
+
+    <!-- SECTION 3: EXTERNAL CSS -->
+    <section class="example-section">
+      <img src="../../assets/img/GTA-5-Trio.jpg" 
+           alt="GTA 5 Characters"
+           width="300"
+           height="200"
+           class="rounded-image">
+      
+      <p class="example-kicker">
+        Hello, nice to meet you
+      </p>
+      
+      <h1 class="heading">External CSS</h1>
+      
+      <h2 class="subheading">
+        Software Architect | Trainer | Web Enthusiast
+      </h2>
+      
+      <p class="example-paragraph">
+        I design practical learning paths and build clean web solutions with a strong
+        focus on clarity, usability, and real project value.
+      </p>
+      
+      <div style="margin-top: 1.5rem;">
+        <a href="mailto:example@example.com" class="example-link">
+          Say Hello
+        </a>
+      </div>
+    </section>
+
+    <a href="index.html" class="back-link" style="margin-top: 2rem; display: inline-block;">Zurück zur Startseite</a>
+    <footer>
+      <p>&copy; 2026 GTA 5 Fanpage | Grand Theft Auto ist ein Warenzeichen von Rockstar Games</p>
+      <p>Diese Seite ist eine inoffizielle Fanseite und steht in keiner Verbindung zu Rockstar Games</p>
+    </footer>
+  </div>
+</body>
+</html>

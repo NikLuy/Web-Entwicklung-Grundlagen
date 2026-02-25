@@ -1,0 +1,75 @@
+/* Fanpage Style CSS - Externe CSS-Datei für Style Guide Beispiele */
+
+/* Body/Section Styling */
+.example-section {
+  background-color: #f0f8ff;
+  font-family: Arial, sans-serif;
+  padding: 2rem;
+  border-radius: 12px;
+  margin: 2rem 0;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+/* Heading Styling */
+.heading {
+  text-align: center;
+  color: #4682b4;
+  font-size: 36px;
+  margin-bottom: 1rem;
+}
+
+/* Subheading Styling */
+.subheading {
+  color: #6a5acd;
+  font-size: 28px;
+  border-bottom: 2px dotted #6a5acd;
+  padding-bottom: 0.5rem;
+  margin: 1.5rem 0 1rem 0;
+}
+
+/* Bold Text Styling */
+.bold {
+  color: #8b0000;
+  font-weight: bold;
+}
+
+/* Paragraph Styling */
+.example-paragraph {
+  line-height: 1.6;
+  margin: 1rem 0;
+  color: #333;
+}
+
+/* Kicker Paragraph Styling */
+.example-kicker {
+  line-height: 1.6;
+  margin: 0.5rem 0;
+  color: #6a5acd;
+  font-size: 0.9rem;
+}
+
+/* Link Styling */
+.example-link {
+  color: #4682b4;
+  text-decoration: none;
+  font-weight: bold;
+  border-bottom: 2px solid #4682b4;
+  display: inline-block;
+  padding: 0.5rem 1rem;
+  background: white;
+  border-radius: 4px;
+  margin: 1rem 0;
+}
+
+.example-link:hover {
+  color: #6a5acd;
+  border-bottom-color: #6a5acd;
+}
+
+/* Image Styling */
+.rounded-image {
+  border-radius: 15px;
+  max-width: 300px;
+  display: block;
+  margin-bottom: 1.5rem;
+}
