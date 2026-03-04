@@ -2,8 +2,8 @@
 body {
     font-family: Arial, sans-serif;
     line-height: 1.6;
-    padding: 20px;
-    margin: 20px;
+    padding: 0px;
+    margin: 5px;
     background-color: #f0f8ff;
 }
 
@@ -67,9 +67,4 @@ a:hover {
     text-decoration: underline;
 }
 
-/* 3D Orb Styles */
-.orb-container {
-    margin-top: 50px;
-    text-align: center;
-}
 
