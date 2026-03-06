@@ -1,0 +1,123 @@
+/* Modal Alert System */
+.modal-overlay {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 9999;
+    animation: fadeIn 0.2s ease;
+}
+
+.modal-overlay.show {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.modal-box {
+    background: white;
+    border-radius: 10px;
+    padding: 30px;
+    min-width: 300px;
+    max-width: 500px;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+    animation: slideIn 0.3s ease;
+}
+
+.modal-header {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 20px;
+}
+
+.modal-icon {
+    font-size: 32px;
+}
+
+.modal-title {
+    font-size: 20px;
+    font-weight: 600;
+    margin: 0;
+}
+
+.modal-content {
+    color: #333;
+    line-height: 1.6;
+    margin-bottom: 25px;
+    white-space: pre-line;
+}
+
+.modal-footer {
+    text-align: right;
+}
+
+.modal-btn {
+    padding: 10px 24px;
+    border: none;
+    border-radius: 5px;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+/* Typen: Info, Warning, Error */
+.modal-info .modal-header {
+    color: #3498db;
+}
+
+.modal-info .modal-btn {
+    background: #3498db;
+    color: white;
+}
+
+.modal-info .modal-btn:hover {
+    background: #2980b9;
+}
+
+.modal-warning .modal-header {
+    color: #f39c12;
+}
+
+.modal-warning .modal-btn {
+    background: #f39c12;
+    color: white;
+}
+
+.modal-warning .modal-btn:hover {
+    background: #e67e22;
+}
+
+.modal-error .modal-header {
+    color: #e74c3c;
+}
+
+.modal-error .modal-btn {
+    background: #e74c3c;
+    color: white;
+}
+
+.modal-error .modal-btn:hover {
+    background: #c0392b;
+}
+
+/* Animationen */
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+@keyframes slideIn {
+    from {
+        transform: translateY(-50px);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}

@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formular Validierung</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="../../assets/utility/controlls.css">
+    <script src="../../assets/utility/controlls.js"></script>
+</head>
+<body>
+    <div class="form-container">
+        <h1>Registrierung</h1>
+        <form id="registrierungsForm">
+            <div class="form-group">
+                <label for="name">Name:</label>
+                <input type="text" id="name" placeholder="Ihr Name">
+            </div>
+            
+            <div class="form-group">
+                <label for="alter">Alter:</label>
+                <input type="number" id="alter" placeholder="Ihr Alter">
+            </div>
+            
+            <button type="button" onclick="validateForm()">Validierung 1</button>
+            <button type="button" onclick="validateForm2()">Validierung 2</button>
+        </form>
+    </div>
+
+    <script>
+        function validateForm() {
+            // Werte aus den Eingabefeldern holen
+            const name = document.getElementById('name').value;
+            const alter = document.getElementById('alter').value;
+            
+            // Validierung
+            if (name === '') {
+                alert('Warnung: Der Name darf nicht leer sein!');
+            } else if (alter === '' || alter < 18) {
+                alert('Warnung: Sie müssen mindestens 18 Jahre alt sein!');
+            } else {
+                alert('Erfolgreich registriert! Willkommen, ' + name + '!');
+            }
+        }
+
+        function validateForm2() {
+            // Werte aus den Eingabefeldern holen
+            const name = document.getElementById('name').value;
+            const alter = document.getElementById('alter').value;
+            
+            // Validierung & Fehler sammeln
+             let fehlerText = '';
+    
+            if (name === '') {
+                fehlerText += 'Der Name darf nicht leer sein!\n';
+            }
+            if (alter === '' || alter < 18) {
+                fehlerText += 'Sie müssen mindestens 18 Jahre alt sein!\n';
+            }
+            
+            // Ergebnis anzeigen    
+            if (fehlerText !== '') {
+                showWarning(fehlerText);
+            } else {
+                showInfo('Erfolgreich registriert! Willkommen, ' + name + '!');
+            }
+        }
+    </script>
+</body>
+</html>

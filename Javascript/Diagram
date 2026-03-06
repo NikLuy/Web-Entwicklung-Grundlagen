@@ -1,0 +1,84 @@
+flowchart TD
+    Start([DOM Content Loaded]) --> InitGame[initializeGame]
+    InitGame --> SetVars[Set Variables: width=28, score=0]
+    SetVars --> CreateLayout[Define Layout Array<br/>0=pac-dot, 1=wall, 2=ghost-lair,<br/>3=power-pellet, 4=empty]
+    CreateLayout --> CreateBoard[createBoard]
+    CreateBoard --> Loop1{For each cell<br/>in layout}
+    Loop1 --> CreateSquare[Create div element]
+    CreateSquare --> AddClass[addClassToSquare:<br/>Add CSS class based on cell type]
+    AddClass --> Loop1
+    Loop1 --> |Done|CreatePacman[createPacman at position 490]
+    CreatePacman --> AddKeyListener[Add keyup event listener]
+    AddKeyListener --> InitGhosts[initializeGhosts:<br/>Create 4 ghosts with positions]
+    InitGhosts --> Loop2{For each ghost}
+    Loop2 --> MoveGhost[moveGhost: Start interval timer]
+    MoveGhost --> Loop2
+    Loop2 --> |Done|Idle[Game Running - Wait for Events]
+    
+    Idle --> |Key Press|MovePacman[movePacman]
+    MovePacman --> RemoveOld[Remove pac-man class from current position]
+    RemoveOld --> KeyCheck{Which Arrow Key?}
+    KeyCheck --> |Left|MoveLeftFunc[moveLeft]
+    KeyCheck --> |Up|MoveUpFunc[moveUp]
+    KeyCheck --> |Right|MoveRightFunc[moveRight]
+    KeyCheck --> |Down|MoveDownFunc[moveDown]
+    
+    MoveLeftFunc --> CheckBlocked1{Not at edge &<br/>not blocked?}
+    MoveUpFunc --> CheckBlocked2{Not at edge &<br/>not blocked?}
+    MoveRightFunc --> CheckBlocked3{Not at edge &<br/>not blocked?}
+    MoveDownFunc --> CheckBlocked4{Not at edge &<br/>not blocked?}
+    
+    CheckBlocked1 --> |Yes|UpdatePos1[Update position -1]
+    CheckBlocked1 --> |No|KeepPos1[Keep position]
+    CheckBlocked2 --> |Yes|UpdatePos2[Update position -width]
+    CheckBlocked2 --> |No|KeepPos2[Keep position]
+    CheckBlocked3 --> |Yes|UpdatePos3[Update position +1]
+    CheckBlocked3 --> |No|KeepPos3[Keep position]
+    CheckBlocked4 --> |Yes|UpdatePos4[Update position +width]
+    CheckBlocked4 --> |No|KeepPos4[Keep position]
+    
+    UpdatePos1 --> AddNew[Add pac-man class to new position]
+    KeepPos1 --> AddNew
+    UpdatePos2 --> AddNew
+    KeepPos2 --> AddNew
+    UpdatePos3 --> AddNew
+    KeepPos3 --> AddNew
+    UpdatePos4 --> AddNew
+    KeepPos4 --> AddNew
+    
+    AddNew --> HandleDot[handlePacDotEaten]
+    HandleDot --> DotCheck{Has pac-dot class?}
+    DotCheck --> |Yes|AddScore1[score++, update display,<br/>remove pac-dot]
+    DotCheck --> |No|HandlePower
+    AddScore1 --> HandlePower[handlePowerPelletEaten]
+    
+    HandlePower --> PowerCheck{Has power-pellet class?}
+    PowerCheck --> |Yes|AddScore2[score+=10, update display]
+    PowerCheck --> |No|CheckGameOver
+    AddScore2 --> ScareGhosts[scareGhosts: Set all ghosts.isScared=true]
+    ScareGhosts --> SetTimer[setTimeout to unScareGhosts after 10s]
+    SetTimer --> RemovePower[Remove power-pellet class]
+    RemovePower --> CheckGameOver
+    
+    CheckGameOver[checkForGameOver] --> GOCheck{Has ghost class &<br/>NOT scared-ghost?}
+    GOCheck --> |Yes|GameOver[Stop all ghosts, remove listener,<br/>alert Game Over]
+    GOCheck --> |No|CheckWin
+    GameOver --> End([Game Ended])
+    
+    CheckWin[checkForWin] --> WinCheck{score >= 274?}
+    WinCheck --> |Yes|Win[Stop all ghosts, remove listener,<br/>alert You have WON!]
+    WinCheck --> |No|BackIdle
+    Win --> End
+    BackIdle[Return to Idle] --> Idle
+    
+    Idle --> |Ghost Timer|GhostMove[Ghost Movement Interval]
+    GhostMove --> CanMove{canMoveToSquare?}
+    CanMove --> |Yes|MoveGhostSquare[moveGhostToNewSquare:<br/>Remove from old, add to new]
+    CanMove --> |No|NewDirection[Pick random direction]
+    NewDirection --> CheckCollision
+    MoveGhostSquare --> CheckCollision[checkGhostCollision]
+    CheckCollision --> IsScared{ghost.isScared &<br/>has pacman class?}
+    IsScared --> |Yes|EatGhost[Reset ghost position,<br/>score+=100]
+    IsScared --> |No|ContinueGhost
+    EatGhost --> ContinueGhost[Continue ghost interval]
+    ContinueGhost --> Idle

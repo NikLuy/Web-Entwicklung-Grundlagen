@@ -1,6 +1,13 @@
 .body {
 	background-color: black;
 }
+.gameboard {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+    font-family: 'Arial', sans-serif;
+}
 
 .grid {
     background-color: black;
@@ -10,6 +17,14 @@
     height: 560px;
     border: solid black;
 }
+.scoreboard {
+    margin-top: 20px;
+    color: rgb(0, 0, 0);
+    font-size: 18px;
+    display: Justify-content-between;
+    flex-direction: column;
+    align-items: center;
+}
   
 .grid div {
     width: 20px;
@@ -17,42 +32,50 @@
 }
 
 .pac-dot {
-    background-color: green;
+    background-image: url('images/dot.jpg');
+    background-size: cover;
     border: 5px solid black;
     box-sizing: border-box;
 }
 
 .wall {
-    background-color: green;
+    background-image: url('images/wall.png');
+    background-size: cover;
 }
 
 .power-pellet {
-    background-color: blue;
+    background-image: url('images/magicdot.jpg');
+    background-size: cover;
     border-radius: 10px;
 }
 
 .blinky {
-    background-color: red;
+    background-image: url('images/ghostRed.png');
+    background-size: cover;
 	border-radius: 5px;
 }
 
 .pinky {
-    background-color: pink;
+    background-image: url('images/Pacman3.png');
+    background-size: cover;
 	border-radius: 5px;
 }
 
 .inky {
-    background-color: cyan;
+    background-image: url('images/ghostGreen.png');
+    background-size: cover;
 	border-radius: 5px;
 }
 
 .clyde {
-    background-color: orange;
+    background-image: url('images/ghostYellow.png');
+    background-size: cover;
 	border-radius: 5px;
 }
 
 .pac-man {
-    background-color: yellow;
+    background-image: url('images/pacmanRight.png');
+    background-size: cover;
     border-radius: 50%;
     position: relative;
     animation: chomping 0.5s infinite;
@@ -73,4 +96,10 @@
 
 .scared-ghost {
     background-color: aquamarine;
+}
+
+.bonus-point {
+    background-image: url('images/bonusdot.jpg');
+    background-size: cover;
+    border-radius: 50%;
 }

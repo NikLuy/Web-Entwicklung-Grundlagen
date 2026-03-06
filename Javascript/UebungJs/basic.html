@@ -1,0 +1,1700 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JavaScript Grundlagen - Basics</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <div class="container">
+        <h1>📘 JavaScript Grundlagen</h1>
+        <p class="subtitle">Variablen, Kontrollstrukturen, Operatoren und mehr</p>
+
+        <!-- Variablen -->
+        <div class="section">
+            <h2>1️⃣ Variablen Deklaration</h2>
+            
+            <div style="margin-bottom: 25px;">
+                <h3>var, let, const</h3>
+                <p style="color: #666; margin: 10px 0;">Drei Möglichkeiten, Variablen zu deklarieren</p>
+                <div class="code-block">
+<span class="comment">// VAR - Function-scoped, kann re-deklariert werden (alt)</span>
+<span class="keyword">var</span> oldStyle = <span class="string">"Alte Methode"</span>;
+<span class="keyword">var</span> oldStyle = <span class="string">"Neu-Deklaration möglich"</span>;  <span class="comment">// Erlaubt</span>
+
+<span class="comment">// LET - Block-scoped, kann geändert werden (modern)</span>
+<span class="keyword">let</span> userName = <span class="string">"Max"</span>;
+userName = <span class="string">"Anna"</span>;           <span class="comment">// Änderung erlaubt</span>
+<span class="comment">// let userName = "Tom";  // Fehler: Neu-Deklaration nicht erlaubt</span>
+
+<span class="comment">// CONST - Block-scoped, kann nicht geändert werden</span>
+<span class="keyword">const</span> PI = <span class="number">3.14159</span>;
+<span class="comment">// PI = 3.14;            // Fehler: Änderung nicht erlaubt</span>
+<span class="keyword">const</span> user = { name: <span class="string">"Max"</span> };
+user.name = <span class="string">"Anna"</span>;         <span class="comment">// Erlaubt: Objekt-Eigenschaften änderbar</span>
+
+<span class="comment">// Scope-Beispiele</span>
+{
+    <span class="keyword">let</span> blockScoped = <span class="string">"nur im Block"</span>;
+    <span class="keyword">const</span> alsoBlockScoped = <span class="string">"auch nur im Block"</span>;
+}
+<span class="comment">// console.log(blockScoped); // Fehler: nicht verfügbar</span>
+                </div>
+                <button class="btn-primary" onclick="basicDemo.testVariables()">Variablen testen</button>
+            </div>
+        </div>
+
+        <!-- Operatoren -->
+        <div class="section">
+            <h2>2️⃣ Operatoren</h2>
+
+            <div style="margin-bottom: 25px;">
+                <h3>Arithmetische Operatoren</h3>
+                <div class="code-block">
+<span class="keyword">let</span> a = <span class="number">10</span>, b = <span class="number">3</span>;
+
+a + b      <span class="comment">// 13  - Addition</span>
+a - b      <span class="comment">// 7   - Subtraktion</span>
+a * b      <span class="comment">// 30  - Multiplikation</span>
+a / b      <span class="comment">// 3.33 - Division</span>
+a % b      <span class="comment">// 1   - Modulo (Rest)</span>
+a ** b     <span class="comment">// 1000 - Potenzierung</span>
+
+<span class="comment">// Inkrement/Dekrement</span>
+<span class="keyword">let</span> x = <span class="number">5</span>;
+x++;       <span class="comment">// 6 (Post-Inkrement)</span>
+++x;       <span class="comment">// 7 (Pre-Inkrement)</span>
+x--;       <span class="comment">// 6 (Post-Dekrement)</span>
+--x;       <span class="comment">// 5 (Pre-Dekrement)</span>
+                </div>
+                <button class="btn-primary" onclick="basicDemo.testArithmetic()">Arithmetik testen</button>
+            </div>
+
+            <div style="margin-bottom: 25px;">
+                <h3>Vergleichsoperatoren</h3>
+                <div class="code-block">
+<span class="comment">// Gleichheit</span>
+<span class="number">5</span> == <span class="string">"5"</span>      <span class="comment">// true  - Lose Gleichheit (type coercion)</span>
+<span class="number">5</span> === <span class="string">"5"</span>     <span class="comment">// false - Strikte Gleichheit (kein type coercion)</span>
+<span class="number">5</span> != <span class="string">"5"</span>      <span class="comment">// false</span>
+<span class="number">5</span> !== <span class="string">"5"</span>     <span class="comment">// true</span>
+
+<span class="comment">// Vergleiche</span>
+<span class="number">10</span> > <span class="number">5</span>       <span class="comment">// true  - Größer als</span>
+<span class="number">10</span> < <span class="number">5</span>       <span class="comment">// false - Kleiner als</span>
+<span class="number">10</span> >= <span class="number">10</span>     <span class="comment">// true  - Größer oder gleich</span>
+<span class="number">5</span> <= <span class="number">10</span>      <span class="comment">// true  - Kleiner oder gleich</span>
+                </div>
+                <button class="btn-primary" onclick="basicDemo.testComparison()">Vergleiche testen</button>
+            </div>
+
+            <div style="margin-bottom: 25px;">
+                <h3>Logische Operatoren</h3>
+                <div class="code-block">
+<span class="keyword">let</span> t = <span class="keyword">true</span>, f = <span class="keyword">false</span>;
+
+t && t     <span class="comment">// true  - AND (beide müssen true sein)</span>
+t && f     <span class="comment">// false</span>
+t || f     <span class="comment">// true  - OR (mindestens eins muss true sein)</span>
+f || f     <span class="comment">// false</span>
+!t         <span class="comment">// false - NOT (negiert)</span>
+!f         <span class="comment">// true</span>
+
+<span class="comment">// Short-circuit Evaluation</span>
+<span class="keyword">let</span> result = <span class="keyword">null</span> || <span class="string">"default"</span>;  <span class="comment">// "default"</span>
+<span class="keyword">let</span> value = <span class="string">"text"</span> && <span class="string">"andere"</span>;  <span class="comment">// "andere"</span>
+
+<span class="comment">// Nullish Coalescing (ES2020)</span>
+<span class="keyword">let</span> x = <span class="keyword">null</span> ?? <span class="string">"default"</span>;      <span class="comment">// "default"</span>
+<span class="keyword">let</span> y = <span class="number">0</span> ?? <span class="string">"default"</span>;         <span class="comment">// 0 (nicht "default"!)</span>
+                </div>
+                <button class="btn-primary" onclick="basicDemo.testLogical()">Logik testen</button>
+            </div>
+
+            <div style="margin-bottom: 25px;">
+                <h3>Zuweisungsoperatoren</h3>
+                <div class="code-block">
+<span class="keyword">let</span> x = <span class="number">10</span>;
+
+x += <span class="number">5</span>;     <span class="comment">// x = x + 5  (15)</span>
+x -= <span class="number">3</span>;     <span class="comment">// x = x - 3  (12)</span>
+x *= <span class="number">2</span>;     <span class="comment">// x = x * 2  (24)</span>
+x /= <span class="number">4</span>;     <span class="comment">// x = x / 4  (6)</span>
+x %= <span class="number">4</span>;     <span class="comment">// x = x % 4  (2)</span>
+x **= <span class="number">3</span>;    <span class="comment">// x = x ** 3 (8)</span>
+                </div>
+                <button class="btn-primary" onclick="basicDemo.testAssignment()">Zuweisung testen</button>
+            </div>
+        </div>
+
+        <!-- If-Else Statements -->
+        <div class="section">
+            <h2>3️⃣ If-Else Bedingungen</h2>
+
+            <div style="margin-bottom: 25px;">
+                <h3>If, Else If, Else</h3>
+                <div class="code-block">
+<span class="keyword">let</span> age = <span class="number">18</span>;
+
+<span class="comment">// Einfaches If</span>
+<span class="keyword">if</span> (age >= <span class="number">18</span>) {
+    console.log(<span class="string">"Volljährig"</span>);
+}
+
+<span class="comment">// If-Else</span>
+<span class="keyword">if</span> (age >= <span class="number">18</span>) {
+    console.log(<span class="string">"Volljährig"</span>);
+} <span class="keyword">else</span> {
+    console.log(<span class="string">"Minderjährig"</span>);
+}
+
+<span class="comment">// If-Else If-Else</span>
+<span class="keyword">if</span> (age < <span class="number">13</span>) {
+    console.log(<span class="string">"Kind"</span>);
+} <span class="keyword">else if</span> (age < <span class="number">18</span>) {
+    console.log(<span class="string">"Jugendlich"</span>);
+} <span class="keyword">else if</span> (age < <span class="number">65</span>) {
+    console.log(<span class="string">"Erwachsen"</span>);
+} <span class="keyword">else</span> {
+    console.log(<span class="string">"Senior"</span>);
+}
+
+<span class="comment">// Ternärer Operator (Kurzform)</span>
+<span class="keyword">let</span> status = age >= <span class="number">18</span> ? <span class="string">"Erwachsen"</span> : <span class="string">"Minderjährig"</span>;
+
+<span class="comment">// Verschachtelte Bedingungen</span>
+<span class="keyword">if</span> (age >= <span class="number">18</span>) {
+    <span class="keyword">if</span> (age <= <span class="number">25</span>) {
+        console.log(<span class="string">"Junger Erwachsener"</span>);
+    }
+}
+                </div>
+                <button class="btn-primary" onclick="basicDemo.testIfElse()">If-Else testen</button>
+            </div>
+        </div>
+
+        <!-- Switch Statement -->
+        <div class="section">
+            <h2>4️⃣ Switch Statement</h2>
+
+            <div style="margin-bottom: 25px;">
+                <h3>Switch-Case</h3>
+                <div class="code-block">
+<span class="keyword">let</span> day = <span class="number">3</span>;
+<span class="keyword">let</span> dayName;
+
+<span class="keyword">switch</span> (day) {
+    <span class="keyword">case</span> <span class="number">1</span>:
+        dayName = <span class="string">"Montag"</span>;
+        <span class="keyword">break</span>;
+    <span class="keyword">case</span> <span class="number">2</span>:
+        dayName = <span class="string">"Dienstag"</span>;
+        <span class="keyword">break</span>;
+    <span class="keyword">case</span> <span class="number">3</span>:
+        dayName = <span class="string">"Mittwoch"</span>;
+        <span class="keyword">break</span>;
+    <span class="keyword">case</span> <span class="number">4</span>:
+        dayName = <span class="string">"Donnerstag"</span>;
+        <span class="keyword">break</span>;
+    <span class="keyword">case</span> <span class="number">5</span>:
+        dayName = <span class="string">"Freitag"</span>;
+        <span class="keyword">break</span>;
+    <span class="keyword">case</span> <span class="number">6</span>:
+    <span class="keyword">case</span> <span class="number">7</span>:
+        dayName = <span class="string">"Wochenende"</span>;  <span class="comment">// Mehrere Cases zusammen</span>
+        <span class="keyword">break</span>;
+    <span class="keyword">default</span>:
+        dayName = <span class="string">"Ungültiger Tag"</span>;
+}
+
+<span class="comment">// Switch mit Strings</span>
+<span class="keyword">let</span> fruit = <span class="string">"Apfel"</span>;
+<span class="keyword">switch</span> (fruit) {
+    <span class="keyword">case</span> <span class="string">"Apfel"</span>:
+        console.log(<span class="string">"🍎 Rot und knackig"</span>);
+        <span class="keyword">break</span>;
+    <span class="keyword">case</span> <span class="string">"Banane"</span>:
+        console.log(<span class="string">"🍌 Gelb und süß"</span>);
+        <span class="keyword">break</span>;
+    <span class="keyword">case</span> <span class="string">"Orange"</span>:
+        console.log(<span class="string">"🍊 Saftig"</span>);
+        <span class="keyword">break</span>;
+    <span class="keyword">default</span>:
+        console.log(<span class="string">"🍇 Anderes Obst"</span>);
+}
+                </div>
+                <button class="btn-primary" onclick="basicDemo.testSwitch()">Switch testen</button>
+            </div>
+        </div>
+
+        <!-- Loops -->
+        <div class="section">
+            <h2>5️⃣ Schleifen (Loops)</h2>
+
+            <div style="margin-bottom: 25px;">
+                <h3>For-Schleife</h3>
+                <div class="code-block">
+<span class="comment">// Klassische For-Schleife</span>
+<span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="number">0</span>; i < <span class="number">5</span>; i++) {
+    console.log(<span class="string">"Durchlauf "</span> + i);
+}
+
+<span class="comment">// Rückwärts zählen</span>
+<span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="number">10</span>; i > <span class="number">0</span>; i--) {
+    console.log(i);
+}
+
+<span class="comment">// Schrittweite ändern</span>
+<span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="number">0</span>; i <= <span class="number">10</span>; i += <span class="number">2</span>) {
+    console.log(i);  <span class="comment">// 0, 2, 4, 6, 8, 10</span>
+}
+
+<span class="comment">// Verschachtelte Schleifen</span>
+<span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="number">1</span>; i <= <span class="number">3</span>; i++) {
+    <span class="keyword">for</span> (<span class="keyword">let</span> j = <span class="number">1</span>; j <= <span class="number">3</span>; j++) {
+        console.log(<span class="string">`i=${i}, j=${j}`</span>);
+    }
+}
+                </div>
+                <button class="btn-primary" onclick="basicDemo.testForLoop()">For-Loop testen</button>
+            </div>
+
+            <div style="margin-bottom: 25px;">
+                <h3>While & Do-While</h3>
+                <div class="code-block">
+<span class="comment">// While-Schleife - Prüfung vor Ausführung</span>
+<span class="keyword">let</span> count = <span class="number">0</span>;
+<span class="keyword">while</span> (count < <span class="number">5</span>) {
+    console.log(<span class="string">"Count: "</span> + count);
+    count++;
+}
+
+<span class="comment">// Do-While-Schleife - Prüfung nach Ausführung</span>
+<span class="keyword">let</span> num = <span class="number">0</span>;
+<span class="keyword">do</span> {
+    console.log(<span class="string">"Num: "</span> + num);
+    num++;
+} <span class="keyword">while</span> (num < <span class="number">5</span>);
+
+<span class="comment">// Wird mindestens einmal ausgeführt, auch wenn Bedingung false ist</span>
+<span class="keyword">let</span> x = <span class="number">10</span>;
+<span class="keyword">do</span> {
+    console.log(<span class="string">"Einmal ausgeführt"</span>);
+} <span class="keyword">while</span> (x < <span class="number">5</span>);  <span class="comment">// Bedingung ist false, aber Block wird einmal ausgeführt</span>
+                </div>
+                <button class="btn-primary" onclick="basicDemo.testWhile()">While testen</button>
+            </div>
+
+            <div style="margin-bottom: 25px;">
+                <h3>For...of & For...in</h3>
+                <div class="code-block">
+<span class="comment">// For...of - Iteriert über Werte (Arrays, Strings, etc.)</span>
+<span class="keyword">const</span> fruits = [<span class="string">"Apfel"</span>, <span class="string">"Banane"</span>, <span class="string">"Orange"</span>];
+<span class="keyword">for</span> (<span class="keyword">const</span> fruit <span class="keyword">of</span> fruits) {
+    console.log(fruit);  <span class="comment">// "Apfel", "Banane", "Orange"</span>
+}
+
+<span class="comment">// String iterieren</span>
+<span class="keyword">for</span> (<span class="keyword">const</span> char <span class="keyword">of</span> <span class="string">"Hello"</span>) {
+    console.log(char);   <span class="comment">// H, e, l, l, o</span>
+}
+
+<span class="comment">// For...in - Iteriert über Keys (Objekte, Arrays)</span>
+<span class="keyword">const</span> person = { name: <span class="string">"Max"</span>, age: <span class="number">30</span>, city: <span class="string">"Berlin"</span> };
+<span class="keyword">for</span> (<span class="keyword">const</span> key <span class="keyword">in</span> person) {
+    console.log(<span class="string">`${key}: ${person[key]}`</span>);
+}
+
+<span class="comment">// Array mit for...in (zeigt Indizes)</span>
+<span class="keyword">for</span> (<span class="keyword">const</span> index <span class="keyword">in</span> fruits) {
+    console.log(<span class="string">`Index ${index}: ${fruits[index]}`</span>);
+}
+                </div>
+                <button class="btn-primary" onclick="basicDemo.testForOfIn()">For...of/in testen</button>
+            </div>
+
+            <div style="margin-bottom: 25px;">
+                <h3>Break & Continue</h3>
+                <div class="code-block">
+<span class="comment">// Break - Beendet die Schleife</span>
+<span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="number">0</span>; i < <span class="number">10</span>; i++) {
+    <span class="keyword">if</span> (i === <span class="number">5</span>) {
+        <span class="keyword">break</span>;  <span class="comment">// Stoppt bei 5</span>
+    }
+    console.log(i);  <span class="comment">// 0, 1, 2, 3, 4</span>
+}
+
+<span class="comment">// Continue - Überspringt aktuelle Iteration</span>
+<span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="number">0</span>; i < <span class="number">10</span>; i++) {
+    <span class="keyword">if</span> (i % <span class="number">2</span> === <span class="number">0</span>) {
+        <span class="keyword">continue</span>;  <span class="comment">// Überspringt gerade Zahlen</span>
+    }
+    console.log(i);  <span class="comment">// 1, 3, 5, 7, 9</span>
+}
+
+<span class="comment">// Label für verschachtelte Schleifen</span>
+outerLoop: <span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="number">0</span>; i < <span class="number">3</span>; i++) {
+    <span class="keyword">for</span> (<span class="keyword">let</span> j = <span class="number">0</span>; j < <span class="number">3</span>; j++) {
+        <span class="keyword">if</span> (i === <span class="number">1</span> && j === <span class="number">1</span>) {
+            <span class="keyword">break</span> outerLoop;  <span class="comment">// Beendet äußere Schleife</span>
+        }
+        console.log(<span class="string">`i=${i}, j=${j}`</span>);
+    }
+}
+                </div>
+                <button class="btn-primary" onclick="basicDemo.testBreakContinue()">Break/Continue testen</button>
+            </div>
+        </div>
+
+        <!-- Funktionen -->
+        <div class="section">
+            <h2>6️⃣ Funktionen</h2>
+
+            <div style="margin-bottom: 25px;">
+                <h3>Funktions-Deklarationen</h3>
+                <div class="code-block">
+<span class="comment">// Function Declaration</span>
+<span class="keyword">function</span> greet(name) {
+    <span class="keyword">return</span> <span class="string">`Hallo ${name}!`</span>;
+}
+
+<span class="comment">// Function Expression</span>
+<span class="keyword">const</span> greet2 = <span class="keyword">function</span>(name) {
+    <span class="keyword">return</span> <span class="string">`Hi ${name}!`</span>;
+};
+
+<span class="comment">// Arrow Function (ES6)</span>
+<span class="keyword">const</span> greet3 = (name) => <span class="string">`Hey ${name}!`</span>;
+<span class="keyword">const</span> greet4 = name => <span class="string">`Servus ${name}!`</span>;  <span class="comment">// Ein Parameter ohne ()</span>
+
+<span class="comment">// Default Parameters</span>
+<span class="keyword">function</span> greetWithDefault(name = <span class="string">"Gast"</span>) {
+    <span class="keyword">return</span> <span class="string">`Hallo ${name}!`</span>;
+}
+
+<span class="comment">// Rest Parameters</span>
+<span class="keyword">function</span> sum(...numbers) {
+    <span class="keyword">return</span> numbers.reduce((a, b) => a + b, <span class="number">0</span>);
+}
+sum(<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>);  <span class="comment">// 15</span>
+
+<span class="comment">// Destrukturierung in Parametern</span>
+<span class="keyword">function</span> printUser({ name, age }) {
+    console.log(<span class="string">`${name} ist ${age} Jahre alt`</span>);
+}
+                </div>
+                <button class="btn-primary" onclick="basicDemo.testFunctions()">Funktionen testen</button>
+            </div>
+
+            <div style="margin-bottom: 25px;">
+                <h3>Callback-Funktionen & Higher-Order Functions</h3>
+                <div class="code-block">
+<span class="comment">// Callback-Funktion</span>
+<span class="keyword">function</span> processArray(arr, callback) {
+    <span class="keyword">const</span> result = [];
+    <span class="keyword">for</span> (<span class="keyword">let</span> item <span class="keyword">of</span> arr) {
+        result.push(callback(item));
+    }
+    <span class="keyword">return</span> result;
+}
+
+<span class="keyword">const</span> numbers = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>];
+<span class="keyword">const</span> doubled = processArray(numbers, x => x * <span class="number">2</span>);
+
+<span class="comment">// Higher-Order Function (gibt Funktion zurück)</span>
+<span class="keyword">function</span> multiplier(factor) {
+    <span class="keyword">return</span> <span class="keyword">function</span>(number) {
+        <span class="keyword">return</span> number * factor;
+    };
+}
+
+<span class="keyword">const</span> double = multiplier(<span class="number">2</span>);
+<span class="keyword">const</span> triple = multiplier(<span class="number">3</span>);
+double(<span class="number">5</span>);   <span class="comment">// 10</span>
+triple(<span class="number">5</span>);   <span class="comment">// 15</span>
+                </div>
+                <button class="btn-primary" onclick="basicDemo.testCallbacks()">Callbacks testen</button>
+            </div>
+        </div>
+
+        <!-- Arrays & Array-Methoden -->
+        <div class="section">
+            <h2>7️⃣ Array-Methoden</h2>
+
+            <div style="margin-bottom: 25px;">
+                <h3>Wichtige Array-Methoden</h3>
+                <div class="code-block">
+<span class="keyword">const</span> numbers = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>];
+
+<span class="comment">// forEach - Iteriert über alle Elemente</span>
+numbers.forEach((num, index) => {
+    console.log(<span class="string">`Index ${index}: ${num}`</span>);
+});
+
+<span class="comment">// map - Transformiert jedes Element</span>
+<span class="keyword">const</span> doubled = numbers.map(n => n * <span class="number">2</span>);  <span class="comment">// [2, 4, 6, 8, 10]</span>
+
+<span class="comment">// filter - Filtert Elemente</span>
+<span class="keyword">const</span> evenNumbers = numbers.filter(n => n % <span class="number">2</span> === <span class="number">0</span>);  <span class="comment">// [2, 4]</span>
+
+<span class="comment">// reduce - Reduziert zu einem Wert</span>
+<span class="keyword">const</span> sum = numbers.reduce((acc, n) => acc + n, <span class="number">0</span>);  <span class="comment">// 15</span>
+
+<span class="comment">// find - Findet erstes Element</span>
+<span class="keyword">const</span> found = numbers.find(n => n > <span class="number">3</span>);  <span class="comment">// 4</span>
+
+<span class="comment">// some - Prüft ob mindestens eins die Bedingung erfüllt</span>
+<span class="keyword">const</span> hasEven = numbers.some(n => n % <span class="number">2</span> === <span class="number">0</span>);  <span class="comment">// true</span>
+
+<span class="comment">// every - Prüft ob alle die Bedingung erfüllen</span>
+<span class="keyword">const</span> allPositive = numbers.every(n => n > <span class="number">0</span>);  <span class="comment">// true</span>
+
+<span class="comment">// includes - Prüft ob Element enthalten ist</span>
+numbers.includes(<span class="number">3</span>);  <span class="comment">// true</span>
+                </div>
+                <button class="btn-primary" onclick="basicDemo.testArrayMethods()">Array-Methoden testen</button>
+            </div>
+        </div>
+
+        <!-- String-Methoden -->
+        <div class="section">
+            <h2>8️⃣ String-Methoden</h2>
+
+            <div style="margin-bottom: 25px;">
+                <h3>Wichtige String-Operationen</h3>
+                <div class="code-block">
+<span class="keyword">const</span> text = <span class="string">"JavaScript Programmierung"</span>;
+
+<span class="comment">// Länge und Zugriff</span>
+text.length;                    <span class="comment">// 24</span>
+text[<span class="number">0</span>];                        <span class="comment">// "J"</span>
+text.charAt(<span class="number">4</span>);                 <span class="comment">// "S"</span>
+
+<span class="comment">// Suchen</span>
+text.indexOf(<span class="string">"Script"</span>);        <span class="comment">// 4</span>
+text.lastIndexOf(<span class="string">"a"</span>);         <span class="comment">// Letzte Position</span>
+text.includes(<span class="string">"Java"</span>);         <span class="comment">// true</span>
+text.startsWith(<span class="string">"Java"</span>);       <span class="comment">// true</span>
+text.endsWith(<span class="string">"ung"</span>);          <span class="comment">// true</span>
+
+<span class="comment">// Extrahieren</span>
+text.substring(<span class="number">0</span>, <span class="number">10</span>);         <span class="comment">// "JavaScript"</span>
+text.slice(<span class="number">0</span>, <span class="number">10</span>);             <span class="comment">// "JavaScript"</span>
+text.slice(-<span class="number">13</span>);               <span class="comment">// "Programmierung"</span>
+
+<span class="comment">// Transformieren</span>
+text.toLowerCase();             <span class="comment">// "javascript programmierung"</span>
+text.toUpperCase();             <span class="comment">// "JAVASCRIPT PROGRAMMIERUNG"</span>
+<span class="string">"  text  "</span>.trim();           <span class="comment">// "text"</span>
+text.replace(<span class="string">"Java"</span>, <span class="string">"Type"</span>);  <span class="comment">// "TypeScript..."</span>
+text.replaceAll(<span class="string">"a"</span>, <span class="string">"@"</span>);      <span class="comment">// Alle "a" ersetzen</span>
+
+<span class="comment">// Teilen und Verbinden</span>
+text.split(<span class="string">" "</span>);               <span class="comment">// ["JavaScript", "Programmierung"]</span>
+[<span class="string">"Java"</span>, <span class="string">"Script"</span>].join(<span class="string">""</span>);   <span class="comment">// "JavaScript"</span>
+
+<span class="comment">// Wiederholen und Auffüllen</span>
+<span class="string">"Ha"</span>.repeat(<span class="number">3</span>);               <span class="comment">// "HaHaHa"</span>
+<span class="string">"5"</span>.padStart(<span class="number">3</span>, <span class="string">"0"</span>);          <span class="comment">// "005"</span>
+<span class="string">"5"</span>.padEnd(<span class="number">3</span>, <span class="string">"0"</span>);            <span class="comment">// "500"</span>
+                </div>
+                <button class="btn-primary" onclick="basicDemo.testStringMethods()">String-Methoden testen</button>
+            </div>
+        </div>
+
+        <!-- Objekte -->
+        <div class="section">
+            <h2>9️⃣ Objekte & Methoden</h2>
+
+            <div style="margin-bottom: 25px;">
+                <h3>Objekt-Operationen</h3>
+                <div class="code-block">
+<span class="comment">// Objekt erstellen</span>
+<span class="keyword">const</span> person = {
+    name: <span class="string">"Max Mustermann"</span>,
+    age: <span class="number">30</span>,
+    email: <span class="string">"max@example.com"</span>,
+    greet() {
+        <span class="keyword">return</span> <span class="string">`Hallo, ich bin ${this.name}`</span>;
+    }
+};
+
+<span class="comment">// Zugriff</span>
+person.name;                    <span class="comment">// "Max Mustermann"</span>
+person[<span class="string">"email"</span>];                <span class="comment">// "max@example.com"</span>
+
+<span class="comment">// Ändern und Hinzufügen</span>
+person.age = <span class="number">31</span>;
+person.city = <span class="string">"Berlin"</span>;         <span class="comment">// Neue Eigenschaft</span>
+
+<span class="comment">// Löschen</span>
+<span class="keyword">delete</span> person.email;
+
+<span class="comment">// Object-Methoden</span>
+Object.keys(person);            <span class="comment">// ["name", "age", "city", "greet"]</span>
+Object.values(person);          <span class="comment">// Alle Werte</span>
+Object.entries(person);         <span class="comment">// [[key, value], ...]</span>
+
+<span class="comment">// Property prüfen</span>
+<span class="string">"name"</span> <span class="keyword">in</span> person;             <span class="comment">// true</span>
+person.hasOwnProperty(<span class="string">"name"</span>); <span class="comment">// true</span>
+
+<span class="comment">// Objekt kopieren</span>
+<span class="keyword">const</span> copy = { ...person };    <span class="comment">// Spread Operator (ES6)</span>
+<span class="keyword">const</span> copy2 = Object.assign({}, person);
+
+<span class="comment">// Objekt zusammenführen</span>
+<span class="keyword">const</span> merged = { ...person, country: <span class="string">"Deutschland"</span> };
+                </div>
+                <button class="btn-primary" onclick="basicDemo.testObjects()">Objekte testen</button>
+            </div>
+        </div>
+
+        <!-- Destructuring -->
+        <div class="section">
+            <h2>🔟 Destructuring (ES6)</h2>
+
+            <div style="margin-bottom: 25px;">
+                <h3>Array & Object Destructuring</h3>
+                <div class="code-block">
+<span class="comment">// Array Destructuring</span>
+<span class="keyword">const</span> colors = [<span class="string">"Rot"</span>, <span class="string">"Grün"</span>, <span class="string">"Blau"</span>];
+<span class="keyword">const</span> [first, second, third] = colors;
+console.log(first);             <span class="comment">// "Rot"</span>
+
+<span class="comment">// Rest Operator</span>
+<span class="keyword">const</span> [head, ...tail] = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>];
+console.log(head);              <span class="comment">// 1</span>
+console.log(tail);              <span class="comment">// [2, 3, 4]</span>
+
+<span class="comment">// Object Destructuring</span>
+<span class="keyword">const</span> user = { name: <span class="string">"Max"</span>, age: <span class="number">30</span>, city: <span class="string">"Berlin"</span> };
+<span class="keyword">const</span> { name, age } = user;
+console.log(name);              <span class="comment">// "Max"</span>
+
+<span class="comment">// Umbenennen</span>
+<span class="keyword">const</span> { name: userName, age: userAge } = user;
+
+<span class="comment">// Default-Werte</span>
+<span class="keyword">const</span> { name, country = <span class="string">"Deutschland"</span> } = user;
+
+<span class="comment">// Verschachteltes Destructuring</span>
+<span class="keyword">const</span> data = {
+    user: { name: <span class="string">"Max"</span>, email: <span class="string">"max@test.de"</span> }
+};
+<span class="keyword">const</span> { user: { email } } = data;
+                </div>
+                <button class="btn-primary" onclick="basicDemo.testDestructuring()">Destructuring testen</button>
+            </div>
+        </div>
+
+        <!-- Spread & Rest -->
+        <div class="section">
+            <h2>1️⃣1️⃣ Spread & Rest Operator</h2>
+
+            <div style="margin-bottom: 25px;">
+                <h3>... Operator</h3>
+                <div class="code-block">
+<span class="comment">// Spread bei Arrays</span>
+<span class="keyword">const</span> arr1 = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>];
+<span class="keyword">const</span> arr2 = [<span class="number">4</span>, <span class="number">5</span>, <span class="number">6</span>];
+<span class="keyword">const</span> combined = [...arr1, ...arr2];  <span class="comment">// [1, 2, 3, 4, 5, 6]</span>
+
+<span class="comment">// Array kopieren</span>
+<span class="keyword">const</span> copy = [...arr1];
+
+<span class="comment">// Spread bei Objekten</span>
+<span class="keyword">const</span> obj1 = { a: <span class="number">1</span>, b: <span class="number">2</span> };
+<span class="keyword">const</span> obj2 = { c: <span class="number">3</span>, d: <span class="number">4</span> };
+<span class="keyword">const</span> merged = { ...obj1, ...obj2 };  <span class="comment">// {a:1, b:2, c:3, d:4}</span>
+
+<span class="comment">// Objekt erweitern/überschreiben</span>
+<span class="keyword">const</span> user = { name: <span class="string">"Max"</span>, age: <span class="number">30</span> };
+<span class="keyword">const</span> updated = { ...user, age: <span class="number">31</span>, city: <span class="string">"Berlin"</span> };
+
+<span class="comment">// Rest bei Funktionsparametern</span>
+<span class="keyword">function</span> sum(...numbers) {
+    <span class="keyword">return</span> numbers.reduce((a, b) => a + b, <span class="number">0</span>);
+}
+sum(<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>);        <span class="comment">// 15</span>
+
+<span class="comment">// Rest bei Destructuring</span>
+<span class="keyword">const</span> { a, ...rest } = { a: <span class="number">1</span>, b: <span class="number">2</span>, c: <span class="number">3</span> };
+console.log(rest);              <span class="comment">// { b: 2, c: 3 }</span>
+                </div>
+                <button class="btn-primary" onclick="basicDemo.testSpreadRest()">Spread/Rest testen</button>
+            </div>
+        </div>
+
+        <!-- Template Literals -->
+        <div class="section">
+            <h2>1️⃣2️⃣ Template Literals</h2>
+
+            <div style="margin-bottom: 25px;">
+                <h3>String-Templates (ES6)</h3>
+                <div class="code-block">
+<span class="keyword">const</span> name = <span class="string">"Max"</span>;
+<span class="keyword">const</span> age = <span class="number">30</span>;
+
+<span class="comment">// Variable Interpolation</span>
+<span class="keyword">const</span> message = <span class="string">`Hallo, ich bin ${name} und ${age} Jahre alt.`</span>;
+
+<span class="comment">// Ausdrücke in Templates</span>
+<span class="keyword">const</span> sum = <span class="string">`Die Summe ist: ${5 + 3}`</span>;
+<span class="keyword">const</span> conditional = <span class="string">`Status: ${age >= 18 ? "Erwachsen" : "Minderjährig"}`</span>;
+
+<span class="comment">// Mehrzeilige Strings</span>
+<span class="keyword">const</span> multiline = <span class="string">`
+    Zeile 1
+    Zeile 2
+    Zeile 3
+`</span>;
+
+<span class="comment">// Funktionsaufrufe in Templates</span>
+<span class="keyword">function</span> getGreeting() {
+    <span class="keyword">return</span> <span class="string">"Guten Tag"</span>;
+}
+<span class="keyword">const</span> greeting = <span class="string">`${getGreeting()}, ${name}!`</span>;
+
+<span class="comment">// Tagged Templates (erweitert)</span>
+<span class="keyword">function</span> highlight(strings, ...values) {
+    <span class="keyword">return</span> strings.reduce((result, str, i) => {
+        <span class="keyword">return</span> result + str + (values[i] ? <span class="string">`<strong>${values[i]}</strong>`</span> : <span class="string">''</span>);
+    }, <span class="string">''</span>);
+}
+<span class="keyword">const</span> highlighted = highlight<span class="string">`Name: ${name}, Alter: ${age}`</span>;
+                </div>
+                <button class="btn-primary" onclick="basicDemo.testTemplateLiterals()">Template Literals testen</button>
+            </div>
+        </div>
+
+        <!-- Scope & Hoisting -->
+        <div class="section">
+            <h2>1️⃣3️⃣ Scope & Hoisting</h2>
+
+            <div style="margin-bottom: 25px;">
+                <h3>Variable Scope</h3>
+                <div class="code-block">
+<span class="comment">// Global Scope</span>
+<span class="keyword">var</span> globalVar = <span class="string">"global"</span>;
+<span class="keyword">let</span> globalLet = <span class="string">"global"</span>;
+<span class="keyword">const</span> globalConst = <span class="string">"global"</span>;
+
+<span class="keyword">function</span> outerFunction() {
+    <span class="comment">// Function Scope</span>
+    <span class="keyword">var</span> functionVar = <span class="string">"function"</span>;
+    
+    <span class="keyword">if</span> (<span class="keyword">true</span>) {
+        <span class="comment">// Block Scope</span>
+        <span class="keyword">var</span> blockVar = <span class="string">"var ist function-scoped"</span>;
+        <span class="keyword">let</span> blockLet = <span class="string">"let ist block-scoped"</span>;
+        <span class="keyword">const</span> blockConst = <span class="string">"const ist block-scoped"</span>;
+    }
+    
+    console.log(blockVar);      <span class="comment">// Funktioniert (var)</span>
+    <span class="comment">// console.log(blockLet);  // Fehler (let ist außerhalb Block nicht verfügbar)</span>
+}
+
+<span class="comment">// Hoisting - var wird nach oben gezogen</span>
+console.log(hoistedVar);        <span class="comment">// undefined (nicht Fehler!)</span>
+<span class="keyword">var</span> hoistedVar = <span class="string">"Wert"</span>;
+
+<span class="comment">// let/const sind auch gehoisted, aber in "temporal dead zone"</span>
+<span class="comment">// console.log(hoistedLet);  // ReferenceError</span>
+<span class="keyword">let</span> hoistedLet = <span class="string">"Wert"</span>;
+                </div>
+                <button class="btn-primary" onclick="basicDemo.testScope()">Scope testen</button>
+            </div>
+        </div>
+
+        <!-- This Keyword -->
+        <div class="section">
+            <h2>1️⃣4️⃣ This Keyword</h2>
+
+            <div style="margin-bottom: 25px;">
+                <h3>Kontext von "this"</h3>
+                <div class="code-block">
+<span class="comment">// In Methode - bezieht sich auf Objekt</span>
+<span class="keyword">const</span> person = {
+    name: <span class="string">"Max"</span>,
+    greet() {
+        console.log(<span class="string">`Hallo, ich bin ${this.name}`</span>);
+    }
+};
+person.greet();  <span class="comment">// "Hallo, ich bin Max"</span>
+
+<span class="comment">// Arrow Functions - this vom umgebenden Scope</span>
+<span class="keyword">const</span> obj = {
+    name: <span class="string">"Test"</span>,
+    regular: <span class="keyword">function</span>() {
+        console.log(<span class="keyword">this</span>.name);  <span class="comment">// "Test"</span>
+    },
+    arrow: () => {
+        console.log(<span class="keyword">this</span>.name);  <span class="comment">// undefined (globales this)</span>
+    }
+};
+
+<span class="comment">// Explicit Binding</span>
+<span class="keyword">function</span> greet() {
+    console.log(<span class="string">`Hallo ${this.name}`</span>);
+}
+<span class="keyword">const</span> user = { name: <span class="string">"Anna"</span> };
+greet.call(user);               <span class="comment">// "Hallo Anna"</span>
+greet.apply(user);              <span class="comment">// "Hallo Anna"</span>
+<span class="keyword">const</span> boundGreet = greet.bind(user);
+boundGreet();                   <span class="comment">// "Hallo Anna"</span>
+                </div>
+                <button class="btn-primary" onclick="basicDemo.testThis()">This testen</button>
+            </div>
+        </div>
+
+        <!-- Closures -->
+        <div class="section">
+            <h2>1️⃣5️⃣ Closures</h2>
+
+            <div style="margin-bottom: 25px;">
+                <h3>Closures & Lexical Scope</h3>
+                <div class="code-block">
+<span class="comment">// Closure - Funktion hat Zugriff auf äußere Variablen</span>
+<span class="keyword">function</span> createCounter() {
+    <span class="keyword">let</span> count = <span class="number">0</span>;
+    
+    <span class="keyword">return</span> {
+        increment() {
+            count++;
+            <span class="keyword">return</span> count;
+        },
+        decrement() {
+            count--;
+            <span class="keyword">return</span> count;
+        },
+        getCount() {
+            <span class="keyword">return</span> count;
+        }
+    };
+}
+
+<span class="keyword">const</span> counter = createCounter();
+counter.increment();            <span class="comment">// 1</span>
+counter.increment();            <span class="comment">// 2</span>
+counter.decrement();            <span class="comment">// 1</span>
+counter.getCount();             <span class="comment">// 1</span>
+
+<span class="comment">// Private Variablen simulieren</span>
+<span class="keyword">function</span> createPerson(name) {
+    <span class="keyword">let</span> privateName = name;  <span class="comment">// Private Variable</span>
+    
+    <span class="keyword">return</span> {
+        getName() {
+            <span class="keyword">return</span> privateName;
+        },
+        setName(newName) {
+            privateName = newName;
+        }
+    };
+}
+                </div>
+                <button class="btn-primary" onclick="basicDemo.testClosures()">Closures testen</button>
+            </div>
+        </div>
+
+        <!-- Alle Basics testen -->
+        <div class="section">
+            <h2>🎯 Umfassender Basics-Test</h2>
+            <button class="btn-success" style="font-size: 16px; padding: 15px 30px;" onclick="basicDemo.testAllBasics()">
+                🚀 Alle Grundlagen testen
+            </button>
+        </div>
+
+        <!-- Output Display -->
+        <div class="section">
+            <h2>📊 Test-Ausgabe</h2>
+            <div id="messageDisplay"></div>
+        </div>
+
+        <!-- Log Display -->
+        <div class="section">
+            <h2>📜 Live-Logs</h2>
+            <div class="stats">
+                <div class="stat log">
+                    <div class="stat-label">LOG</div>
+                    <div class="stat-value" id="logCount">0</div>
+                </div>
+                <div class="stat info">
+                    <div class="stat-label">INFO</div>
+                    <div class="stat-value" id="infoCount">0</div>
+                </div>
+                <div class="stat warn">
+                    <div class="stat-label">WARN</div>
+                    <div class="stat-value" id="warnCount">0</div>
+                </div>
+                <div class="stat error">
+                    <div class="stat-label">ERROR</div>
+                    <div class="stat-value" id="errorCount">0</div>
+                </div>
+                <div class="stat success">
+                    <div class="stat-label">SUCCESS</div>
+                    <div class="stat-value" id="successCount">0</div>
+                </div>
+            </div>
+            <div id="logDisplay"></div>
+            <button class="clear-btn" onclick="Logger.clear()">Logs löschen</button>
+        </div>
+    </div>
+
+    <!-- Toast Container -->
+    <div class="toast-container" id="toastContainer"></div>
+
+    <script src="js/msg.js"></script>
+    <script>
+        // Basic JavaScript Demo Functions
+        const basicDemo = {
+            
+            testVariables() {
+                Logger.info('📦 Variablen-Test gestartet');
+                
+                // var
+                var varTest = "var ist function-scoped";
+                var varTest = "kann neu deklariert werden";
+                
+                // let
+                let letTest = "let ist block-scoped";
+                letTest = "kann geändert werden";
+                
+                // const
+                const constTest = "const ist konstant";
+                const constObj = { value: 10 };
+                constObj.value = 20; // Erlaubt bei Objekten
+                
+                // Block Scope Test
+                let blockResult = "";
+                {
+                    let blockVar = "im Block";
+                    var functionVar = "function-scoped";
+                    blockResult = blockVar;
+                }
+                // blockVar nicht verfügbar hier
+                // functionVar verfügbar hier
+                
+                const results = {
+                    varTest,
+                    letTest,
+                    constTest,
+                    constObjValue: constObj.value,
+                    functionVarAvailable: typeof functionVar !== 'undefined',
+                    recommendation: "Verwende 'const' standardmäßig, 'let' wenn Änderung nötig"
+                };
+                
+                console.log('Variablen-Ergebnisse:', results);
+                Logger.success('Variablen getestet', results);
+                msgDemo.displayMessage('success', 'Variablen', 
+                    `var, let, const getestet. Empfehlung: const > let > var`);
+            },
+
+            testArithmetic() {
+                Logger.info('➕ Arithmetik-Test gestartet');
+                
+                const a = 10, b = 3;
+                
+                const results = {
+                    addition: a + b,
+                    subtraction: a - b,
+                    multiplication: a * b,
+                    division: a / b,
+                    modulo: a % b,
+                    exponentiation: a ** b,
+                    increment: (() => { let x = 5; return ++x; })(),
+                    decrement: (() => { let x = 5; return --x; })()
+                };
+                
+                console.log('Arithmetik-Ergebnisse:', results);
+                Logger.success('Arithmetik getestet', results);
+                msgDemo.displayMessage('success', 'Arithmetische Operatoren', 
+                    `10 + 3 = ${results.addition}, 10 ** 3 = ${results.exponentiation}`);
+            },
+
+            testComparison() {
+                Logger.info('⚖️ Vergleichs-Test gestartet');
+                
+                const results = {
+                    looseEquality: 5 == "5",
+                    strictEquality: 5 === "5",
+                    looseInequality: 5 != "5",
+                    strictInequality: 5 !== "5",
+                    greaterThan: 10 > 5,
+                    lessThan: 10 < 5,
+                    greaterOrEqual: 10 >= 10,
+                    lessOrEqual: 5 <= 10,
+                    examples: {
+                        nullVsUndefined: null == undefined,
+                        nullVsUndefinedStrict: null === undefined,
+                        zeroVsEmptyString: 0 == "",
+                        zeroVsEmptyStringStrict: 0 === ""
+                    }
+                };
+                
+                console.log('Vergleichs-Ergebnisse:', results);
+                Logger.success('Vergleiche getestet', results);
+                msgDemo.displayMessage('success', 'Vergleichsoperatoren', 
+                    `5 == "5": ${results.looseEquality}, 5 === "5": ${results.strictEquality}`);
+            },
+
+            testLogical() {
+                Logger.info('🔀 Logik-Test gestartet');
+                
+                const t = true, f = false;
+                
+                const results = {
+                    and: {
+                        'true && true': t && t,
+                        'true && false': t && f,
+                        'false && false': f && f
+                    },
+                    or: {
+                        'true || true': t || t,
+                        'true || false': t || f,
+                        'false || false': f || f
+                    },
+                    not: {
+                        '!true': !t,
+                        '!false': !f,
+                        '!!value': !!"value"
+                    },
+                    shortCircuit: {
+                        'null || "default"': null || "default",
+                        '"value" && "other"': "value" && "other",
+                        '0 || "fallback"': 0 || "fallback"
+                    },
+                    nullishCoalescing: {
+                        'null ?? "default"': null ?? "default",
+                        '0 ?? "default"': 0 ?? "default",
+                        '"" ?? "default"': "" ?? "default"
+                    }
+                };
+                
+                console.log('Logik-Ergebnisse:', results);
+                Logger.success('Logische Operatoren getestet', results);
+                msgDemo.displayMessage('success', 'Logische Operatoren', 
+                    `AND, OR, NOT getestet. ?? unterscheidet zwischen null/undefined und falsy`);
+            },
+
+            testAssignment() {
+                Logger.info('📝 Zuweisungs-Test gestartet');
+                
+                let x = 10;
+                const steps = [];
+                
+                steps.push({ operation: 'x = 10', value: x });
+                x += 5;
+                steps.push({ operation: 'x += 5', value: x });
+                x -= 3;
+                steps.push({ operation: 'x -= 3', value: x });
+                x *= 2;
+                steps.push({ operation: 'x *= 2', value: x });
+                x /= 4;
+                steps.push({ operation: 'x /= 4', value: x });
+                x %= 4;
+                steps.push({ operation: 'x %= 4', value: x });
+                x **= 3;
+                steps.push({ operation: 'x **= 3', value: x });
+                
+                console.table(steps);
+                Logger.success('Zuweisungsoperatoren getestet', { steps });
+                msgDemo.displayMessage('success', 'Zuweisungsoperatoren', 
+                    `Siehe Konsole für Schritt-für-Schritt-Ergebnisse`);
+            },
+
+            testIfElse() {
+                Logger.info('🔀 If-Else-Test gestartet');
+                
+                const testAge = (age) => {
+                    let category;
+                    if (age < 13) {
+                        category = "Kind";
+                    } else if (age < 18) {
+                        category = "Jugendlich";
+                    } else if (age < 65) {
+                        category = "Erwachsen";
+                    } else {
+                        category = "Senior";
+                    }
+                    return category;
+                };
+                
+                const results = {
+                    age5: testAge(5),
+                    age15: testAge(15),
+                    age30: testAge(30),
+                    age70: testAge(70),
+                    ternary: 18 >= 18 ? "Volljährig" : "Minderjährig",
+                    nested: 25 >= 18 && 25 <= 30 ? "18-30" : "Andere Altersgruppe"
+                };
+                
+                console.log('If-Else-Ergebnisse:', results);
+                Logger.success('If-Else getestet', results);
+                msgDemo.displayMessage('success', 'If-Else Bedingungen', 
+                    `Alter 5: ${results.age5}, Alter 30: ${results.age30}`);
+            },
+
+            testSwitch() {
+                Logger.info('🎚️ Switch-Test gestartet');
+                
+                const getDayName = (day) => {
+                    let name;
+                    switch (day) {
+                        case 1: name = "Montag"; break;
+                        case 2: name = "Dienstag"; break;
+                        case 3: name = "Mittwoch"; break;
+                        case 4: name = "Donnerstag"; break;
+                        case 5: name = "Freitag"; break;
+                        case 6:
+                        case 7:
+                            name = "Wochenende";
+                            break;
+                        default:
+                            name = "Ungültiger Tag";
+                    }
+                    return name;
+                };
+                
+                const getGrade = (score) => {
+                    switch (true) {
+                        case score >= 90: return "A";
+                        case score >= 80: return "B";
+                        case score >= 70: return "C";
+                        case score >= 60: return "D";
+                        default: return "F";
+                    }
+                };
+                
+                const results = {
+                    day1: getDayName(1),
+                    day3: getDayName(3),
+                    day6: getDayName(6),
+                    day7: getDayName(7),
+                    invalidDay: getDayName(10),
+                    grade95: getGrade(95),
+                    grade75: getGrade(75),
+                    grade50: getGrade(50)
+                };
+                
+                console.log('Switch-Ergebnisse:', results);
+                Logger.success('Switch getestet', results);
+                msgDemo.displayMessage('success', 'Switch Statement', 
+                    `Tag 3: ${results.day3}, Tag 6: ${results.day6}, Note 95: ${results.grade95}`);
+            },
+
+            testForLoop() {
+                Logger.info('🔁 For-Loop-Test gestartet');
+                
+                const results = {
+                    standardFor: [],
+                    reverseFor: [],
+                    stepFor: [],
+                    nestedFor: []
+                };
+                
+                // Standard For
+                for (let i = 0; i < 5; i++) {
+                    results.standardFor.push(i);
+                }
+                
+                // Reverse
+                for (let i = 5; i > 0; i--) {
+                    results.reverseFor.push(i);
+                }
+                
+                // Mit Schrittweite
+                for (let i = 0; i <= 10; i += 2) {
+                    results.stepFor.push(i);
+                }
+                
+                // Verschachtelt
+                for (let i = 1; i <= 3; i++) {
+                    for (let j = 1; j <= 3; j++) {
+                        results.nestedFor.push(`${i}-${j}`);
+                    }
+                }
+                
+                console.log('For-Loop-Ergebnisse:', results);
+                Logger.success('For-Loops getestet', results);
+                msgDemo.displayMessage('success', 'For-Schleifen', 
+                    `Standard: [${results.standardFor}], Schritte: [${results.stepFor}]`);
+            },
+
+            testWhile() {
+                Logger.info('🔄 While-Test gestartet');
+                
+                const results = {
+                    whileLoop: [],
+                    doWhileLoop: [],
+                    doWhileFalseCondition: []
+                };
+                
+                // While
+                let count = 0;
+                while (count < 5) {
+                    results.whileLoop.push(count);
+                    count++;
+                }
+                
+                // Do-While
+                let num = 0;
+                do {
+                    results.doWhileLoop.push(num);
+                    num++;
+                } while (num < 5);
+                
+                // Do-While mit falscher Bedingung (wird trotzdem einmal ausgeführt)
+                let x = 10;
+                do {
+                    results.doWhileFalseCondition.push(x);
+                } while (x < 5);
+                
+                console.log('While-Ergebnisse:', results);
+                Logger.success('While-Schleifen getestet', results);
+                msgDemo.displayMessage('success', 'While-Schleifen', 
+                    `While: [${results.whileLoop}], Do-While (false): [${results.doWhileFalseCondition}]`);
+            },
+
+            testForOfIn() {
+                Logger.info('🔂 For...of/in-Test gestartet');
+                
+                const fruits = ["Apfel", "Banane", "Orange"];
+                const person = { name: "Max", age: 30, city: "Berlin" };
+                
+                const results = {
+                    forOf: [],
+                    forOfString: [],
+                    forIn: [],
+                    forInArray: []
+                };
+                
+                // For...of mit Array
+                for (const fruit of fruits) {
+                    results.forOf.push(fruit);
+                }
+                
+                // For...of mit String
+                for (const char of "JS") {
+                    results.forOfString.push(char);
+                }
+                
+                // For...in mit Objekt
+                for (const key in person) {
+                    results.forIn.push(`${key}: ${person[key]}`);
+                }
+                
+                // For...in mit Array (zeigt Indizes)
+                for (const index in fruits) {
+                    results.forInArray.push(`${index}: ${fruits[index]}`);
+                }
+                
+                console.log('For...of/in-Ergebnisse:', results);
+                Logger.success('For...of/in getestet', results);
+                msgDemo.displayMessage('success', 'For...of & For...in', 
+                    `for...of über Werte, for...in über Keys/Indizes`);
+            },
+
+            testBreakContinue() {
+                Logger.info('⏭️ Break/Continue-Test gestartet');
+                
+                const results = {
+                    withBreak: [],
+                    withContinue: [],
+                    normal: []
+                };
+                
+                // Mit Break
+                for (let i = 0; i < 10; i++) {
+                    if (i === 5) break;
+                    results.withBreak.push(i);
+                }
+                
+                // Mit Continue
+                for (let i = 0; i < 10; i++) {
+                    if (i % 2 === 0) continue;
+                    results.withContinue.push(i);
+                }
+                
+                // Normal
+                for (let i = 0; i < 5; i++) {
+                    results.normal.push(i);
+                }
+                
+                console.log('Break/Continue-Ergebnisse:', results);
+                Logger.success('Break/Continue getestet', results);
+                msgDemo.displayMessage('success', 'Break & Continue', 
+                    `Break stoppt bei 5: [${results.withBreak}], Continue überspringt: [${results.withContinue}]`);
+            },
+
+            testFunctions() {
+                Logger.info('⚙️ Funktions-Test gestartet');
+                
+                // Verschiedene Funktionstypen
+                function regularFunc(a, b) {
+                    return a + b;
+                }
+                
+                const funcExpr = function(a, b) {
+                    return a * b;
+                };
+                
+                const arrowFunc = (a, b) => a - b;
+                
+                const defaultParam = (a, b = 10) => a + b;
+                
+                const restParams = (...nums) => nums.reduce((a, b) => a + b, 0);
+                
+                const destructureParam = ({ x, y }) => x + y;
+                
+                const results = {
+                    regular: regularFunc(5, 3),
+                    expression: funcExpr(5, 3),
+                    arrow: arrowFunc(5, 3),
+                    defaultUsed: defaultParam(5),
+                    defaultNotUsed: defaultParam(5, 20),
+                    rest: restParams(1, 2, 3, 4, 5),
+                    destructure: destructureParam({ x: 10, y: 20 })
+                };
+                
+                console.log('Funktions-Ergebnisse:', results);
+                Logger.success('Funktionen getestet', results);
+                msgDemo.displayMessage('success', 'Funktionen', 
+                    `Regular: ${results.regular}, Arrow: ${results.arrow}, Rest: ${results.rest}`);
+            },
+
+            testCallbacks() {
+                Logger.info('📞 Callback-Test gestartet');
+                
+                // Higher-Order Function
+                function processArray(arr, callback) {
+                    return arr.map(callback);
+                }
+                
+                const numbers = [1, 2, 3, 4, 5];
+                
+                const results = {
+                    doubled: processArray(numbers, n => n * 2),
+                    squared: processArray(numbers, n => n ** 2),
+                    toString: processArray(numbers, n => `Num: ${n}`),
+                    multiplierFactory: (() => {
+                        const double = (n => n * 2);
+                        const triple = (n => n * 3);
+                        return {
+                            double: double(10),
+                            triple: triple(10)
+                        };
+                    })()
+                };
+                
+                console.log('Callback-Ergebnisse:', results);
+                Logger.success('Callbacks getestet', results);
+                msgDemo.displayMessage('success', 'Callbacks', 
+                    `Doubled: [${results.doubled}], Squared: [${results.squared}]`);
+            },
+
+            testArrayMethods() {
+                Logger.info('📋 Array-Methoden-Test gestartet');
+                
+                const numbers = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+                
+                const results = {
+                    original: numbers,
+                    forEach: (() => { let sum = 0; numbers.forEach(n => sum += n); return sum; })(),
+                    map: numbers.map(n => n * 2),
+                    filter: numbers.filter(n => n % 2 === 0),
+                    reduce: numbers.reduce((acc, n) => acc + n, 0),
+                    find: numbers.find(n => n > 5),
+                    findIndex: numbers.findIndex(n => n > 5),
+                    some: numbers.some(n => n > 9),
+                    every: numbers.every(n => n > 0),
+                    includes: numbers.includes(5),
+                    indexOf: numbers.indexOf(5),
+                    slice: numbers.slice(2, 5),
+                    splice: (() => { const arr = [...numbers]; arr.splice(2, 3); return arr; })(),
+                    concat: numbers.concat([11, 12]),
+                    join: numbers.join('-'),
+                    reverse: [...numbers].reverse(),
+                    sort: [3, 1, 4, 1, 5, 9, 2, 6].sort((a, b) => a - b)
+                };
+                
+                console.log('Array-Methoden-Ergebnisse:', results);
+                console.table(results.map.map((val, idx) => ({ index: idx, original: numbers[idx], mapped: val })));
+                Logger.success('Array-Methoden getestet', results);
+                msgDemo.displayMessage('success', 'Array-Methoden', 
+                    `Map, Filter, Reduce und alle wichtigen Array-Methoden getestet`);
+            },
+
+            testStringMethods() {
+                Logger.info('🔤 String-Methoden-Test gestartet');
+                
+                const text = "JavaScript Programmierung";
+                
+                const results = {
+                    original: text,
+                    length: text.length,
+                    charAt: text.charAt(0),
+                    indexOf: text.indexOf("Script"),
+                    lastIndexOf: text.lastIndexOf("a"),
+                    includes: text.includes("Java"),
+                    startsWith: text.startsWith("Java"),
+                    endsWith: text.endsWith("ung"),
+                    substring: text.substring(0, 10),
+                    slice: text.slice(11),
+                    toLowerCase: text.toLowerCase(),
+                    toUpperCase: text.toUpperCase(),
+                    trim: "  text  ".trim(),
+                    replace: text.replace("Java", "Type"),
+                    split: text.split(" "),
+                    repeat: "Ha".repeat(3),
+                    padStart: "5".padStart(3, "0"),
+                    padEnd: "5".padEnd(3, "0")
+                };
+                
+                console.log('String-Methoden-Ergebnisse:', results);
+                Logger.success('String-Methoden getestet', results);
+                msgDemo.displayMessage('success', 'String-Methoden', 
+                    `"${text}" → Length: ${results.length}, Slice: "${results.slice}"`);
+            },
+
+            testObjects() {
+                Logger.info('📦 Objekt-Test gestartet');
+                
+                const person = {
+                    name: "Max Mustermann",
+                    age: 30,
+                    email: "max@example.com"
+                };
+                
+                // Operationen
+                person.city = "Berlin";
+                person.age = 31;
+                const emailBackup = person.email;
+                delete person.email;
+                
+                const results = {
+                    keys: Object.keys(person),
+                    values: Object.values(person),
+                    entries: Object.entries(person),
+                    hasName: "name" in person,
+                    hasEmail: "email" in person,
+                    copy: { ...person },
+                    merged: { ...person, country: "Deutschland" },
+                    freeze: (() => {
+                        const frozen = Object.freeze({ x: 1 });
+                        try {
+                            frozen.x = 2;
+                            return frozen.x;
+                        } catch(e) {
+                            return frozen.x;
+                        }
+                    })()
+                };
+                
+                console.log('Objekt-Ergebnisse:', results);
+                Logger.success('Objekte getestet', results);
+                msgDemo.displayMessage('success', 'Objekt-Operationen', 
+                    `Keys: [${results.keys}], hasEmail: ${results.hasEmail}`);
+            },
+
+            testDestructuring() {
+                Logger.info('📦 Destructuring-Test gestartet');
+                
+                // Array Destructuring
+                const colors = ["Rot", "Grün", "Blau", "Gelb"];
+                const [first, second, ...rest] = colors;
+                
+                // Object Destructuring
+                const user = { 
+                    name: "Max", 
+                    age: 30, 
+                    email: "max@test.de",
+                    address: { city: "Berlin", zip: "10115" }
+                };
+                const { name, age, country = "Deutschland" } = user;
+                const { name: userName } = user;
+                const { address: { city } } = user;
+                
+                // In Funktionsparametern
+                const printUser = ({ name, age }) => `${name}, ${age}`;
+                
+                const results = {
+                    arrayFirst: first,
+                    arraySecond: second,
+                    arrayRest: rest,
+                    objectName: name,
+                    objectAge: age,
+                    objectDefault: country,
+                    renamed: userName,
+                    nested: city,
+                    inFunction: printUser(user)
+                };
+                
+                console.log('Destructuring-Ergebnisse:', results);
+                Logger.success('Destructuring getestet', results);
+                msgDemo.displayMessage('success', 'Destructuring', 
+                    `Array: [${first}, ${second}, ...], Object: {name: "${name}", age: ${age}}`);
+            },
+
+            testSpreadRest() {
+                Logger.info('📤 Spread/Rest-Test gestartet');
+                
+                // Spread mit Arrays
+                const arr1 = [1, 2, 3];
+                const arr2 = [4, 5, 6];
+                const combined = [...arr1, ...arr2];
+                const copy = [...arr1];
+                
+                // Spread mit Objekten
+                const obj1 = { a: 1, b: 2 };
+                const obj2 = { c: 3, d: 4 };
+                const mergedObj = { ...obj1, ...obj2 };
+                const extended = { ...obj1, b: 20, e: 5 };
+                
+                // Rest in Funktionen
+                const sum = (...numbers) => numbers.reduce((a, b) => a + b, 0);
+                
+                const results = {
+                    combinedArrays: combined,
+                    copiedArray: copy,
+                    mergedObject: mergedObj,
+                    extendedObject: extended,
+                    restInFunction: sum(1, 2, 3, 4, 5, 6, 7, 8, 9, 10)
+                };
+                
+                console.log('Spread/Rest-Ergebnisse:', results);
+                Logger.success('Spread/Rest getestet', results);
+                msgDemo.displayMessage('success', 'Spread & Rest', 
+                    `Combined: [${combined}], Sum: ${results.restInFunction}`);
+            },
+
+            testTemplateLiterals() {
+                Logger.info('📝 Template-Literals-Test gestartet');
+                
+                const name = "Max";
+                const age = 30;
+                
+                const results = {
+                    simple: `Hallo ${name}`,
+                    expression: `Nächstes Jahr: ${age + 1}`,
+                    conditional: `Status: ${age >= 18 ? "Erwachsen" : "Minderjährig"}`,
+                    functionCall: `Uhrzeit: ${new Date().toLocaleTimeString()}`,
+                    multiline: `
+                        Zeile 1
+                        Zeile 2
+                        Zeile 3
+                    `.trim(),
+                    nested: `Äußere ${`Innere ${name}`} Template`
+                };
+                
+                console.log('Template-Literals-Ergebnisse:', results);
+                Logger.success('Template-Literals getestet', results);
+                msgDemo.displayMessage('success', 'Template Literals', 
+                    `Interpolation: "${results.simple}", Expression: "${results.expression}"`);
+            },
+
+            testScope() {
+                Logger.info('🎯 Scope-Test gestartet');
+                
+                const results = {
+                    globalScope: "Globals verfügbar überall",
+                    functionScope: null,
+                    blockScope: null,
+                    hoisting: null
+                };
+                
+                // Function Scope
+                function testFunctionScope() {
+                    var funcVar = "function-scoped";
+                    let funcLet = "auch function-scoped (aber nicht hoisted)";
+                    return { funcVar, funcLet };
+                }
+                results.functionScope = testFunctionScope();
+                
+                // Block Scope
+                {
+                    let blockLet = "nur im Block";
+                    const blockConst = "auch nur im Block";
+                    var blockVar = "function-scoped (verfügbar außerhalb)";
+                }
+                results.blockScope = {
+                    varAvailable: typeof blockVar !== 'undefined',
+                    letAvailable: typeof blockLet === 'undefined'
+                };
+                
+                // Hoisting
+                try {
+                    results.hoisting = {
+                        varBeforeDeclaration: "var ist undefined (gehoisted)",
+                        note: "let/const sind in 'temporal dead zone'"
+                    };
+                } catch(e) {
+                    results.hoisting = { error: e.message };
+                }
+                
+                console.log('Scope-Ergebnisse:', results);
+                Logger.success('Scope getestet', results);
+                msgDemo.displayMessage('success', 'Scope & Hoisting', 
+                    `var ist function-scoped, let/const sind block-scoped`);
+            },
+
+            testThis() {
+                Logger.info('👉 This-Test gestartet');
+                
+                const obj = {
+                    name: "Test-Objekt",
+                    regularMethod: function() {
+                        return this.name;
+                    },
+                    arrowMethod: () => {
+                        return typeof this.name;
+                    },
+                    nestedRegular: function() {
+                        return function() {
+                            return this?.name || "this nicht verfügbar";
+                        };
+                    },
+                    nestedArrow: function() {
+                        return () => {
+                            return this.name;
+                        };
+                    }
+                };
+                
+                function greet() {
+                    return `Hallo ${this.name}`;
+                }
+                
+                const user = { name: "Anna" };
+                
+                const results = {
+                    regularMethod: obj.regularMethod(),
+                    arrowMethod: obj.arrowMethod(),
+                    nestedRegular: obj.nestedRegular()(),
+                    nestedArrow: obj.nestedArrow()(),
+                    callBinding: greet.call(user),
+                    applyBinding: greet.apply(user),
+                    bindMethod: greet.bind(user)()
+                };
+                
+                console.log('This-Ergebnisse:', results);
+                Logger.success('This getestet', results);
+                msgDemo.displayMessage('success', 'This Keyword', 
+                    `Regular method hat this-Zugriff, Arrow functions haben lexical this`);
+            },
+
+            testClosures() {
+                Logger.info('🔒 Closure-Test gestartet');
+                
+                // Counter Closure
+                function createCounter() {
+                    let count = 0;
+                    return {
+                        increment() { return ++count; },
+                        decrement() { return --count; },
+                        getCount() { return count; }
+                    };
+                }
+                
+                const counter = createCounter();
+                
+                // Private Variable Simulator
+                function createPerson(name) {
+                    let privateName = name;
+                    return {
+                        getName() { return privateName; },
+                        setName(newName) { privateName = newName; }
+                    };
+                }
+                
+                const person = createPerson("Max");
+                
+                // Multiplier Factory
+                function multiplier(factor) {
+                    return function(number) {
+                        return number * factor;
+                    };
+                }
+                
+                const double = multiplier(2);
+                const triple = multiplier(3);
+                
+                const results = {
+                    counter: {
+                        first: counter.increment(),
+                        second: counter.increment(),
+                        current: counter.getCount(),
+                        afterDecrement: counter.decrement()
+                    },
+                    person: {
+                        initial: person.getName(),
+                        afterChange: (() => { person.setName("Anna"); return person.getName(); })()
+                    },
+                    multiplier: {
+                        double5: double(5),
+                        triple5: triple(5),
+                        double10: double(10)
+                    }
+                };
+                
+                console.log('Closure-Ergebnisse:', results);
+                Logger.success('Closures getestet', results);
+                msgDemo.displayMessage('success', 'Closures', 
+                    `Counter: ${results.counter.current}, Person: "${results.person.afterChange}"`);
+            },
+
+            async testAllBasics() {
+                Logger.info('🚀 Umfassender Basics-Test gestartet');
+                msgDemo.showToast('info', 'Test gestartet', 'Alle Grundlagen werden getestet...');
+                
+                const tests = [
+                    { fn: () => this.testVariables(), name: 'Variablen' },
+                    { fn: () => this.testArithmetic(), name: 'Arithmetik' },
+                    { fn: () => this.testComparison(), name: 'Vergleiche' },
+                    { fn: () => this.testLogical(), name: 'Logische Operatoren' },
+                    { fn: () => this.testAssignment(), name: 'Zuweisungen' },
+                    { fn: () => this.testIfElse(), name: 'If-Else' },
+                    { fn: () => this.testSwitch(), name: 'Switch' },
+                    { fn: () => this.testForLoop(), name: 'For-Loop' },
+                    { fn: () => this.testWhile(), name: 'While' },
+                    { fn: () => this.testForOfIn(), name: 'For...of/in' },
+                    { fn: () => this.testBreakContinue(), name: 'Break/Continue' },
+                    { fn: () => this.testFunctions(), name: 'Funktionen' },
+                    { fn: () => this.testCallbacks(), name: 'Callbacks' },
+                    { fn: () => this.testArrayMethods(), name: 'Array-Methoden' },
+                    { fn: () => this.testStringMethods(), name: 'String-Methoden' },
+                    { fn: () => this.testObjects(), name: 'Objekte' },
+                    { fn: () => this.testDestructuring(), name: 'Destructuring' },
+                    { fn: () => this.testSpreadRest(), name: 'Spread/Rest' },
+                    { fn: () => this.testTemplateLiterals(), name: 'Template Literals' },
+                    { fn: () => this.testScope(), name: 'Scope' },
+                    { fn: () => this.testThis(), name: 'This' },
+                    { fn: () => this.testClosures(), name: 'Closures' }
+                ];
+                
+                for (const test of tests) {
+                    await new Promise(resolve => setTimeout(resolve, 300));
+                    Logger.info(`Teste ${test.name}...`);
+                    test.fn();
+                }
+                
+                await new Promise(resolve => setTimeout(resolve, 500));
+                
+                console.log('%c🎉 Alle Grundlagen getestet!', 
+                    'background: #4caf50; color: white; padding: 10px; font-size: 16px;');
+                Logger.success('Alle Basic-Tests abgeschlossen', { 
+                    totalTests: tests.length,
+                    testNames: tests.map(t => t.name)
+                });
+                msgDemo.showToast('success', 'Abgeschlossen!', 
+                    `Alle ${tests.length} Grundlagen erfolgreich getestet!`);
+            }
+        };
+
+        // Globaler Zugriff
+        window.basicDemo = basicDemo;
+    </script>
+</body>
+</html>

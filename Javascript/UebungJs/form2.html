@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formular Validierung - Grid Layout</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/form2.css">
+
+</head>
+<body>
+    <div class="form-container">
+        <h1>Kontaktformular</h1>
+        
+        <form id="kontaktForm" class="form-grid">
+            <label for="vorname">Vorname:</label>
+            <div class="form-field">
+                <input type="text" id="vorname" placeholder="Vorname">
+                <span class="error-message" id="error-vorname"></span>
+            </div>
+
+            <label for="nachname">Nachname:</label>
+            <div class="form-field">
+                <input type="text" id="nachname" placeholder="Nachname">
+                <span class="error-message" id="error-nachname"></span>
+            </div>
+
+            <label for="email">E-Mail:</label>
+            <div class="form-field">
+                <input type="text" id="email" placeholder="beispiel@email.de">
+                <span class="error-message" id="error-email"></span>
+            </div>
+
+            <label for="telefon">Telefonnummer:</label>
+            <div class="form-field">
+                <input type="text" id="telefon" placeholder="01234567890">
+                <span class="error-message" id="error-telefon"></span>
+            </div>
+
+            <label for="nachricht">Nachricht:</label>
+            <div class="form-field">
+                <textarea id="nachricht" placeholder="Ihre Nachricht..."></textarea>
+                <span class="error-message" id="error-nachricht"></span>
+            </div>
+
+            <button type="button" class="submit-btn" onclick="validateForm()">Absenden</button>
+        </form>
+    </div>
+
+    <script>
+        function validateForm() {
+            // Alle Felder holen
+            const vorname = document.getElementById('vorname');
+            const nachname = document.getElementById('nachname');
+            const email = document.getElementById('email');
+            const telefon = document.getElementById('telefon');
+            const nachricht = document.getElementById('nachricht');
+
+            // Alle Fehler zurücksetzen
+            clearErrors();
+
+            let isValid = true;
+
+            // Überprüfen, ob alle Felder ausgefüllt sind
+            if (vorname.value === '') {
+                showValidationError('vorname', 'Bitte geben Sie Ihren Vornamen ein.');
+                isValid = false;
+            }
+
+            if (nachname.value === '') {
+                showValidationError('nachname', 'Bitte geben Sie Ihren Nachnamen ein.');
+                isValid = false;
+            }
+
+            if (email.value === '' || !isValidEmail(email.value)) {
+                showValidationError('email', 'Bitte geben Sie eine gültige E-Mail-Adresse ein.');
+                isValid = false;
+            }
+
+            if (telefon.value === '' || !isValidPhone(telefon.value)) {
+                showValidationError('telefon', 'Bitte geben Sie eine gültige Telefonnummer ein.');
+                isValid = false;
+            }
+
+            if (nachricht.value === '') {
+                showValidationError('nachricht', 'Bitte geben Sie eine Nachricht ein.');
+                isValid = false;
+            }
+
+            // Erfolgsmeldung wenn alles korrekt
+            if (isValid) {
+                alert('Formular erfolgreich abgeschickt!');
+                document.getElementById('kontaktForm').reset();
+            }
+        }
+
+        // E-Mail validieren
+        function isValidEmail(email) {
+            return email.includes('@') && email.includes('.');
+        }
+
+        // Telefonnummer validieren
+        // Regex: /^\+?[0-9\s]+$/
+        // ^ = Start, \+ = Plus-Zeichen, ? = optional (0 oder 1x)
+        // [0-9\s] = Ziffern oder Leerzeichen, + = ein oder mehrmals, $ = Ende
+        // Akzeptiert: 01234567890, +41790000000, +41 79 000 00 00
+        function isValidPhone(phone) {
+            return /^\+?[0-9\s]+$/.test(phone);
+        }
+
+        // Fehlermeldung anzeigen
+        function showValidationError(fieldId, message) {
+            const errorElement = document.getElementById('error-' + fieldId);
+            const inputElement = document.getElementById(fieldId);
+            
+            errorElement.textContent = message;
+            errorElement.classList.add('show');
+            inputElement.classList.add('error');
+        }
+
+        // Alle Fehler zurücksetzen
+        function clearErrors() {
+            const errors = document.querySelectorAll('.error-message');
+            const inputs = document.querySelectorAll('.form-field input, .form-field textarea');
+            
+            errors.forEach(error => {
+                error.classList.remove('show');
+                error.textContent = '';
+            });
+
+            inputs.forEach(input => {
+                input.classList.remove('error');
+            });
+        }
+    </script>
+</body>
+</html>
+

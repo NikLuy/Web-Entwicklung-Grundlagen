@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JavaScript Messaging & Logging Demo</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <div class="container">
+        <h1>🚀 JavaScript Messaging & Logging Demo</h1>
+        <p class="subtitle">Umfassende Beispiele für Benutzer-Nachrichten und Logging-Techniken</p>
+
+        <!-- Console Logging Section -->
+        <div class="section">
+            <h2>📋 Console Logging</h2>
+            <p style="margin-bottom: 15px; color: #666;">Öffnen Sie die Browser-Konsole (F12) um die Logs zu sehen</p>
+            <div class="button-group">
+                <button class="btn-primary" onclick="msgDemo.consoleLog()">console.log()</button>
+                <button class="btn-info" onclick="msgDemo.consoleInfo()">console.info()</button>
+                <button class="btn-warning" onclick="msgDemo.consoleWarn()">console.warn()</button>
+                <button class="btn-error" onclick="msgDemo.consoleError()">console.error()</button>
+                <button class="btn-debug" onclick="msgDemo.consoleDebug()">console.debug()</button>
+                <button class="btn-secondary" onclick="msgDemo.consoleTable()">console.table()</button>
+                <button class="btn-secondary" onclick="msgDemo.consoleGroup()">console.group()</button>
+                <button class="btn-secondary" onclick="msgDemo.consoleTime()">console.time()</button>
+                <button class="btn-secondary" onclick="msgDemo.consoleTrace()">console.trace()</button>
+            </div>
+        </div>
+
+        <!-- Browser Dialogs Section -->
+        <div class="section">
+            <h2>💬 Browser-Dialoge</h2>
+            <div class="button-group">
+                <button class="btn-info" onclick="msgDemo.showAlert()">alert()</button>
+                <button class="btn-warning" onclick="msgDemo.showConfirm()">confirm()</button>
+                <button class="btn-primary" onclick="msgDemo.showPrompt()">prompt()</button>
+            </div>
+        </div>
+
+        <!-- Toast Notifications Section -->
+        <div class="section">
+            <h2>🔔 Toast-Benachrichtigungen</h2>
+            <div class="button-group">
+                <button class="btn-success" onclick="msgDemo.showToast('success', 'Erfolg!', 'Die Operation wurde erfolgreich durchgeführt.')">Success Toast</button>
+                <button class="btn-error" onclick="msgDemo.showToast('error', 'Fehler!', 'Ein Fehler ist aufgetreten.')">Error Toast</button>
+                <button class="btn-warning" onclick="msgDemo.showToast('warning', 'Warnung!', 'Bitte beachten Sie diese Warnung.')">Warning Toast</button>
+                <button class="btn-info" onclick="msgDemo.showToast('info', 'Information', 'Hier ist eine wichtige Information.')">Info Toast</button>
+            </div>
+        </div>
+
+        <!-- Custom Message Display Section -->
+        <div class="section">
+            <h2>📢 Benutzerdefinierte Nachrichten</h2>
+            <div class="button-group">
+                <button class="btn-success" onclick="msgDemo.displayMessage('success', 'Erfolg!', 'Ihre Daten wurden erfolgreich gespeichert.')">Success Message</button>
+                <button class="btn-error" onclick="msgDemo.displayMessage('error', 'Fehler!', 'Die Validierung ist fehlgeschlagen.')">Error Message</button>
+                <button class="btn-warning" onclick="msgDemo.displayMessage('warning', 'Achtung!', 'Diese Aktion kann nicht rückgängig gemacht werden.')">Warning Message</button>
+                <button class="btn-info" onclick="msgDemo.displayMessage('info', 'Info', 'Sie haben 3 neue Benachrichtigungen.')">Info Message</button>
+                <button class="btn-secondary" onclick="msgDemo.clearMessages()">Nachrichten löschen</button>
+            </div>
+            <div id="messageDisplay"></div>
+        </div>
+
+        <!-- Modal Dialog Section -->
+        <div class="section">
+            <h2>🪟 Modal-Dialoge</h2>
+            <div class="button-group">
+                <button class="btn-primary" onclick="msgDemo.showModal()">Modal öffnen</button>
+            </div>
+        </div>
+
+        <!-- Custom Input Form -->
+        <div class="section">
+            <h2>✍️ Benutzereingabe mit Feedback</h2>
+            <div class="input-group">
+                <label for="userName">Name:</label>
+                <input type="text" id="userName" placeholder="Geben Sie Ihren Namen ein">
+            </div>
+            <div class="input-group">
+                <label for="userEmail">E-Mail:</label>
+                <input type="email" id="userEmail" placeholder="ihre@email.de">
+            </div>
+            <div class="input-group">
+                <label for="userMessage">Nachricht:</label>
+                <textarea id="userMessage" rows="4" placeholder="Ihre Nachricht hier..."></textarea>
+            </div>
+            <button class="btn-success" onclick="msgDemo.validateAndSubmit()">Formular absenden</button>
+        </div>
+
+        <!-- Log Display Section -->
+        <div class="section">
+            <h2>📜 Live-Log-Anzeige</h2>
+            <div class="stats">
+                <div class="stat log">
+                    <div class="stat-label">LOG</div>
+                    <div class="stat-value" id="logCount">0</div>
+                </div>
+                <div class="stat info">
+                    <div class="stat-label">INFO</div>
+                    <div class="stat-value" id="infoCount">0</div>
+                </div>
+                <div class="stat warn">
+                    <div class="stat-label">WARN</div>
+                    <div class="stat-value" id="warnCount">0</div>
+                </div>
+                <div class="stat error">
+                    <div class="stat-label">ERROR</div>
+                    <div class="stat-value" id="errorCount">0</div>
+                </div>
+                <div class="stat success">
+                    <div class="stat-label">SUCCESS</div>
+                    <div class="stat-value" id="successCount">0</div>
+                </div>
+            </div>
+            <div id="logDisplay"></div>
+            <button class="clear-btn" onclick="msgDemo.clearLogs()" style="margin-top: 10px;">Logs löschen</button>
+        </div>
+
+        <!-- Advanced Logging Section -->
+        <div class="section">
+            <h2>🔧 Erweiterte Logging-Funktionen</h2>
+            <div class="button-group">
+                <button class="btn-primary" onclick="msgDemo.logObject()">Objekt loggen</button>
+                <button class="btn-primary" onclick="msgDemo.logArray()">Array loggen</button>
+                <button class="btn-primary" onclick="msgDemo.logFormatted()">Formatiertes Log</button>
+                <button class="btn-debug" onclick="msgDemo.logStackTrace()">Stack Trace</button>
+                <button class="btn-info" onclick="msgDemo.logPerformance()">Performance messen</button>
+                <button class="btn-success" onclick="msgDemo.exportLogs()">Logs exportieren</button>
+            </div>
+        </div>
+
+        <!-- Exception Handling Section -->
+        <div class="section">
+            <h2>⚠️ Fehlerbehandlung</h2>
+            <div class="button-group">
+                <button class="btn-error" onclick="msgDemo.triggerError()">Fehler auslösen</button>
+                <button class="btn-warning" onclick="msgDemo.tryCatchExample()">Try-Catch Beispiel</button>
+                <button class="btn-info" onclick="msgDemo.customErrorExample()">Custom Error</button>
+            </div>
+        </div>
+
+        <!-- Test All Features -->
+        <div class="section">
+            <h2>🎯 Alle Features testen</h2>
+            <div class="button-group">
+                <button class="btn-primary" style="font-size: 16px; padding: 15px 30px;" onclick="msgDemo.testAllFeatures()">🚀 Alle Messaging-Features demonstrieren</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Toast Container -->
+    <div class="toast-container" id="toastContainer"></div>
+
+    <!-- Modal -->
+    <div id="customModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">📧 Benachrichtigung</div>
+            <div class="modal-body">
+                <p>Dies ist ein benutzerdefinierter Modal-Dialog.</p>
+                <p>Sie können hier wichtige Informationen anzeigen oder Benutzerinteraktionen durchführen.</p>
+            </div>
+            <div class="modal-footer">
+                <button class="btn-success" onclick="msgDemo.handleModalAction('accept')">Akzeptieren</button>
+                <button class="btn-secondary" onclick="msgDemo.closeModal()">Schließen</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/msg.js"></script>
+</body>
+</html>

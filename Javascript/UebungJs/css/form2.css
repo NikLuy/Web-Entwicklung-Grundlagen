@@ -1,0 +1,67 @@
+
+    .form-grid {
+        display: grid;
+        grid-template-columns: 150px 1fr;
+        gap: 15px;
+        align-items: start;
+        max-width: 600px;
+        margin: 0 auto;
+    }
+
+    .form-grid label {
+        padding-top: 10px;
+        font-weight: 600;
+        color: #555;
+    }
+
+    .form-field {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .form-field input,
+    .form-field textarea {
+        width: 100%;
+        padding: 10px;
+        border: 2px solid #ddd;
+        border-radius: 5px;
+        font-size: 14px;
+    }
+
+    .form-field textarea {
+        resize: vertical;
+        min-height: 100px;
+        font-family: inherit;
+    }
+
+    .error-message {
+        color: #e74c3c;
+        font-size: 13px;
+        margin-top: 5px;
+        display: none;
+    }
+
+    .error-message.show {
+        display: block;
+    }
+
+    .form-field input.error,
+    .form-field textarea.error {
+        border-color: #e74c3c;
+    }
+
+    .submit-btn {
+        grid-column: 2;
+        padding: 12px 24px;
+        background: #667eea;
+        color: white;
+        border: none;
+        border-radius: 5px;
+        font-size: 16px;
+        font-weight: 600;
+        cursor: pointer;
+    }
+
+    .submit-btn:hover {
+        background: #5568d3;
+    }

@@ -1,0 +1,1175 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JavaScript Datentypen - Umfassende Beispiele</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <div class="container">
+        <h1>📚 JavaScript Datentypen - Vollständige Referenz</h1>
+        <p class="subtitle">Alle JavaScript-Datentypen mit detaillierten Beispielen und Erklärungen</p>
+
+        <!-- Primitive Datentypen -->
+        <div class="section">
+            <h2>1️⃣ Primitive Datentypen (7 Typen)</h2>
+
+            <!-- STRING -->
+            <div style="margin-bottom: 25px;">
+                <h3>String <span class="type-badge type-string">string</span></h3>
+                <p style="color: #666; margin: 10px 0;">Textdaten - Sequenz von Zeichen</p>
+                <div class="code-block">
+<span class="comment">// String-Deklaration</span>
+<span class="keyword">let</span> str1 = <span class="string">"Doppelte Anführungszeichen"</span>;
+<span class="keyword">let</span> str2 = <span class="string">'Einfache Anführungszeichen'</span>;
+<span class="keyword">let</span> str3 = <span class="string">`Template Literal: ${2 + 2}`</span>;
+<span class="keyword">let</span> multiline = <span class="string">`Mehrzeilige
+Strings mit
+Template Literals`</span>;
+
+<span class="comment">// String-Methoden</span>
+<span class="keyword">let</span> text = <span class="string">"JavaScript"</span>;
+text.length;                    <span class="comment">// 10</span>
+text.toLowerCase();             <span class="comment">// "javascript"</span>
+text.toUpperCase();             <span class="comment">// "JAVASCRIPT"</span>
+text.charAt(<span class="number">0</span>);                <span class="comment">// "J"</span>
+text.substring(<span class="number">0</span>, <span class="number">4</span>);         <span class="comment">// "Java"</span>
+text.slice(<span class="number">-6</span>);               <span class="comment">// "Script"</span>
+text.indexOf(<span class="string">"Script"</span>);        <span class="comment">// 4</span>
+text.replace(<span class="string">"Java"</span>, <span class="string">"Type"</span>); <span class="comment">// "TypeScript"</span>
+text.split(<span class="string">""</span>);               <span class="comment">// ['J','a','v','a'...]</span>
+                </div>
+                <button class="btn-primary" onclick="datatypeDemo.testString()">String testen</button>
+            </div>
+
+            <!-- NUMBER -->
+            <div style="margin-bottom: 25px;">
+                <h3>Number <span class="type-badge type-number">number</span></h3>
+                <p style="color: #666; margin: 10px 0;">Zahlen - Ganzzahlen und Gleitkommazahlen (64-bit IEEE 754)</p>
+                <div class="code-block">
+<span class="comment">// Number-Deklaration</span>
+<span class="keyword">let</span> int = <span class="number">42</span>;
+<span class="keyword">let</span> float = <span class="number">3.14159</span>;
+<span class="keyword">let</span> negative = <span class="number">-100</span>;
+<span class="keyword">let</span> exponential = <span class="number">5e3</span>;        <span class="comment">// 5000</span>
+<span class="keyword">let</span> hex = <span class="number">0xFF</span>;              <span class="comment">// 255</span>
+<span class="keyword">let</span> binary = <span class="number">0b1010</span>;         <span class="comment">// 10</span>
+<span class="keyword">let</span> octal = <span class="number">0o17</span>;            <span class="comment">// 15</span>
+
+<span class="comment">// Spezielle Zahlenwerte</span>
+<span class="keyword">let</span> infinity = <span class="number">Infinity</span>;
+<span class="keyword">let</span> negInfinity = <span class="number">-Infinity</span>;
+<span class="keyword">let</span> notANumber = <span class="number">NaN</span>;
+
+<span class="comment">// Number-Methoden</span>
+Number.isInteger(<span class="number">42</span>);           <span class="comment">// true</span>
+Number.isNaN(<span class="number">NaN</span>);              <span class="comment">// true</span>
+Number.parseFloat(<span class="string">"3.14"</span>);     <span class="comment">// 3.14</span>
+Number.parseInt(<span class="string">"42"</span>);         <span class="comment">// 42</span>
+(<span class="number">3.14159</span>).toFixed(<span class="number">2</span>);        <span class="comment">// "3.14"</span>
+(<span class="number">1234.5</span>).toExponential();     <span class="comment">// "1.2345e+3"</span>
+                </div>
+                <button class="btn-primary" onclick="datatypeDemo.testNumber()">Number testen</button>
+            </div>
+
+            <!-- BOOLEAN -->
+            <div style="margin-bottom: 25px;">
+                <h3>Boolean <span class="type-badge type-boolean">boolean</span></h3>
+                <p style="color: #666; margin: 10px 0;">Wahrheitswerte - true oder false</p>
+                <div class="code-block">
+<span class="comment">// Boolean-Deklaration</span>
+<span class="keyword">let</span> isTrue = <span class="keyword">true</span>;
+<span class="keyword">let</span> isFalse = <span class="keyword">false</span>;
+
+<span class="comment">// Boolean aus Vergleichen</span>
+<span class="keyword">let</span> isGreater = <span class="number">5</span> > <span class="number">3</span>;        <span class="comment">// true</span>
+<span class="keyword">let</span> isEqual = <span class="number">10</span> === <span class="number">10</span>;      <span class="comment">// true</span>
+<span class="keyword">let</span> isNotEqual = <span class="number">5</span> !== <span class="number">3</span>;    <span class="comment">// true</span>
+
+<span class="comment">// Truthy und Falsy Werte</span>
+Boolean(<span class="number">1</span>);                    <span class="comment">// true</span>
+Boolean(<span class="number">0</span>);                    <span class="comment">// false</span>
+Boolean(<span class="string">""</span>);                   <span class="comment">// false</span>
+Boolean(<span class="string">"text"</span>);               <span class="comment">// true</span>
+Boolean(<span class="keyword">null</span>);                <span class="comment">// false</span>
+Boolean(<span class="keyword">undefined</span>);           <span class="comment">// false</span>
+Boolean(<span class="number">NaN</span>);                  <span class="comment">// false</span>
+Boolean([]);                   <span class="comment">// true</span>
+Boolean({});                   <span class="comment">// true</span>
+                </div>
+                <button class="btn-primary" onclick="datatypeDemo.testBoolean()">Boolean testen</button>
+            </div>
+
+            <!-- UNDEFINED -->
+            <div style="margin-bottom: 25px;">
+                <h3>Undefined <span class="type-badge type-undefined">undefined</span></h3>
+                <p style="color: #666; margin: 10px 0;">Variable deklariert, aber nicht initialisiert</p>
+                <div class="code-block">
+<span class="comment">// Undefined-Beispiele</span>
+<span class="keyword">let</span> x;
+console.log(x);                 <span class="comment">// undefined</span>
+
+<span class="keyword">function</span> test() {
+    <span class="comment">// keine return-Anweisung</span>
+}
+console.log(test());            <span class="comment">// undefined</span>
+
+<span class="keyword">let</span> obj = { a: <span class="number">1</span> };
+console.log(obj.b);             <span class="comment">// undefined</span>
+
+<span class="keyword">typeof</span> undefined;             <span class="comment">// "undefined"</span>
+                </div>
+                <button class="btn-primary" onclick="datatypeDemo.testUndefined()">Undefined testen</button>
+            </div>
+
+            <!-- NULL -->
+            <div style="margin-bottom: 25px;">
+                <h3>Null <span class="type-badge type-null">null</span></h3>
+                <p style="color: #666; margin: 10px 0;">Absichtliche Abwesenheit eines Wertes</p>
+                <div class="code-block">
+<span class="comment">// Null-Beispiele</span>
+<span class="keyword">let</span> empty = <span class="keyword">null</span>;
+console.log(empty);             <span class="comment">// null</span>
+
+<span class="comment">// Unterschied zu undefined</span>
+<span class="keyword">let</span> notDefined;             <span class="comment">// undefined (nicht zugewiesen)</span>
+<span class="keyword">let</span> intentionallyEmpty = <span class="keyword">null</span>; <span class="comment">// null (absichtlich leer)</span>
+
+<span class="keyword">typeof</span> <span class="keyword">null</span>;                  <span class="comment">// "object" (bekannter Bug!)</span>
+empty === <span class="keyword">null</span>;             <span class="comment">// true</span>
+empty == <span class="keyword">undefined</span>;         <span class="comment">// true (lose Gleichheit)</span>
+empty === <span class="keyword">undefined</span>;        <span class="comment">// false (strikte Gleichheit)</span>
+                </div>
+                <button class="btn-primary" onclick="datatypeDemo.testNull()">Null testen</button>
+            </div>
+
+            <!-- SYMBOL -->
+            <div style="margin-bottom: 25px;">
+                <h3>Symbol <span class="type-badge type-symbol">symbol</span></h3>
+                <p style="color: #666; margin: 10px 0;">Eindeutige und unveränderliche Werte (ES6)</p>
+                <div class="code-block">
+<span class="comment">// Symbol-Erstellung</span>
+<span class="keyword">let</span> sym1 = Symbol();
+<span class="keyword">let</span> sym2 = Symbol(<span class="string">"Beschreibung"</span>);
+<span class="keyword">let</span> sym3 = Symbol(<span class="string">"Beschreibung"</span>);
+
+sym2 === sym3;                  <span class="comment">// false (jedes Symbol ist einzigartig)</span>
+
+<span class="comment">// Symbol als Object Key</span>
+<span class="keyword">let</span> id = Symbol(<span class="string">"id"</span>);
+<span class="keyword">let</span> user = {
+    name: <span class="string">"Max"</span>,
+    [id]: <span class="number">12345</span>
+};
+
+<span class="comment">// Symbol.for() - Globale Symbole</span>
+<span class="keyword">let</span> gs1 = Symbol.for(<span class="string">"app.id"</span>);
+<span class="keyword">let</span> gs2 = Symbol.for(<span class="string">"app.id"</span>);
+gs1 === gs2;                    <span class="comment">// true</span>
+                </div>
+                <button class="btn-primary" onclick="datatypeDemo.testSymbol()">Symbol testen</button>
+            </div>
+
+            <!-- BIGINT -->
+            <div style="margin-bottom: 25px;">
+                <h3>BigInt <span class="type-badge type-bigint">bigint</span></h3>
+                <p style="color: #666; margin: 10px 0;">Große Ganzzahlen über Number.MAX_SAFE_INTEGER hinaus (ES2020)</p>
+                <div class="code-block">
+<span class="comment">// BigInt-Erstellung</span>
+<span class="keyword">let</span> big1 = <span class="number">9007199254740991n</span>;
+<span class="keyword">let</span> big2 = BigInt(<span class="string">"9007199254740991"</span>);
+<span class="keyword">let</span> big3 = BigInt(<span class="number">100</span>);
+
+<span class="comment">// BigInt-Operationen</span>
+<span class="keyword">let</span> sum = <span class="number">100n</span> + <span class="number">200n</span>;        <span class="comment">// 300n</span>
+<span class="keyword">let</span> product = <span class="number">10n</span> * <span class="number">20n</span>;     <span class="comment">// 200n</span>
+<span class="keyword">let</span> power = <span class="number">2n</span> ** <span class="number">100n</span>;       <span class="comment">// sehr große Zahl</span>
+
+<span class="comment">// Größenvergleich</span>
+Number.MAX_SAFE_INTEGER;        <span class="comment">// 9007199254740991</span>
+<span class="number">9007199254740991n</span> > Number.MAX_SAFE_INTEGER; <span class="comment">// true</span>
+
+<span class="comment">// WICHTIG: Kann nicht mit Number gemischt werden</span>
+<span class="comment">// 10n + 5; // TypeError!</span>
+                </div>
+                <button class="btn-primary" onclick="datatypeDemo.testBigInt()">BigInt testen</button>
+            </div>
+        </div>
+
+        <!-- Objekt-Typen -->
+        <div class="section">
+            <h2>2️⃣ Objekt-Typen (Reference Types)</h2>
+
+            <!-- OBJECT -->
+            <div style="margin-bottom: 25px;">
+                <h3>Object <span class="type-badge type-object">object</span></h3>
+                <p style="color: #666; margin: 10px 0;">Sammlungen von Key-Value-Paaren</p>
+                <div class="code-block">
+<span class="comment">// Object-Erstellung</span>
+<span class="keyword">let</span> obj1 = {};                          <span class="comment">// Objekt-Literal</span>
+<span class="keyword">let</span> obj2 = <span class="keyword">new</span> Object();              <span class="comment">// Object-Konstruktor</span>
+<span class="keyword">let</span> obj3 = Object.create(<span class="keyword">null</span>);      <span class="comment">// Objekt ohne Prototype</span>
+
+<span class="comment">// Objekt mit Eigenschaften</span>
+<span class="keyword">let</span> person = {
+    name: <span class="string">"Max Mustermann"</span>,
+    age: <span class="number">30</span>,
+    isActive: <span class="keyword">true</span>,
+    address: {
+        street: <span class="string">"Hauptstr. 1"</span>,
+        city: <span class="string">"Berlin"</span>
+    },
+    greet: <span class="keyword">function</span>() {
+        <span class="keyword">return</span> <span class="string">`Hallo, ich bin ${this.name}`</span>;
+    }
+};
+
+<span class="comment">// Zugriff auf Eigenschaften</span>
+person.name;                     <span class="comment">// "Max Mustermann"</span>
+person[<span class="string">"age"</span>];                  <span class="comment">// 30</span>
+
+<span class="comment">// Object-Methoden</span>
+Object.keys(person);             <span class="comment">// ['name', 'age', 'isActive', ...]</span>
+Object.values(person);           <span class="comment">// Alle Werte</span>
+Object.entries(person);          <span class="comment">// Key-Value-Paare</span>
+Object.assign({}, person);       <span class="comment">// Shallow Copy</span>
+                </div>
+                <button class="btn-primary" onclick="datatypeDemo.testObject()">Object testen</button>
+            </div>
+
+            <!-- ARRAY -->
+            <div style="margin-bottom: 25px;">
+                <h3>Array <span class="type-badge type-object">object (array)</span></h3>
+                <p style="color: #666; margin: 10px 0;">Geordnete Listen von Werten</p>
+                <div class="code-block">
+<span class="comment">// Array-Erstellung</span>
+<span class="keyword">let</span> arr1 = [];
+<span class="keyword">let</span> arr2 = <span class="keyword">new</span> Array();
+<span class="keyword">let</span> numbers = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>];
+<span class="keyword">let</span> mixed = [<span class="number">1</span>, <span class="string">"text"</span>, <span class="keyword">true</span>, <span class="keyword">null</span>, {}];
+
+<span class="comment">// Array-Methoden</span>
+numbers.push(<span class="number">6</span>);                <span class="comment">// Element hinzufügen</span>
+numbers.pop();                  <span class="comment">// Letztes Element entfernen</span>
+numbers.shift();                <span class="comment">// Erstes Element entfernen</span>
+numbers.unshift(<span class="number">0</span>);            <span class="comment">// Am Anfang einfügen</span>
+numbers.length;                 <span class="comment">// Anzahl Elemente</span>
+
+<span class="comment">// Array-Iterationsmethoden</span>
+numbers.forEach(n => console.log(n));
+numbers.map(n => n * <span class="number">2</span>);       <span class="comment">// [2,4,6,8,10]</span>
+numbers.filter(n => n > <span class="number">3</span>);    <span class="comment">// [4,5]</span>
+numbers.reduce((a, b) => a + b); <span class="comment">// Summe</span>
+numbers.find(n => n > <span class="number">3</span>);      <span class="comment">// 4</span>
+numbers.some(n => n > <span class="number">3</span>);      <span class="comment">// true</span>
+numbers.every(n => n > <span class="number">0</span>);     <span class="comment">// true</span>
+                </div>
+                <button class="btn-primary" onclick="datatypeDemo.testArray()">Array testen</button>
+            </div>
+
+            <!-- FUNCTION -->
+            <div style="margin-bottom: 25px;">
+                <h3>Function <span class="type-badge type-function">function</span></h3>
+                <p style="color: #666; margin: 10px 0;">Wiederverwendbare Code-Blöcke</p>
+                <div class="code-block">
+<span class="comment">// Function-Deklaration</span>
+<span class="keyword">function</span> greet(name) {
+    <span class="keyword">return</span> <span class="string">`Hallo ${name}!`</span>;
+}
+
+<span class="comment">// Function-Expression</span>
+<span class="keyword">const</span> greet2 = <span class="keyword">function</span>(name) {
+    <span class="keyword">return</span> <span class="string">`Hi ${name}!`</span>;
+};
+
+<span class="comment">// Arrow Function (ES6)</span>
+<span class="keyword">const</span> greet3 = (name) => <span class="string">`Hey ${name}!`</span>;
+
+<span class="comment">// IIFE (Immediately Invoked Function Expression)</span>
+(<span class="keyword">function</span>() {
+    console.log(<span class="string">"Sofort ausgeführt"</span>);
+})();
+
+<span class="comment">// Funktionen sind "First-Class Objects"</span>
+<span class="keyword">const</span> functions = [greet, greet2, greet3];
+<span class="keyword">const</span> obj = { method: greet };
+                </div>
+                <button class="btn-primary" onclick="datatypeDemo.testFunction()">Function testen</button>
+            </div>
+
+            <!-- DATE -->
+            <div style="margin-bottom: 25px;">
+                <h3>Date <span class="type-badge type-object">object (Date)</span></h3>
+                <p style="color: #666; margin: 10px 0;">Datum und Zeit</p>
+                <div class="code-block">
+<span class="comment">// Date-Erstellung</span>
+<span class="keyword">let</span> now = <span class="keyword">new</span> Date();
+<span class="keyword">let</span> specific = <span class="keyword">new</span> Date(<span class="string">"2026-03-04"</span>);
+<span class="keyword">let</span> timestamp = <span class="keyword">new</span> Date(<span class="number">1678886400000</span>);
+<span class="keyword">let</span> parts = <span class="keyword">new</span> Date(<span class="number">2026</span>, <span class="number">2</span>, <span class="number">4</span>, <span class="number">12</span>, <span class="number">30</span>, <span class="number">0</span>);
+
+<span class="comment">// Date-Methoden</span>
+now.getFullYear();              <span class="comment">// Jahr</span>
+now.getMonth();                 <span class="comment">// Monat (0-11)</span>
+now.getDate();                  <span class="comment">// Tag</span>
+now.getDay();                   <span class="comment">// Wochentag (0-6)</span>
+now.getHours();                 <span class="comment">// Stunden</span>
+now.getMinutes();               <span class="comment">// Minuten</span>
+now.getTime();                  <span class="comment">// Timestamp (ms seit 1970)</span>
+now.toLocaleDateString(<span class="string">"de-DE"</span>);
+now.toLocaleTimeString(<span class="string">"de-DE"</span>);
+now.toISOString();              <span class="comment">// ISO-Format</span>
+                </div>
+                <button class="btn-primary" onclick="datatypeDemo.testDate()">Date testen</button>
+            </div>
+
+            <!-- REGEXP -->
+            <div style="margin-bottom: 25px;">
+                <h3>RegExp <span class="type-badge type-object">object (RegExp)</span></h3>
+                <p style="color: #666; margin: 10px 0;">Reguläre Ausdrücke für Muster-Matching</p>
+                <div class="code-block">
+<span class="comment">// RegExp-Erstellung</span>
+<span class="keyword">let</span> regex1 = <span class="string">/abc/</span>;
+<span class="keyword">let</span> regex2 = <span class="keyword">new</span> RegExp(<span class="string">"abc"</span>);
+<span class="keyword">let</span> regex3 = <span class="string">/abc/gi</span>;            <span class="comment">// g=global, i=case-insensitive</span>
+
+<span class="comment">// RegExp-Methoden</span>
+<span class="keyword">let</span> text = <span class="string">"JavaScript ist großartig"</span>;
+<span class="string">/script/i</span>.test(text);        <span class="comment">// true</span>
+text.match(<span class="string">/\w+/g</span>);           <span class="comment">// ['JavaScript', 'ist', 'großartig']</span>
+text.replace(<span class="string">/JavaScript/</span>, <span class="string">"JS"</span>);
+text.search(<span class="string">/ist/</span>);          <span class="comment">// 11 (Position)</span>
+
+<span class="comment">// Häufige Muster</span>
+<span class="keyword">let</span> email = <span class="string">/^[^\s@]+@[^\s@]+\.[^\s@]+$/</span>;
+<span class="keyword">let</span> phone = <span class="string">/^\d{3}-\d{3}-\d{4}$/</span>;
+<span class="keyword">let</span> url = <span class="string">/^https?:\/\/.+/</span>;
+                </div>
+                <button class="btn-primary" onclick="datatypeDemo.testRegExp()">RegExp testen</button>
+            </div>
+        </div>
+
+        <!-- Spezielle Objekt-Typen -->
+        <div class="section">
+            <h2>3️⃣ Weitere wichtige Typen</h2>
+
+            <div class="grid-2">
+                <!-- MAP -->
+                <div>
+                    <h3>Map</h3>
+                    <div class="code-block" style="font-size: 11px;">
+<span class="keyword">let</span> map = <span class="keyword">new</span> Map();
+map.set(<span class="string">"key1"</span>, <span class="string">"value1"</span>);
+map.set(<span class="string">"key2"</span>, <span class="number">42</span>);
+map.get(<span class="string">"key1"</span>);
+map.has(<span class="string">"key2"</span>);
+map.delete(<span class="string">"key1"</span>);
+map.size;
+                    </div>
+                    <button class="btn-info" onclick="datatypeDemo.testMap()">Map testen</button>
+                </div>
+
+                <!-- SET -->
+                <div>
+                    <h3>Set</h3>
+                    <div class="code-block" style="font-size: 11px;">
+<span class="keyword">let</span> set = <span class="keyword">new</span> Set();
+set.add(<span class="number">1</span>);
+set.add(<span class="number">2</span>);
+set.add(<span class="number">1</span>);  <span class="comment">// Duplikat</span>
+set.has(<span class="number">2</span>);   <span class="comment">// true</span>
+set.size;   <span class="comment">// 2</span>
+set.delete(<span class="number">1</span>);
+                    </div>
+                    <button class="btn-info" onclick="datatypeDemo.testSet()">Set testen</button>
+                </div>
+
+                <!-- WEAKMAP -->
+                <div>
+                    <h3>WeakMap</h3>
+                    <div class="code-block" style="font-size: 11px;">
+<span class="keyword">let</span> wm = <span class="keyword">new</span> WeakMap();
+<span class="keyword">let</span> obj = {};
+wm.set(obj, <span class="string">"value"</span>);
+wm.get(obj);
+wm.has(obj);
+wm.delete(obj);
+<span class="comment">// Nur Objects als Keys!</span>
+                    </div>
+                    <button class="btn-info" onclick="datatypeDemo.testWeakMap()">WeakMap testen</button>
+                </div>
+
+                <!-- WEAKSET -->
+                <div>
+                    <h3>WeakSet</h3>
+                    <div class="code-block" style="font-size: 11px;">
+<span class="keyword">let</span> ws = <span class="keyword">new</span> WeakSet();
+<span class="keyword">let</span> obj = { id: <span class="number">1</span> };
+ws.add(obj);
+ws.has(obj);
+ws.delete(obj);
+<span class="comment">// Nur Objects!</span>
+                    </div>
+                    <button class="btn-info" onclick="datatypeDemo.testWeakSet()">WeakSet testen</button>
+                </div>
+
+                <!-- PROMISE -->
+                <div>
+                    <h3>Promise</h3>
+                    <div class="code-block" style="font-size: 11px;">
+<span class="keyword">let</span> promise = <span class="keyword">new</span> Promise((resolve, reject) => {
+    setTimeout(() => {
+        resolve(<span class="string">"Erfolg!"</span>);
+    }, <span class="number">1000</span>);
+});
+
+promise.then(result => {
+    console.log(result);
+}).catch(error => {
+    console.error(error);
+});
+                    </div>
+                    <button class="btn-info" onclick="datatypeDemo.testPromise()">Promise testen</button>
+                </div>
+
+                <!-- ERROR TYPES -->
+                <div>
+                    <h3>Error-Typen</h3>
+                    <div class="code-block" style="font-size: 11px;">
+<span class="keyword">new</span> Error(<span class="string">"Allgemeiner Fehler"</span>);
+<span class="keyword">new</span> TypeError(<span class="string">"Typ-Fehler"</span>);
+<span class="keyword">new</span> ReferenceError(<span class="string">"Ref-Fehler"</span>);
+<span class="keyword">new</span> SyntaxError(<span class="string">"Syntax-Fehler"</span>);
+<span class="keyword">new</span> RangeError(<span class="string">"Bereichs-Fehler"</span>);
+<span class="keyword">new</span> URIError(<span class="string">"URI-Fehler"</span>);
+                    </div>
+                    <button class="btn-info" onclick="datatypeDemo.testErrors()">Errors testen</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Type Checking -->
+        <div class="section">
+            <h2>4️⃣ Typ-Überprüfung</h2>
+            <div class="code-block">
+<span class="comment">// typeof Operator</span>
+<span class="keyword">typeof</span> <span class="string">"text"</span>;                  <span class="comment">// "string"</span>
+<span class="keyword">typeof</span> <span class="number">42</span>;                      <span class="comment">// "number"</span>
+<span class="keyword">typeof</span> <span class="keyword">true</span>;                    <span class="comment">// "boolean"</span>
+<span class="keyword">typeof</span> <span class="keyword">undefined</span>;               <span class="comment">// "undefined"</span>
+<span class="keyword">typeof</span> <span class="keyword">null</span>;                    <span class="comment">// "object" (Bug!)</span>
+<span class="keyword">typeof</span> Symbol();                <span class="comment">// "symbol"</span>
+<span class="keyword">typeof</span> <span class="number">100n</span>;                    <span class="comment">// "bigint"</span>
+<span class="keyword">typeof</span> {};                      <span class="comment">// "object"</span>
+<span class="keyword">typeof</span> [];                      <span class="comment">// "object"</span>
+<span class="keyword">typeof</span> <span class="keyword">function</span>(){};             <span class="comment">// "function"</span>
+
+<span class="comment">// instanceof Operator</span>
+[] <span class="keyword">instanceof</span> Array;           <span class="comment">// true</span>
+({}) <span class="keyword">instanceof</span> Object;        <span class="comment">// true</span>
+<span class="keyword">new</span> Date() <span class="keyword">instanceof</span> Date;    <span class="comment">// true</span>
+
+<span class="comment">// Array.isArray()</span>
+Array.isArray([]);              <span class="comment">// true</span>
+Array.isArray({});              <span class="comment">// false</span>
+
+<span class="comment">// Object.prototype.toString.call()</span>
+Object.prototype.toString.call([]);              <span class="comment">// "[object Array]"</span>
+Object.prototype.toString.call({});              <span class="comment">// "[object Object]"</span>
+Object.prototype.toString.call(<span class="keyword">null</span>);            <span class="comment">// "[object Null]"</span>
+            </div>
+            <button class="btn-primary" onclick="datatypeDemo.testTypeChecking()">Type Checking testen</button>
+        </div>
+
+        <!-- Type Conversion -->
+        <div class="section">
+            <h2>5️⃣ Typ-Konvertierung</h2>
+            <div class="code-block">
+<span class="comment">// Zu String konvertieren</span>
+String(<span class="number">42</span>);                    <span class="comment">// "42"</span>
+(<span class="number">42</span>).toString();              <span class="comment">// "42"</span>
+<span class="number">42</span> + <span class="string">""</span>;                       <span class="comment">// "42"</span>
+
+<span class="comment">// Zu Number konvertieren</span>
+Number(<span class="string">"42"</span>);                  <span class="comment">// 42</span>
+parseInt(<span class="string">"42"</span>);               <span class="comment">// 42</span>
+parseFloat(<span class="string">"3.14"</span>);           <span class="comment">// 3.14</span>
++<span class="string">"42"</span>;                        <span class="comment">// 42</span>
+
+<span class="comment">// Zu Boolean konvertieren</span>
+Boolean(<span class="number">1</span>);                   <span class="comment">// true</span>
+Boolean(<span class="number">0</span>);                   <span class="comment">// false</span>
+!!<span class="string">"text"</span>;                     <span class="comment">// true</span>
+!!<span class="string">""</span>;                         <span class="comment">// false</span>
+
+<span class="comment">// Implizite Konvertierung</span>
+<span class="string">"5"</span> + <span class="number">3</span>;                       <span class="comment">// "53" (String)</span>
+<span class="string">"5"</span> - <span class="number">3</span>;                       <span class="comment">// 2 (Number)</span>
+<span class="string">"5"</span> * <span class="string">"2"</span>;                     <span class="comment">// 10 (Number)</span>
+            </div>
+            <button class="btn-primary" onclick="datatypeDemo.testTypeConversion()">Konvertierung testen</button>
+        </div>
+
+        <!-- Alle Typen testen -->
+        <div class="section">
+            <h2>🎯 Umfassender Datentyp-Test</h2>
+            <button class="btn-success" style="font-size: 16px; padding: 15px 30px;" onclick="datatypeDemo.testAllDatatypes()">
+                🚀 Alle Datentypen testen
+            </button>
+        </div>
+
+        <!-- Output Display -->
+        <div class="section">
+            <h2>📊 Test-Ausgabe</h2>
+            <div id="messageDisplay"></div>
+        </div>
+
+        <!-- Log Display -->
+        <div class="section">
+            <h2>📜 Live-Logs</h2>
+            <div class="stats">
+                <div class="stat log">
+                    <div class="stat-label">LOG</div>
+                    <div class="stat-value" id="logCount">0</div>
+                </div>
+                <div class="stat info">
+                    <div class="stat-label">INFO</div>
+                    <div class="stat-value" id="infoCount">0</div>
+                </div>
+                <div class="stat warn">
+                    <div class="stat-label">WARN</div>
+                    <div class="stat-value" id="warnCount">0</div>
+                </div>
+                <div class="stat error">
+                    <div class="stat-label">ERROR</div>
+                    <div class="stat-value" id="errorCount">0</div>
+                </div>
+                <div class="stat success">
+                    <div class="stat-label">SUCCESS</div>
+                    <div class="stat-value" id="successCount">0</div>
+                </div>
+            </div>
+            <div id="logDisplay"></div>
+            <button class="clear-btn" onclick="Logger.clear()">Logs löschen</button>
+        </div>
+    </div>
+
+    <!-- Toast Container -->
+    <div class="toast-container" id="toastContainer"></div>
+
+    <script src="js/msg.js"></script>
+    <script>
+        // Datentyp-Demo-Funktionen
+        const datatypeDemo = {
+            
+            testString() {
+                Logger.info('🔤 String-Test gestartet');
+                
+                const str = "JavaScript Datentypen";
+                const results = {
+                    original: str,
+                    length: str.length,
+                    upperCase: str.toUpperCase(),
+                    lowerCase: str.toLowerCase(),
+                    charAt0: str.charAt(0),
+                    substring: str.substring(0, 10),
+                    indexOf: str.indexOf("Daten"),
+                    split: str.split(" "),
+                    concat: str.concat(" sind toll!"),
+                    trim: "  spaced  ".trim(),
+                    includes: str.includes("Script"),
+                    startsWith: str.startsWith("Java"),
+                    endsWith: str.endsWith("typen")
+                };
+                
+                console.log('String-Ergebnisse:', results);
+                Logger.success('String-Test abgeschlossen', results);
+                msgDemo.displayMessage('success', 'String getestet', 
+                    `Original: "${str}", Länge: ${str.length}, UpperCase: "${results.upperCase}"`);
+            },
+
+            testNumber() {
+                Logger.info('🔢 Number-Test gestartet');
+                
+                const results = {
+                    integer: 42,
+                    float: 3.14159,
+                    exponential: 5e3,
+                    hex: 0xFF,
+                    binary: 0b1010,
+                    octal: 0o17,
+                    maxValue: Number.MAX_VALUE,
+                    minValue: Number.MIN_VALUE,
+                    maxSafeInteger: Number.MAX_SAFE_INTEGER,
+                    minSafeInteger: Number.MIN_SAFE_INTEGER,
+                    infinity: Infinity,
+                    negInfinity: -Infinity,
+                    nan: NaN,
+                    isNaN: Number.isNaN(NaN),
+                    isFinite: Number.isFinite(42),
+                    toFixed: (3.14159).toFixed(2),
+                    toPrecision: (123.456).toPrecision(4)
+                };
+                
+                console.log('Number-Ergebnisse:', results);
+                Logger.success('Number-Test abgeschlossen', results);
+                msgDemo.displayMessage('success', 'Number getestet', 
+                    `Integer: ${results.integer}, Float: ${results.float}, MAX: ${results.maxSafeInteger}`);
+            },
+
+            testBoolean() {
+                Logger.info('✓ Boolean-Test gestartet');
+                
+                const results = {
+                    true: true,
+                    false: false,
+                    fromComparison: 5 > 3,
+                    fromEquality: 10 === 10,
+                    truthy: {
+                        '1': Boolean(1),
+                        '"text"': Boolean("text"),
+                        '[]': Boolean([]),
+                        '{}': Boolean({})
+                    },
+                    falsy: {
+                        '0': Boolean(0),
+                        '""': Boolean(""),
+                        'null': Boolean(null),
+                        'undefined': Boolean(undefined),
+                        'NaN': Boolean(NaN)
+                    }
+                };
+                
+                console.log('Boolean-Ergebnisse:', results);
+                Logger.success('Boolean-Test abgeschlossen', results);
+                msgDemo.displayMessage('success', 'Boolean getestet', 
+                    `True: ${results.true}, False: ${results.false}, 5 > 3: ${results.fromComparison}`);
+            },
+
+            testUndefined() {
+                Logger.info('❓ Undefined-Test gestartet');
+                
+                let x;
+                function noReturn() {}
+                const obj = { a: 1 };
+                
+                const results = {
+                    declared: x,
+                    noReturn: noReturn(),
+                    missingProperty: obj.b,
+                    typeOf: typeof x,
+                    isUndefined: x === undefined,
+                    voidOperator: void 0
+                };
+                
+                console.log('Undefined-Ergebnisse:', results);
+                Logger.success('Undefined-Test abgeschlossen', results);
+                msgDemo.displayMessage('info', 'Undefined getestet', 
+                    `Nicht initialisierte Variable: ${results.declared}, Type: ${results.typeOf}`);
+            },
+
+            testNull() {
+                Logger.info('∅ Null-Test gestartet');
+                
+                const empty = null;
+                const results = {
+                    value: empty,
+                    typeOf: typeof empty,
+                    isNull: empty === null,
+                    looseEquality: empty == undefined,
+                    strictEquality: empty === undefined,
+                    inObject: { value: null }
+                };
+                
+                console.log('Null-Ergebnisse:', results);
+                Logger.success('Null-Test abgeschlossen', results);
+                msgDemo.displayMessage('info', 'Null getestet', 
+                    `Null === null: ${results.isNull}, typeof null: ${results.typeOf}`);
+            },
+
+            testSymbol() {
+                Logger.info('🔣 Symbol-Test gestartet');
+                
+                const sym1 = Symbol("test");
+                const sym2 = Symbol("test");
+                const globalSym = Symbol.for("global");
+                
+                const obj = {
+                    [sym1]: "private value",
+                    public: "public value"
+                };
+                
+                const results = {
+                    sym1: sym1.toString(),
+                    sym2: sym2.toString(),
+                    areEqual: sym1 === sym2,
+                    description: sym1.description,
+                    globalSymbol: Symbol.for("global") === globalSym,
+                    objectKeys: Object.keys(obj),
+                    objectSymbols: Object.getOwnPropertySymbols(obj)
+                };
+                
+                console.log('Symbol-Ergebnisse:', results);
+                Logger.success('Symbol-Test abgeschlossen', results);
+                msgDemo.displayMessage('success', 'Symbol getestet', 
+                    `sym1 === sym2: ${results.areEqual}, Eindeutige Identifiers erstellt`);
+            },
+
+            testBigInt() {
+                Logger.info('🔢 BigInt-Test gestartet');
+                
+                const results = {
+                    bigInt1: 9007199254740991n,
+                    bigInt2: BigInt("999999999999999999"),
+                    arithmetic: {
+                        sum: 100n + 200n,
+                        product: 10n * 20n,
+                        power: 2n ** 100n
+                    },
+                    maxSafeInteger: Number.MAX_SAFE_INTEGER,
+                    beyondMax: 9007199254740991n + 1n,
+                    typeOf: typeof 100n
+                };
+                
+                console.log('BigInt-Ergebnisse:', results);
+                Logger.success('BigInt-Test abgeschlossen', { 
+                    ...results, 
+                    power: results.arithmetic.power.toString() 
+                });
+                msgDemo.displayMessage('success', 'BigInt getestet', 
+                    `100n + 200n = ${results.arithmetic.sum}, 2^100 = ${results.arithmetic.power}`);
+            },
+
+            testObject() {
+                Logger.info('📦 Object-Test gestartet');
+                
+                const person = {
+                    name: "Max Mustermann",
+                    age: 30,
+                    hobbies: ["Lesen", "Sport"],
+                    address: {
+                        city: "Berlin",
+                        zip: "10115"
+                    },
+                    greet() {
+                        return `Hallo, ich bin ${this.name}`;
+                    }
+                };
+                
+                const results = {
+                    keys: Object.keys(person),
+                    values: Object.values(person),
+                    entries: Object.entries(person).slice(0, 2),
+                    hasOwnProperty: person.hasOwnProperty('name'),
+                    greetResult: person.greet(),
+                    frozen: Object.isFrozen(person),
+                    sealed: Object.isSealed(person)
+                };
+                
+                console.log('Object-Ergebnisse:', results);
+                Logger.success('Object-Test abgeschlossen', results);
+                msgDemo.displayMessage('success', 'Object getestet', 
+                    `Keys: ${results.keys.join(', ')}, Name: ${person.name}`);
+            },
+
+            testArray() {
+                Logger.info('📋 Array-Test gestartet');
+                
+                const numbers = [1, 2, 3, 4, 5];
+                const results = {
+                    original: numbers,
+                    length: numbers.length,
+                    map: numbers.map(n => n * 2),
+                    filter: numbers.filter(n => n > 2),
+                    reduce: numbers.reduce((a, b) => a + b, 0),
+                    find: numbers.find(n => n > 3),
+                    some: numbers.some(n => n > 4),
+                    every: numbers.every(n => n > 0),
+                    includes: numbers.includes(3),
+                    indexOf: numbers.indexOf(3),
+                    slice: numbers.slice(1, 3),
+                    concat: numbers.concat([6, 7]),
+                    join: numbers.join('-'),
+                    reverse: [...numbers].reverse(),
+                    sort: [3, 1, 4, 1, 5].sort()
+                };
+                
+                console.log('Array-Ergebnisse:', results);
+                console.table(numbers);
+                Logger.success('Array-Test abgeschlossen', results);
+                msgDemo.displayMessage('success', 'Array getestet', 
+                    `Original: [${results.original}], Summe: ${results.reduce}, Map: [${results.map}]`);
+            },
+
+            testFunction() {
+                Logger.info('⚙️ Function-Test gestartet');
+                
+                function regularFunction(a, b) {
+                    return a + b;
+                }
+                
+                const arrowFunction = (a, b) => a + b;
+                
+                const funcExpression = function(a, b) {
+                    return a + b;
+                };
+                
+                const results = {
+                    regular: regularFunction(2, 3),
+                    arrow: arrowFunction(4, 5),
+                    expression: funcExpression(6, 7),
+                    name: regularFunction.name,
+                    length: regularFunction.length,
+                    typeOf: typeof regularFunction,
+                    isFunction: typeof regularFunction === 'function',
+                    callback: [1, 2, 3].map(n => n * 2),
+                    higherOrder: ((fn) => fn(10, 20))(arrowFunction)
+                };
+                
+                console.log('Function-Ergebnisse:', results);
+                Logger.success('Function-Test abgeschlossen', results);
+                msgDemo.displayMessage('success', 'Function getestet', 
+                    `regular(2,3) = ${results.regular}, arrow(4,5) = ${results.arrow}`);
+            },
+
+            testDate() {
+                Logger.info('📅 Date-Test gestartet');
+                
+                const now = new Date();
+                const specific = new Date('2026-03-04');
+                
+                const results = {
+                    now: now.toString(),
+                    iso: now.toISOString(),
+                    localDate: now.toLocaleDateString('de-DE'),
+                    localTime: now.toLocaleTimeString('de-DE'),
+                    year: now.getFullYear(),
+                    month: now.getMonth() + 1,
+                    date: now.getDate(),
+                    day: now.getDay(),
+                    hours: now.getHours(),
+                    minutes: now.getMinutes(),
+                    seconds: now.getSeconds(),
+                    timestamp: now.getTime(),
+                    specificDate: specific.toLocaleDateString('de-DE')
+                };
+                
+                console.log('Date-Ergebnisse:', results);
+                Logger.success('Date-Test abgeschlossen', results);
+                msgDemo.displayMessage('success', 'Date getestet', 
+                    `Jetzt: ${results.localDate} ${results.localTime}`);
+            },
+
+            testRegExp() {
+                Logger.info('🔍 RegExp-Test gestartet');
+                
+                const text = "JavaScript ist großartig! Email: test@example.com";
+                const emailRegex = /[^\s@]+@[^\s@]+\.[^\s@]+/;
+                const wordRegex = /\w+/g;
+                
+                const results = {
+                    text: text,
+                    emailTest: emailRegex.test(text),
+                    emailMatch: text.match(emailRegex),
+                    allWords: text.match(wordRegex),
+                    replaced: text.replace(/JavaScript/, 'JS'),
+                    searchPosition: text.search(/ist/),
+                    split: text.split(/\s+/)
+                };
+                
+                console.log('RegExp-Ergebnisse:', results);
+                Logger.success('RegExp-Test abgeschlossen', results);
+                msgDemo.displayMessage('success', 'RegExp getestet', 
+                    `Email gefunden: ${results.emailMatch}, Wörter: ${results.allWords.length}`);
+            },
+
+            testMap() {
+                Logger.info('🗺️ Map-Test gestartet');
+                
+                const map = new Map();
+                map.set('name', 'Max');
+                map.set('age', 30);
+                map.set(1, 'Nummer');
+                map.set(true, 'Boolean Key');
+                
+                const objKey = { id: 1 };
+                map.set(objKey, 'Object als Key');
+                
+                const results = {
+                    size: map.size,
+                    getName: map.get('name'),
+                    hasAge: map.has('age'),
+                    keys: Array.from(map.keys()),
+                    values: Array.from(map.values()),
+                    entries: Array.from(map.entries())
+                };
+                
+                console.log('Map-Ergebnisse:', results);
+                Logger.success('Map-Test abgeschlossen', results);
+                msgDemo.displayMessage('success', 'Map getestet', 
+                    `Größe: ${results.size}, Name: ${results.getName}`);
+            },
+
+            testSet() {
+                Logger.info('📍 Set-Test gestartet');
+                
+                const set = new Set([1, 2, 3, 4, 5, 1, 2, 3]);
+                set.add(6);
+                set.add(7);
+                
+                const results = {
+                    size: set.size,
+                    has3: set.has(3),
+                    has10: set.has(10),
+                    values: Array.from(set),
+                    uniqueFromArray: Array.from(new Set([1,1,2,2,3,3]))
+                };
+                
+                console.log('Set-Ergebnisse:', results);
+                Logger.success('Set-Test abgeschlossen', results);
+                msgDemo.displayMessage('success', 'Set getestet', 
+                    `Einzigartige Werte: ${results.size}, Array: [${results.values}]`);
+            },
+
+            testWeakMap() {
+                Logger.info('🗺️ WeakMap-Test gestartet');
+                
+                const wm = new WeakMap();
+                const obj1 = { id: 1 };
+                const obj2 = { id: 2 };
+                
+                wm.set(obj1, 'Wert für obj1');
+                wm.set(obj2, 'Wert für obj2');
+                
+                const results = {
+                    hasObj1: wm.has(obj1),
+                    getObj1: wm.get(obj1),
+                    description: 'WeakMap hält schwache Referenzen, ermöglicht Garbage Collection'
+                };
+                
+                console.log('WeakMap-Ergebnisse:', results);
+                Logger.success('WeakMap-Test abgeschlossen', results);
+                msgDemo.displayMessage('info', 'WeakMap getestet', 
+                    `Objekte als Keys mit schwachen Referenzen`);
+            },
+
+            testWeakSet() {
+                Logger.info('📍 WeakSet-Test gestartet');
+                
+                const ws = new WeakSet();
+                const obj1 = { id: 1 };
+                const obj2 = { id: 2 };
+                
+                ws.add(obj1);
+                ws.add(obj2);
+                
+                const results = {
+                    hasObj1: ws.has(obj1),
+                    hasObj2: ws.has(obj2),
+                    description: 'WeakSet hält schwache Referenzen zu Objekten'
+                };
+                
+                console.log('WeakSet-Ergebnisse:', results);
+                Logger.success('WeakSet-Test abgeschlossen', results);
+                msgDemo.displayMessage('info', 'WeakSet getestet', 
+                    `Objekte mit schwachen Referenzen gespeichert`);
+            },
+
+            async testPromise() {
+                Logger.info('⏳ Promise-Test gestartet');
+                
+                // Erfolgreiche Promise
+                const successPromise = new Promise((resolve) => {
+                    setTimeout(() => resolve('Erfolg!'), 1000);
+                });
+                
+                // Fehlgeschlagene Promise
+                const failPromise = new Promise((_, reject) => {
+                    setTimeout(() => reject('Fehler!'), 500);
+                });
+                
+                try {
+                    msgDemo.showToast('info', 'Promise', 'Warte auf Promises...');
+                    
+                    const result1 = await successPromise;
+                    Logger.success('Promise resolved', { result: result1 });
+                    
+                    try {
+                        await failPromise;
+                    } catch (error) {
+                        Logger.warn('Promise rejected (erwartet)', { error });
+                    }
+                    
+                    // Promise.all
+                    const allResults = await Promise.all([
+                        Promise.resolve(1),
+                        Promise.resolve(2),
+                        Promise.resolve(3)
+                    ]);
+                    
+                    const results = {
+                        success: result1,
+                        allResults: allResults,
+                        state: 'completed'
+                    };
+                    
+                    console.log('Promise-Ergebnisse:', results);
+                    msgDemo.displayMessage('success', 'Promise getestet', 
+                        `Resolved: "${result1}", Promise.all: [${allResults}]`);
+                        
+                } catch (error) {
+                    Logger.error('Promise-Test Fehler', error);
+                }
+            },
+
+            testErrors() {
+                Logger.info('❌ Error-Typen-Test gestartet');
+                
+                const errors = {
+                    Error: new Error('Allgemeiner Fehler'),
+                    TypeError: new TypeError('Falscher Typ'),
+                    ReferenceError: new ReferenceError('Variable nicht definiert'),
+                    SyntaxError: new SyntaxError('Ungültige Syntax'),
+                    RangeError: new RangeError('Wert außerhalb des Bereichs'),
+                    URIError: new URIError('Ungültige URI')
+                };
+                
+                Object.entries(errors).forEach(([type, error]) => {
+                    console.error(`${type}:`, {
+                        name: error.name,
+                        message: error.message,
+                        stack: error.stack
+                    });
+                });
+                
+                Logger.success('Error-Typen-Test abgeschlossen', {
+                    types: Object.keys(errors)
+                });
+                msgDemo.displayMessage('info', 'Error-Typen getestet', 
+                    `${Object.keys(errors).length} verschiedene Error-Typen demonstriert`);
+            },
+
+            testTypeChecking() {
+                Logger.info('🔍 Type-Checking-Test gestartet');
+                
+                const values = {
+                    string: "text",
+                    number: 42,
+                    boolean: true,
+                    undefined: undefined,
+                    null: null,
+                    symbol: Symbol(),
+                    bigint: 100n,
+                    object: {},
+                    array: [],
+                    function: function() {},
+                    date: new Date(),
+                    regex: /test/
+                };
+                
+                const typeResults = {};
+                Object.entries(values).forEach(([key, value]) => {
+                    typeResults[key] = {
+                        typeof: typeof value,
+                        constructor: value?.constructor?.name,
+                        instanceof: value instanceof Object,
+                        isArray: Array.isArray(value),
+                        toString: Object.prototype.toString.call(value)
+                    };
+                });
+                
+                console.table(typeResults);
+                Logger.success('Type-Checking abgeschlossen', typeResults);
+                msgDemo.displayMessage('success', 'Type-Checking getestet', 
+                    `${Object.keys(values).length} verschiedene Typen überprüft - siehe Konsole`);
+            },
+
+            testTypeConversion() {
+                Logger.info('🔄 Type-Conversion-Test gestartet');
+                
+                const results = {
+                    toString: {
+                        numberToString: String(42),
+                        booleanToString: String(true),
+                        arrayToString: [1,2,3].toString(),
+                        objectToString: ({}).toString()
+                    },
+                    toNumber: {
+                        stringToNumber: Number("42"),
+                        booleanToNumber: Number(true),
+                        parseIntExample: parseInt("42px"),
+                        parseFloatExample: parseFloat("3.14abc"),
+                        unaryPlus: +"123"
+                    },
+                    toBoolean: {
+                        numberToBoolean: Boolean(1),
+                        stringToBoolean: Boolean("text"),
+                        emptyStringToBoolean: Boolean(""),
+                        doubleNot: !!"value"
+                    },
+                    implicit: {
+                        stringPlus: "5" + 3,
+                        stringMinus: "5" - 3,
+                        stringMultiply: "5" * "2",
+                        comparison: "10" > 5
+                    }
+                };
+                
+                console.log('Type-Conversion-Ergebnisse:', results);
+                Logger.success('Type-Conversion abgeschlossen', results);
+                msgDemo.displayMessage('success', 'Type-Conversion getestet', 
+                    `"5" + 3 = "${results.implicit.stringPlus}", "5" - 3 = ${results.implicit.stringMinus}`);
+            },
+
+            async testAllDatatypes() {
+                Logger.info('🚀 Umfassender Datentyp-Test gestartet');
+                msgDemo.showToast('info', 'Test gestartet', 'Alle Datentypen werden getestet...');
+                
+                const tests = [
+                    { fn: () => this.testString(), name: 'String' },
+                    { fn: () => this.testNumber(), name: 'Number' },
+                    { fn: () => this.testBoolean(), name: 'Boolean' },
+                    { fn: () => this.testUndefined(), name: 'Undefined' },
+                    { fn: () => this.testNull(), name: 'Null' },
+                    { fn: () => this.testSymbol(), name: 'Symbol' },
+                    { fn: () => this.testBigInt(), name: 'BigInt' },
+                    { fn: () => this.testObject(), name: 'Object' },
+                    { fn: () => this.testArray(), name: 'Array' },
+                    { fn: () => this.testFunction(), name: 'Function' },
+                    { fn: () => this.testDate(), name: 'Date' },
+                    { fn: () => this.testRegExp(), name: 'RegExp' },
+                    { fn: () => this.testMap(), name: 'Map' },
+                    { fn: () => this.testSet(), name: 'Set' },
+                    { fn: () => this.testWeakMap(), name: 'WeakMap' },
+                    { fn: () => this.testWeakSet(), name: 'WeakSet' },
+                    { fn: () => this.testPromise(), name: 'Promise' },
+                    { fn: () => this.testErrors(), name: 'Errors' },
+                    { fn: () => this.testTypeChecking(), name: 'Type Checking' },
+                    { fn: () => this.testTypeConversion(), name: 'Type Conversion' }
+                ];
+                
+                for (const test of tests) {
+                    await new Promise(resolve => setTimeout(resolve, 300));
+                    Logger.info(`Teste ${test.name}...`);
+                    test.fn();
+                }
+                
+                await new Promise(resolve => setTimeout(resolve, 500));
+                
+                console.log('%c🎉 Alle Datentypen getestet!', 
+                    'background: #4caf50; color: white; padding: 10px; font-size: 16px;');
+                Logger.success('Alle Datentyp-Tests abgeschlossen', { 
+                    totalTests: tests.length,
+                    testNames: tests.map(t => t.name)
+                });
+                msgDemo.showToast('success', 'Abgeschlossen!', 
+                    `Alle ${tests.length} Datentypen erfolgreich getestet!`);
+            }
+        };
+
+        // Globaler Zugriff
+        window.datatypeDemo = datatypeDemo;
+    </script>
+</body>
+</html>
