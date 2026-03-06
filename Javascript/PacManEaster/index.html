@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta name="description" content="Oster PAC-MAN – Steuere den Osterhasen, sammle Eier und weiche den Rasenmähern aus!">
+    <title>OSTER PAC-MAN</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div id="game-wrapper">
+        <!-- HUD top -->
+        <div id="hud">
+            <div id="hud-score">
+                <span class="hud-label">SCORE</span>
+                <span id="score-value">0</span>
+            </div>
+            <div id="hud-highscore">
+                <span class="hud-label">HIGH SCORE</span>
+                <span id="highscore-value">0</span>
+            </div>
+        </div>
+
+        <!-- Canvas container -->
+        <div id="canvas-container">
+            <canvas id="game-canvas"></canvas>
+        </div>
+
+        <!-- HUD bottom (lives & level) -->
+        <div id="hud-bottom">
+            <div id="lives-container"></div>
+            <div id="level-container"></div>
+        </div>
+
+        <!-- Start screen overlay -->
+        <div id="start-screen" class="overlay">
+            <div class="overlay-content">
+                <h1 class="title-glow">🐰 OSTER<br>PAC-MAN 🥚</h1>
+                <p class="easter-tagline">Sammle Eier · Meide Rasenmäher</p>
+                <p class="blink">ENTER ZUM STARTEN</p>
+                <div class="controls-info">
+                    <p>🐰 Pfeiltasten / WASD zum Bewegen</p>
+                    <p>📱 Wischen auf dem Handy</p>
+                    <p>🔇 M zum Stummschalten</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Game Over overlay -->
+        <div id="game-over-screen" class="overlay hidden">
+            <div class="overlay-content glass-card">
+                <h2 class="game-over-text">GAME OVER</h2>
+                <p class="final-score">SCORE: <span id="final-score-value">0</span></p>
+                <button id="play-again-btn">PLAY AGAIN</button>
+            </div>
+        </div>
+    </div>
+
+    <script type="module" src="js/main.js"></script>
+</body>
+</html>

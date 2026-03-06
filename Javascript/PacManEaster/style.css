@@ -1,0 +1,311 @@
+/* ============================================================
+   OSTER PAC-MAN — Global Styles
+   Spring Easter theme, colorful neon glow, arcade typography
+   ============================================================ */
+
+/* ---- Reset & Base ---- */
+*,
+*::before,
+*::after {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html,
+body {
+    height: 100%;
+    overflow: hidden;
+    background: #060f06;
+    font-family: 'Press Start 2P', monospace;
+    color: #fff;
+    -webkit-font-smoothing: antialiased;
+}
+
+body {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(to top,
+            #ff6b6b 0%,
+            #ffa94d 15%,
+            #ffd43b 30%,
+            #69db7c 45%,
+            #4dabf7 60%,
+            #9775fa 75%,
+            #1a1a2e 100%);
+}
+
+/* ---- Game Wrapper ---- */
+#game-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    max-width: 100vw;
+    padding: 10px;
+}
+
+/* ---- HUD Top ---- */
+#hud {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    max-width: 896px;
+    /* CANVAS_WIDTH * SCALE */
+    padding: 0 4px;
+}
+
+.hud-label {
+    display: block;
+    font-size: 10px;
+    color: #aaa;
+    margin-bottom: 2px;
+}
+
+#score-value {
+    font-size: 16px;
+    color: #FFD700;
+    text-shadow: 0 0 10px rgba(255, 215, 0, 0.6);
+}
+
+#highscore-value {
+    font-size: 16px;
+    color: #fff;
+    text-shadow: 0 0 8px rgba(255, 255, 255, 0.4);
+}
+
+#hud-highscore {
+    text-align: right;
+}
+
+/* ---- Canvas ---- */
+#canvas-container {
+    position: relative;
+    line-height: 0;
+}
+
+#game-canvas {
+    display: block;
+    image-rendering: pixelated;
+    image-rendering: crisp-edges;
+    max-width: 100vw;
+    max-height: 75vh;
+    border: 2px solid #1a4e1a;
+    border-radius: 4px;
+    box-shadow: 0 0 30px rgba(46, 125, 50, 0.4),
+        inset 0 0 30px rgba(46, 125, 50, 0.15);
+}
+
+/* ---- HUD Bottom ---- */
+#hud-bottom {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    max-width: 896px;
+    padding: 4px;
+    min-height: 30px;
+}
+
+#lives-container {
+    display: flex;
+    gap: 6px;
+}
+
+#lives-container .life-icon {
+    width: 20px;
+    height: 26px;
+}
+
+#level-container {
+    display: flex;
+    gap: 4px;
+    align-items: center;
+}
+
+#level-container .fruit-icon {
+    width: 16px;
+    height: 22px;
+}
+
+/* ---- Overlays ---- */
+.overlay {
+    position: fixed;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 100;
+    background: rgba(0, 0, 0, 0.781);
+    animation: fadeIn 0.5s ease;
+}
+
+.overlay.hidden {
+    display: none;
+}
+
+.overlay-content {
+    text-align: center;
+    padding: 40px;
+}
+
+/* ---- Title Glow (Easter pink/purple) ---- */
+.title-glow {
+    font-size: 48px;
+    color: #FF69B4;
+    text-shadow:
+        0 0 10px #FF69B4,
+        0 0 20px #FF69B4,
+        0 0 40px #FF1493,
+        0 0 80px #C2185B;
+    margin-bottom: 20px;
+    animation: titlePulse 2s ease-in-out infinite;
+    line-height: 1.4;
+}
+
+/* ---- Easter tagline ---- */
+.easter-tagline {
+    font-size: 8px;
+    color: #98FB98;
+    text-shadow: 0 0 6px rgba(152, 251, 152, 0.6);
+    margin-bottom: 24px;
+    letter-spacing: 1px;
+}
+
+@keyframes titlePulse {
+
+    0%,
+    100% {
+        text-shadow:
+            0 0 10px #FF69B4,
+            0 0 20px #FF69B4,
+            0 0 40px #FF1493,
+            0 0 80px #C2185B;
+    }
+
+    50% {
+        text-shadow:
+            0 0 20px #FF69B4,
+            0 0 40px #FF69B4,
+            0 0 60px #FF1493,
+            0 0 100px #C2185B;
+    }
+}
+
+/* ---- Blink Animation ---- */
+.blink {
+    font-size: 14px;
+    color: #fff;
+    animation: blinkAnim 1s step-end infinite;
+    margin-bottom: 30px;
+}
+
+@keyframes blinkAnim {
+
+    0%,
+    100% {
+        opacity: 1;
+    }
+
+    50% {
+        opacity: 0;
+    }
+}
+
+/* ---- Controls Info ---- */
+.controls-info {
+    font-size: 9px;
+    color: #888;
+    line-height: 2.2;
+}
+
+/* ---- Glass Card (Game Over) ---- */
+.glass-card {
+    background: rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 16px;
+    padding: 50px 60px;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5);
+}
+
+.game-over-text {
+    font-size: 32px;
+    color: #FF69B4;
+    text-shadow: 0 0 20px rgba(255, 105, 180, 0.6);
+    margin-bottom: 20px;
+}
+
+.final-score {
+    font-size: 16px;
+    color: #FFD700;
+    margin-bottom: 30px;
+}
+
+#play-again-btn {
+    font-family: 'Press Start 2P', monospace;
+    font-size: 14px;
+    color: #fff;
+    background: #E91E63;
+    border: none;
+    padding: 14px 28px;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    text-transform: uppercase;
+}
+
+#play-again-btn:hover {
+    background: #FF69B4;
+    transform: scale(1.05);
+    box-shadow: 0 0 20px rgba(255, 105, 180, 0.6);
+}
+
+#play-again-btn:active {
+    transform: scale(0.98);
+}
+
+/* ---- Fade In ---- */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+/* ---- Responsive ---- */
+@media (max-width: 500px) {
+    .title-glow {
+        font-size: 22px;
+    }
+
+    .easter-tagline {
+        font-size: 7px;
+    }
+
+    .blink {
+        font-size: 11px;
+    }
+
+    .glass-card {
+        padding: 30px 20px;
+    }
+
+    .game-over-text {
+        font-size: 22px;
+    }
+
+    #score-value,
+    #highscore-value {
+        font-size: 12px;
+    }
+
+    .hud-label {
+        font-size: 8px;
+    }
+}

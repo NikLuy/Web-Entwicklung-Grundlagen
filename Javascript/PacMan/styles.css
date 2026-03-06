@@ -1,5 +1,19 @@
-.body {
-	background-color: black;
+@import url("https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap");
+
+body {
+    margin: 0;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: black;
+}
+
+.gameboard {
+    background: rgba(20, 20, 20, 0.9);
+    padding: 16px;
+    border: 2px solid #222;
+    border-radius: 10px;
 }
 
 .grid {
@@ -10,6 +24,31 @@
     height: 560px;
     border: solid black;
 }
+
+.scoreboard {
+    margin-top: 12px;
+    width: 560px;
+    color: #fff;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-family: "Press Start 2P", monospace;
+    font-size: 12px;
+    letter-spacing: 0.8px;
+    text-transform: uppercase;
+}
+
+.scoreboard p {
+    margin: 0;
+    text-shadow: 0 0 8px rgba(255, 255, 255, 0.35);
+}
+
+#score,
+#highscore {
+    color: #ffd447;
+    margin-left: 6px;
+    text-shadow: 0 0 10px rgba(255, 212, 71, 0.8);
+}
   
 .grid div {
     width: 20px;
@@ -17,60 +56,134 @@
 }
 
 .pac-dot {
-    background-color: green;
-    border: 5px solid black;
-    box-sizing: border-box;
+    /* background-color: green; border: 5px solid black; box-sizing: border-box; */
+    /* Change ID3: Pac-Dot als Bildsprite */
+    background-color: black;
+    background-image: url("images/dot.jpg");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
 }
 
 .wall {
-    background-color: green;
+    /* background-color: green; */
+    /* Change ID3: Waende als Bildtextur */
+    background-image: url("images/wall.png");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
 }
 
 .power-pellet {
-    background-color: blue;
-    border-radius: 10px;
+    /* background-color: blue; border-radius: 10px; */
+    /* Change ID3: Power-Pellet als Bildsprite */
+    background-color: black;
+    background-image: url("images/magicdot.jpg");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    border-radius: 50%;
 }
 
 .blinky {
-    background-color: red;
+    /* background-color: red; */
+    /* Change ID3: Blinky-Sprite */
+    background-image: url("images/ghostRed.png");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
 	border-radius: 5px;
 }
 
 .pinky {
-    background-color: pink;
+    /* background-color: pink; */
+    /* Change ID3: Pinky-Sprite */
+    background-image: url("images/ghost.ico");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
 	border-radius: 5px;
 }
 
 .inky {
-    background-color: cyan;
+    /* background-color: cyan; */
+    /* Change ID3: Inky-Sprite */
+    background-image: url("images/ghostYellow.png");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
 	border-radius: 5px;
 }
 
 .clyde {
-    background-color: orange;
+    /* background-color: orange; */
+    /* Change ID3: Clyde-Sprite */
+    background-image: url("images/ghostGreen.png");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
 	border-radius: 5px;
 }
 
 .pac-man {
-    background-color: yellow;
+    /* background-color: yellow; */
+    /* Change ID3: Pac-Man als animiertes Sprite-Bild */
+    background-color: black;
+    background-image: url("images/pacmanRight.gif");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
     border-radius: 50%;
     position: relative;
+    /* Change ID2: Aktiviert die Maul-Animation fuer Pac-Man */
     animation: chomping 0.5s infinite;
+}
+
+.pac-man-right {
+    transform: rotate(0deg);
+}
+
+.pac-man-left {
+    transform: rotate(180deg);
+}
+
+.pac-man-up {
+    transform: rotate(270deg);
+}
+
+.pac-man-down {
+    transform: rotate(90deg);
 }
 
 @keyframes chomping {
     0% {
+        /* Change ID2: Maul offen */
         clip-path: polygon(0% 0%, 100% 0%, 50% 50%, 100% 100%, 0% 100%);
     }
     50% {
+        /* Change ID2: Maul geschlossen */
         clip-path: polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%);
     }
     100% {
+        /* Change ID2: Maul wieder offen */
         clip-path: polygon(0% 0%, 100% 0%, 50% 50%, 100% 100%, 0% 100%);
     }
 }
 
 
 .scared-ghost {
-    background-color: aquamarine;
+    /*  background-color: aquamarine; */
+    /* Change ID3: Veraengstigter Geist als eigener Sprite */
+    background-image: url("images/ghostGreen.png");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+.bonus-point {
+    /* ID6: Roter Bonus-Punkt */
+    background-color: red;
+    background-image: none;
+    border-radius: 50%;
+    box-shadow: 0 0 6px red;
 }

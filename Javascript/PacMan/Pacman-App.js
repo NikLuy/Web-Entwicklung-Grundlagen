@@ -1,6 +1,9 @@
 // Globale Variablen für das Spiel
 let width;           // Breite des Spielfelds
 let scoreDisplay;    // Element zur Anzeige des Punktestands
+/* ID4:Highscore*/
+let highscoreDisplay; // Element zur Anzeige des Highscores
+let highscore;       // Bester Punktestand (persistent)
 let score;           // Aktueller Punktestand
 let layout;         // Layout/Aufbau des Spielfelds
 let grid;           // Das Spielfeld-Container-Element
@@ -8,6 +11,20 @@ let squares = [];    // Array für alle Felder des Spiels
 let pacmanCurrentIndex; // Aktuelle Position von Pacman
 let ghosts;         // Array für alle Geister
 let pacman;         // Pacman-Element
+/* ID5: Soundeffekte fuer Spielevents */
+let eatSound;
+let powerPelletSound;
+let eatGhostSound;
+let gameOverSound;
+
+/* ID6: Aktuelle Position des Bonus-Punkts (null = keiner aktiv) */
+let bonusPointIndex = null;
+let bonusSpawnTimerId = NaN;
+let bonusRemoveTimerId = NaN;
+let bonusSpawnerActive = false;
+
+// Aktuelle Blickrichtung von Pac-Man
+let pacmanDirection = "right";
 
 // Event Listener für das Laden des DOM
 document.addEventListener("DOMContentLoaded", initializeGame);
@@ -18,8 +35,24 @@ document.addEventListener("DOMContentLoaded", initializeGame);
  */
 function initializeGame() {
     scoreDisplay = document.getElementById("score");
+    /* ID4: Highscore-Anzeigeelement initialisieren */
+    highscoreDisplay = document.getElementById("highscore");
     width = 28;    // Setzt die Breite auf 28 Felder
     score = 0;     // Initialisiert den Score mit 0
+
+    /* ID4: Highscore wird persistent aus dem Browser-Speicher gelesen */
+    highscore = localStorage.getItem("highscore");
+    highscore = highscore ? Number(highscore) : 0;
+    scoreDisplay.textContent = score;
+
+    highscoreDisplay.textContent = highscore;
+
+    /* ID5: Sounddateien aus dem sounds-Ordner laden */
+    eatSound = new Audio("sounds/pacman_chomp.wav");
+    powerPelletSound = new Audio("sounds/pacman_eatfruit.wav");
+    eatGhostSound = new Audio("sounds/pacman_eatghost.wav");
+    gameOverSound = new Audio("sounds/pacman_death.wav");
+
     grid = document.querySelector(".grid");
     console.log("initialize gridstyle: "+grid);
     
@@ -62,11 +95,109 @@ function initializeGame() {
 
     createBoard();                  // Erstellt das Spielfeld
     createPacman(490);             // Erstellt Pacman an Startposition
+    /* ID6: Bonus-Punkt-Spawner starten */
+    startBonusPointSpawner();
     pacman = document.querySelector('.pac-man');
     document.addEventListener("keyup", movePacman)  // Event Listener für Tastatureingaben
    
     ghosts = initializeGhosts();   // Initialisiert die Geister
     ghosts.forEach((ghost) => moveGhost(ghost));  // Startet die Bewegung der Geister
+}
+
+/* ID6: Startet den Bonus-Zyklus per setTimeout (5s Spawn, 10s sichtbar, 5s Pause) */
+function startBonusPointSpawner() {
+    bonusSpawnerActive = true;
+    scheduleNextBonusSpawn();
+}
+
+/* ID6: Stoppt Bonus-Timer und entfernt einen evtl. sichtbaren Bonus-Punkt */
+function stopBonusPointSpawner() {
+    bonusSpawnerActive = false;
+    clearInterval(bonusSpawnTimerId);
+    clearTimeout(bonusSpawnTimerId);
+    clearTimeout(bonusRemoveTimerId);
+    removeBonusPoint();
+}
+
+/* ID6: Plant den naechsten Spawn in 5 Sekunden */
+function scheduleNextBonusSpawn() {
+    clearTimeout(bonusSpawnTimerId);
+
+    if (!bonusSpawnerActive) {
+        return;
+    }
+
+    bonusSpawnTimerId = setTimeout(() => {
+        if (!bonusSpawnerActive) {
+            return;
+        }
+
+        const hasSpawned = spawnBonusPoint();
+        if (!hasSpawned) {
+            scheduleNextBonusSpawn();
+            return;
+        }
+
+        bonusRemoveTimerId = setTimeout(() => {
+            removeBonusPoint();
+            scheduleNextBonusSpawn();
+        }, 10000);
+    }, 5000);
+}
+
+/* ID6: Platziert den Bonus-Punkt auf einem gueltigen Feld */
+function spawnBonusPoint() {
+    removeBonusPoint();
+
+    const validIndices = squares
+        .map((square, index) => ({ square, index }))
+        .filter(({ square }) =>
+            !square.classList.contains("wall") &&
+            !square.classList.contains("ghost-lair") &&
+            !square.classList.contains("ghost") &&
+            !square.classList.contains("pac-man") &&
+            !square.classList.contains("bonus-point")
+        )
+        .map(({ index }) => index);
+
+    if (validIndices.length === 0) {
+        return false;
+    }
+
+    bonusPointIndex = validIndices[Math.floor(Math.random() * validIndices.length)];
+    squares[bonusPointIndex].classList.add("bonus-point");
+    return true;
+}
+
+/* ID6: Entfernt den Bonus-Punkt, falls aktiv */
+function removeBonusPoint() {
+    if (bonusPointIndex === null) {
+        return;
+    }
+
+    squares[bonusPointIndex].classList.remove("bonus-point");
+    bonusPointIndex = null;
+}
+
+/* ID6: Gibt 50 Bonuspunkte, wenn Pac-Man den Bonus-Punkt isst */
+function handleBonusPointEaten(currentIndex) {
+    if (squares[currentIndex].classList.contains("bonus-point")) {
+        score += 50;
+        scoreDisplay.textContent = score;
+        updateHighscore();
+        clearTimeout(bonusRemoveTimerId);
+        removeBonusPoint();
+        scheduleNextBonusSpawn();
+    }
+}
+
+/* ID4: Aktualisiert den Highscore, speichert ihn persistent und zeigt ihn an */
+function updateHighscore() {
+    if (score > highscore) {
+        highscore = score;
+        localStorage.setItem("highscore", String(highscore));
+    }
+    highscoreDisplay.textContent = highscore;
 }
 
 /**
@@ -110,9 +241,25 @@ function addClassToSquare(cell, square) {
  * @returns {number} - Die Startposition
  */
 function createPacman(startIndex) {
-    squares[startIndex].classList.add("pac-man");
     pacmanCurrentIndex = startIndex;
+    placePacmanAtCurrentIndex();
     return startIndex;
+}
+
+// Entfernt Pac-Man inkl. Richtungs-Klassen von einem Feld
+function removePacmanFromSquare(index) {
+    squares[index].classList.remove(
+        "pac-man",
+        "pac-man-right",
+        "pac-man-left",
+        "pac-man-up",
+        "pac-man-down"
+    );
+}
+
+// Setzt Pac-Man inkl. aktueller Blickrichtung auf das aktuelle Feld
+function placePacmanAtCurrentIndex() {
+    squares[pacmanCurrentIndex].classList.add("pac-man", `pac-man-${pacmanDirection}`);
 }
 
 /**
@@ -120,27 +267,36 @@ function createPacman(startIndex) {
  * @param {Event} e - Tastatur-Event
  */
 function movePacman(e) {
-    squares[pacmanCurrentIndex].classList.remove("pac-man");  // Entfernt Pacman von aktueller Position
+    removePacmanFromSquare(pacmanCurrentIndex); // Entfernt Pac-Man von aktueller Position
     
     // Bewegt Pacman je nach Tastatureingabe
     switch (e.key) {
         case "ArrowLeft":
             pacmanCurrentIndex = moveLeft(pacmanCurrentIndex);
+            pacmanDirection = "left";
             break;
         case "ArrowUp":
             pacmanCurrentIndex = moveUp(pacmanCurrentIndex);
+            pacmanDirection = "up";
             break;
         case "ArrowRight":
             pacmanCurrentIndex = moveRight(pacmanCurrentIndex);
+            pacmanDirection = "right";
             break;
         case "ArrowDown":
             pacmanCurrentIndex = moveDown(pacmanCurrentIndex);
+            pacmanDirection = "down";
+            break;
+        default:
+            // Ignoriere andere Tasten
             break;
     }
 
-    squares[pacmanCurrentIndex].classList.add("pac-man");  // Setzt Pacman an neue Position
+    placePacmanAtCurrentIndex(); // Setzt Pac-Man an neue Position
     handlePacDotEaten(pacmanCurrentIndex);                // Prüft auf gefressene Punkte
     handlePowerPelletEaten(pacmanCurrentIndex);           // Prüft auf gefressene Power-Pillen
+    /* ID6: Prueft auf gefressenen Bonus-Punkt */
+    handleBonusPointEaten(pacmanCurrentIndex);
     checkForGameOver(pacmanCurrentIndex);                 // Prüft auf Game Over
     checkForWin();                                        // Prüft auf Sieg
 }
@@ -215,8 +371,13 @@ function isBlocked(index) {
  */
 function handlePacDotEaten(pacmanCurrentIndex) {
     if (squares[pacmanCurrentIndex].classList.contains("pac-dot")) {
+        /* ID5: Chomp-Sound beim Fressen eines Pac-Dots */
+        eatSound.currentTime = 0;
+        eatSound.play();
         score++;
-        document.getElementById("score").innerHTML = score;
+        /* ID4: Bei jeder Score-Aenderung Anzeige + Highscore aktualisieren */
+        scoreDisplay.textContent = score;
+        updateHighscore();
         squares[pacmanCurrentIndex].classList.remove("pac-dot");
     }
 }
@@ -227,8 +388,13 @@ function handlePacDotEaten(pacmanCurrentIndex) {
  */
 function handlePowerPelletEaten(pacmanCurrentIndex) {
     if (squares[pacmanCurrentIndex].classList.contains("power-pellet")) {
+        /* ID5: Sound beim Fressen eines Power-Pellets */
+        powerPelletSound.currentTime = 0;
+        powerPelletSound.play();
         score += 10;
-        document.getElementById("score").innerHTML = score;
+        /* ID4: Bei jeder Score-Aenderung Anzeige + Highscore aktualisieren */
+        scoreDisplay.textContent = score;
+        updateHighscore();
         scareGhosts();
         setTimeout(unScareGhosts, 10000);
         squares[pacmanCurrentIndex].classList.remove("power-pellet");
@@ -258,9 +424,13 @@ function checkForGameOver(pacmanCurrentIndex) {
         squares[pacmanCurrentIndex].classList.contains("ghost") &&
         !squares[pacmanCurrentIndex].classList.contains("scared-ghost")
     ) {
+        /* ID6: Bonus-Mechanik bei Spielende stoppen */
+        stopBonusPointSpawner();
         ghosts.forEach((ghost) => clearInterval(ghost.timerId));
         document.removeEventListener("keyup", movePacman);
         setTimeout(() => alert("Game Over"), 500);
+        /* ID5: Game-Over-Sound abspielen */
+        gameOverSound.currentTime = 0;
         gameOverSound.play();
     }
 }
@@ -270,6 +440,8 @@ function checkForGameOver(pacmanCurrentIndex) {
  */
 function checkForWin() {
     if (score >= 274) {
+        /* ID6: Bonus-Mechanik bei Spielende stoppen */
+        stopBonusPointSpawner();
         ghosts.forEach((ghost) => clearInterval(ghost.timerId));
         document.removeEventListener("keyup", movePacman);
         setTimeout(() => alert("You have WON!"), 500);
@@ -320,6 +492,8 @@ function moveGhost(ghost) {
         } else {
             direction = directions[Math.floor(Math.random() * directions.length)];
         }
+        /* ID7: Game Over auch pruefen, wenn ein Geist auf Pac-Man laeuft */
+        checkForGameOver(pacmanCurrentIndex);
         checkGhostCollision(ghost);
     }, ghost.speed);
 }
@@ -352,10 +526,16 @@ function moveGhostToNewSquare(ghost, direction) {
  * @param {Object} ghost - Das zu prüfende Geist-Objekt
  */
 function checkGhostCollision(ghost) {
-    if (ghost.isScared && squares[ghost.currentIndex].classList.contains("pacman")) {
+    /* ID7: Kollision gegen korrekte Pac-Man-Klasse pruefen */
+    if (ghost.isScared && squares[ghost.currentIndex].classList.contains("pac-man")) {
+        /* ID5: Sound wenn ein verwundbarer Geist gefressen wird */
+        eatGhostSound.currentTime = 0;
+        eatGhostSound.play();
         resetGhostPosition(ghost);
         score += 100;
-        document.getElementById("score").innerHTML = score;
+        /* ID4: Bei jeder Score-Aenderung Anzeige + Highscore aktualisieren */
+        scoreDisplay.textContent = score;
+        updateHighscore();
     }
 }
 
