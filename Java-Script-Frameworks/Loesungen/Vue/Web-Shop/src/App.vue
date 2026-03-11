@@ -20,16 +20,16 @@
            addToCart(product) {
            if (product.stock > 0) {
             this.cart.push(product);
-            product.stock--; // Verringert den Lagerbestand nach dem Hinzufügen in den Warenkorb
+            product.stock--; // Verringert den Lagerbestand nach dem Hinzufï¿½gen in den Warenkorb
            } else {
-            alert("Produkt nicht mehr verfügbar!");
+            alert("Produkt nicht mehr verfÃ¼gbar!");
            }
     },
         removeFromCart(productId) {
         const productIndex = this.cart.findIndex(item => item.id === productId);
         if (productIndex !== -1) {
             const product = this.cart[productIndex];
-            product.stock++; // Erhöht den Lagerbestand, wenn das Produkt entfernt wird
+            product.stock++; // ErhÃ¶ht den Lagerbestand, wenn das Produkt entfernt wird
             this.cart.splice(productIndex, 1);
         }
     }

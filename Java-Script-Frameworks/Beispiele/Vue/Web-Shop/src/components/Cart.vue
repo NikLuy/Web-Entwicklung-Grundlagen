@@ -2,11 +2,13 @@
     <div>
         <h2>Warenkorb</h2>
         <ul>
-            <li v-for="item in cart" :key="item.id">
+            <!-- key uses id+index so duplicate products are still unique in DOM -->
+            <li v-for="(item, index) in cart" :key="`${item.id}-${index}`">
                 {{ item.name }} - {{ item.price }} CHF
                 <button @click="removeFromCart(item.id)">Entfernen</button>
             </li>
         </ul>
+        <!-- Show total only when at least one item is in the cart -->
         <h3 v-if="cart.length > 0">Gesamtsumme: {{ totalPrice }} CHF</h3>
     </div>
 </template>
@@ -16,7 +18,7 @@ export default {
         props: {
             cart: {
                 type: Array,
-                default: () => []  // Standardwert ist ein leeres Array
+                default: () => []
             }
         },
   computed: {
