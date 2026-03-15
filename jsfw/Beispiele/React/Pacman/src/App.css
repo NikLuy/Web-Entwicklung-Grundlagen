@@ -1,41 +1,165 @@
-.body {
-	background-color: black;
+body {
+    background-color: black;
 }
 
+.App {
+    color: white;
+    font-family: "Press Start 2P", monospace, sans-serif;
+}
+
+/* ─── Score / Highscore ─── */
+.score-board {
+    display: flex;
+    gap: 40px;
+    align-items: center;
+}
+
+.score-board h3 {
+    margin: 4px 0;
+    font-size: 14px;
+}
+
+/* ─── Status-Meldungen ─── */
+.status-message {
+    font-size: 24px;
+    margin: 10px 0;
+    animation: blink 1s step-end infinite;
+}
+
+.status-message.win {
+    color: #00ff88;
+}
+
+.status-message.gameover {
+    color: #ff4444;
+}
+
+@keyframes blink {
+    50% { opacity: 0; }
+}
+
+
+/* ─── Spielfeld ─── */
 .grid {
     background-color: black;
-	display: flex;
+    display: flex;
     flex-wrap: wrap;
     width: 560px;
     height: 560px;
     border: solid black;
 }
-  
+
 .grid div {
     width: 20px;
     height: 20px;
 }
 
+/* ─── Pac-Dot ─── */
 .pac-dot {
-    background-image: url('images/dot.jpg');   
+    background-color: black;
+    position: relative;
 }
 
-.wall {
-    background-image: url('images/wall.png'); /* F�ge eine Textur f�r die W�nde hinzu */
+.pac-dot::after {
+    content: "";
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background-image: url('images/dot.jpg');
     background-size: cover;
+    position: absolute;
+    top: 6px;
+    left: 6px;
 }
 
+/* ─── Wand ─── */
+.wall {
+    background-color: #1e4cb5;
+    background-image: url('images/wall.png');
+    background-size: 10px 10px;
+    background-repeat: repeat;
+}
+
+/* ─── Ghost-Zuhause ─── */
+.ghost-lair {
+    background-color: #3a3a3a;
+}
+
+/* ─── Power-Pellet ─── */
 .power-pellet {
+    background-color: black;
+    position: relative;
+}
+
+.power-pellet::after {
+    content: "";
+    width: 14px;
+    height: 14px;
+    border-radius: 50%;
     background-image: url('images/magicdot.jpg');
     background-size: cover;
+    position: absolute;
+    top: 3px;
+    left: 3px;
 }
 
-.bonus {
+/* ─── Bonus-Punkt (rot, +50 Pkt.) ─── */
+.bonus-point {
     background-image: url('images/bonusdot.jpg');
     background-size: cover;
+    border-radius: 50%;
+    box-shadow: 0 0 6px 2px red;
+    animation: bonusPulse 0.8s ease-in-out infinite alternate;
+}
+
+@keyframes bonusPulse {
+    from { box-shadow: 0 0 4px 1px red; }
+    to   { box-shadow: 0 0 10px 4px #ff8800; }
 }
 
 
+/* ─── Pac-Man ─── */
+.pac-man {
+    border-radius: 50%;
+    position: relative;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    /* Fallback yellow wenn kein GIF geladen */
+    background-color: yellow;
+}
+
+/* Richtungsbasierte GIF-Bilder */
+.pac-man-right {
+    background-image: url('images/pacmanRight.gif');
+}
+
+.pac-man-left {
+    background-image: url('images/pacmanLeft.gif');
+}
+
+.pac-man-up {
+    background-image: url('images/pacmanUp.gif');
+}
+
+.pac-man-down {
+    background-image: url('images/pacmanDown.gif');
+}
+
+/* ─── Chomping Animation (Fallback ohne Bild) ─── */
+@keyframes chomping {
+    0% {
+        clip-path: polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%, 50% 50%);
+    }
+    50% {
+        clip-path: polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%);
+    }
+    100% {
+        clip-path: polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%, 50% 50%);
+    }
+}
+
+/* ─── Geister ─── */
 .blinky {
     background-image: url('images/ghostGreen.png');
     background-size: cover;
@@ -52,34 +176,19 @@
 }
 
 .clyde {
-   background-image: url('images/ghostYellow.png');
-   background-size: cover;     
+    background-image: url('images/ghostYellow.png');
+    background-size: cover;
 }
 
-.pac-man {
-    background-color: yellow;
-    border-radius: 10px;
-    position: relative;
-	clip-path: polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%, 50% 50%);
-    animation: chomping 0.5s infinite;
-	transition: transform 0.2s ease;
-    transform: rotate(180deg); /* Startet nach rechts gerichtet */
-}
-
-@keyframes chomping {
-    0% {
-        clip-path: polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%, 50% 50%);
-    }
-    50% {
-        clip-path: polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%);
-    }
-    100% {
-        clip-path: polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%, 50% 50%);
-    }
-}
-
-
-
+/* ─── Verängstiger Geist ─── */
 .scared-ghost {
-    background-color: aquamarine;
+    background-image: none !important;
+    background-color: aquamarine !important;
+    border-radius: 30%;
+    animation: scaredPulse 0.5s ease-in-out infinite alternate;
+}
+
+@keyframes scaredPulse {
+    from { background-color: aquamarine; }
+    to   { background-color: #005f7f; }
 }
