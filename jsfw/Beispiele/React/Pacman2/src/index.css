@@ -1,0 +1,12 @@
+/* Reset default Vite styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    font-family: 'Press Start 2P', monospace;
+    background-color: #000;
+}
