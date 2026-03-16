@@ -7,6 +7,10 @@ import {
     hasRemainingCollectibles
 } from "../game/engine";
 
+import chompSoundUrl from "../sounds/pacman_chomp.wav";
+import eatFruitSoundUrl from "../sounds/pacman_eatfruit.wav";
+import deathSoundUrl from "../sounds/pacman_death.wav";
+
 /* ─────────────── Hilfsfunktionen ─────────────── */
 const randomItem = (items) => items[Math.floor(Math.random() * items.length)];
 
@@ -34,9 +38,7 @@ export function usePacmanGame() {
     const [pacmanDirection, setPacmanDirection] = useState("right");
     const [grid, setGrid] = useState([...LAYOUT]);
     const [score, setScore] = useState(0);
-    const [ghosts, setGhosts] = useState(
-        INITIAL_GHOSTS.map((g) => ({ ...g, isScared: false }))
-    );
+    const [ghosts, setGhosts] = useState(INITIAL_GHOSTS.map((g) => ({ ...g })));
     const [isGameOver, setIsGameOver] = useState(false);
     const [isWin, setIsWin] = useState(false);
 
@@ -49,15 +51,23 @@ export function usePacmanGame() {
     /* ID5: Sound-Referenzen */
     const eatSound         = useRef(null);
     const powerPelletSound = useRef(null);
-    const eatGhostSound    = useRef(null);
     const gameOverSound    = useRef(null);
 
     /* ID5: Sounds einmalig initialisieren */
     useEffect(() => {
-        eatSound.current         = new Audio("sounds/pacman_chomp.wav");
-        powerPelletSound.current = new Audio("sounds/pacman_eatfruit.wav");
-        eatGhostSound.current    = new Audio("sounds/pacman_eatghost.wav");
-        gameOverSound.current    = new Audio("sounds/pacman_death.wav");
+        eatSound.current = new Audio(chompSoundUrl);
+        powerPelletSound.current = new Audio(eatFruitSoundUrl);
+        gameOverSound.current = new Audio(deathSoundUrl);
+
+        [eatSound, powerPelletSound, gameOverSound].forEach((soundRef) => {
+            if (soundRef.current) soundRef.current.preload = "auto";
+        });
+    }, []);
+
+    const playSound = useCallback((soundRef) => {
+        if (!soundRef.current) return;
+        soundRef.current.currentTime = 0;
+        soundRef.current.play().catch(() => {});
     }, []);
 
     /* ─── Hilfsfunktion: Highscore aktualisieren ─── */
@@ -82,21 +92,15 @@ export function usePacmanGame() {
                         updateHighscore(newScore);
 
                         /* ID5: Sound je nach Typ */
-                        if (scoreDelta === 1 && eatSound.current) {
-                            eatSound.current.currentTime = 0;
-                            eatSound.current.play().catch(() => {});
-                        } else if (scoreDelta === 10 && powerPelletSound.current) {
-                            powerPelletSound.current.currentTime = 0;
-                            powerPelletSound.current.play().catch(() => {});
-                        }
-                        // Bonus (+50) hat keinen eigenen Sound; eatGhostSound wird separat ausgelöst
+                        if (scoreDelta === 1) playSound(eatSound);
+                        // Bonus (+50) has no dedicated sound.
                         return newScore;
                     });
                 }
                 return nextGrid;
             });
         },
-        [updateHighscore]
+        [playSound, updateHighscore]
     );
 
     /* ─── Pac-Man bewegen ─── */
@@ -136,22 +140,26 @@ export function usePacmanGame() {
 
     /* ─── Ghost-Bewegung ─── */
     useEffect(() => {
-        if (isGameOver || isWin) return;
+        if (isGameOver || isWin) {
+            return;
+        }
 
         const timers = INITIAL_GHOSTS.map((ghost, ghostIndex) =>
             setInterval(() => {
                 setGhosts((prevGhosts) => {
                     const currentGhost = prevGhosts[ghostIndex];
                     const occupiedByOthers = new Set(
-                        prevGhosts.filter((_, i) => i !== ghostIndex).map((g) => g.currentIndex)
+                        prevGhosts.filter((_, index) => index !== ghostIndex).map((item) => item.currentIndex)
                     );
                     const availableMoves = getAvailableGhostMoves(
                         LAYOUT,
                         currentGhost.currentIndex,
                         occupiedByOthers
                     );
-
-                    if (availableMoves.length === 0) return prevGhosts;
+                    
+                    if (availableMoves.length === 0) {
+                        return prevGhosts;
+                    }
 
                     const nextIndex = randomItem(availableMoves);
                     const nextGhosts = [...prevGhosts];
@@ -164,73 +172,17 @@ export function usePacmanGame() {
         return () => timers.forEach((timer) => clearInterval(timer));
     }, [isGameOver, isWin]);
 
-    /* ID7: Game Over – prüft ob ein NICHT-verängstigter Geist auf Pac-Man steht
-       Reagiert sowohl auf Ghost-Bewegung (Ghost läuft auf Pac-Man) als auch
-       auf Pac-Man-Bewegung (Pac-Man läuft auf Ghost).                          */
+    /* ID7: Game Over */
     useEffect(() => {
         if (isWin || isGameOver) return;
 
-        const touchingNonScaredGhost = ghosts.some(
-            (ghost) => ghost.currentIndex === pacmanCurrentIndex && !ghost.isScared
-        );
+        const touchingGhost = ghosts.some((ghost) => ghost.currentIndex === pacmanCurrentIndex);
 
-        if (touchingNonScaredGhost) {
+        if (touchingGhost) {
             setIsGameOver(true);
-            if (gameOverSound.current) {
-                gameOverSound.current.currentTime = 0;
-                gameOverSound.current.play().catch(() => {});
-            }
+            playSound(gameOverSound);
         }
-    }, [ghosts, pacmanCurrentIndex, isWin, isGameOver]);
-
-    /* ─── Scared Ghost gefressen ─── */
-    useEffect(() => {
-        if (isGameOver || isWin) return;
-
-        const scaredGhostOnPacman = ghosts.find(
-            (ghost) => ghost.currentIndex === pacmanCurrentIndex && ghost.isScared
-        );
-
-        if (scaredGhostOnPacman) {
-            if (eatGhostSound.current) {
-                eatGhostSound.current.currentTime = 0;
-                eatGhostSound.current.play().catch(() => {});
-            }
-            setScore((prevScore) => {
-                const newScore = prevScore + 100;
-                updateHighscore(newScore);
-                return newScore;
-            });
-            // Geist zurücksetzen
-            setGhosts((prevGhosts) =>
-                prevGhosts.map((g) =>
-                    g.className === scaredGhostOnPacman.className
-                        ? { ...g, currentIndex: g.startIndex, isScared: false }
-                        : g
-                )
-            );
-        }
-    }, [ghosts, pacmanCurrentIndex, isGameOver, isWin, updateHighscore]);
-
-    /* ─── Power-Pellet: Geister verängstigen ─── */
-    useEffect(() => {
-        const wasPowerPellet = false; // handled via scoreDelta in consumeCollectible
-        // We detect power pellet consumption by score jumps of 10
-        // Better: track via a dedicated state
-        // eslint-disable-next-line no-unused-vars
-    }, []);
-
-    /* ID5: Power-Pellet Sound & scared ghosts via separate state */
-    const [scaredUntil, setScaredUntil] = useState(0);
-
-    const activateScaredGhosts = useCallback(() => {
-        const until = Date.now() + 10000;
-        setScaredUntil(until);
-        setGhosts((prev) => prev.map((g) => ({ ...g, isScared: true })));
-        setTimeout(() => {
-            setGhosts((prev) => prev.map((g) => ({ ...g, isScared: false })));
-        }, 10000);
-    }, []);
+    }, [ghosts, pacmanCurrentIndex, isWin, isGameOver, playSound]);
 
     // Detect power pellet eaten: grid changes AND score jumped by 10
     const prevGridRef = useRef([...LAYOUT]);
@@ -240,14 +192,10 @@ export function usePacmanGame() {
             (tile, idx) => tile === TILE.POWER_PELLET && grid[idx] !== TILE.POWER_PELLET
         );
         if (powerPelletEaten) {
-            activateScaredGhosts();
-            if (powerPelletSound.current) {
-                powerPelletSound.current.currentTime = 0;
-                powerPelletSound.current.play().catch(() => {});
-            }
+            playSound(powerPelletSound);
         }
         prevGridRef.current = grid;
-    }, [grid, activateScaredGhosts]);
+    }, [grid, playSound]);
 
     /* ─── Win-Prüfung ─── */
     useEffect(() => {
@@ -255,13 +203,7 @@ export function usePacmanGame() {
             setIsWin(true);
         }
     }, [grid]);
-
-    /* ──────────────────────────────────────────────
-       ID6: Bonus-Punkt System
-       - Spawn alle 5 Sekunden auf einem zufälligen freien Feld
-       - Bleibt 10 Sekunden sichtbar, dann weg
-       - +50 Punkte wenn Pac-Man drüberläuft
-    ─────────────────────────────────────────────── */
+        /*ID6: Bonus-Punkt System */
     const [bonusIndex, setBonusIndex] = useState(null);
     const bonusTimerRef = useRef(null);
     const removeTimerRef = useRef(null);
@@ -319,7 +261,6 @@ export function usePacmanGame() {
         pacmanDirection,
         score,
         highscore,
-        bonusIndex,
-        scaredUntil
+        bonusIndex
     };
 }

@@ -22,8 +22,8 @@ function App() {
                 <h3>Score: {score}</h3>
                 <h3>Highscore: {highscore}</h3>
             </div>
-            {isWin && <h2 className="status-message win">🎉 You Win!</h2>}
-            {isGameOver && <h2 className="status-message gameover">💀 Game Over</h2>}
+            {isWin && <h2 className="status-message win">You Win!</h2>}
+            {isGameOver && <h2 className="status-message gameover">Game Over</h2>}
             <div
                 className="grid"
                 style={{ display: "grid", gridTemplateColumns: `repeat(${WIDTH}, 20px)` }}
@@ -32,7 +32,7 @@ function App() {
                     const tileClass = getTileClassName(tile);
                     const ghostClasses = ghosts
                         .filter((ghost) => ghost.currentIndex === index)
-                        .map((ghost) => `${ghost.className}${ghost.isScared ? " scared-ghost" : ""}`)
+                        .map((ghost) => ghost.className)
                         .join(" ");
                     const isPacman = index === pacmanCurrentIndex;
                     const pacmanClass = isPacman ? `pac-man pac-man-${pacmanDirection}` : "";
